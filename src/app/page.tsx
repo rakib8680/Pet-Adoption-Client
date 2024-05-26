@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
      <div>
          <h1>This is HomePage component</h1>
-         <Button variant="contained">Contained</Button>
+         <Button variant="contained" color="primary">Contained</Button>
      </div>
   )
 };

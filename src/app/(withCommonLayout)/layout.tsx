@@ -1,16 +1,15 @@
 import Navbar from "@/components/Shared/Navbar/Navbar";
 import { ReactNode } from "react";
 
-
-
-
-const CommonLayout = ({children}:{children:ReactNode}) => {
+const CommonLayout = ({ children }: { children: ReactNode }) => {
   return (
-     <div>
-        <Navbar/>
-         {children}
-     </div>
-  )
+    <div>
+      <div className="bg-[#10101017]">
+        <Navbar />
+      </div>
+      {children}
+    </div>
+  );
 };
 
 export default CommonLayout;

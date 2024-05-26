@@ -20,6 +20,9 @@ export const theme = createTheme({
     accent: {
       main: "#F2994A",
     },
+    text:{
+      primary: "#101010B2",
+    }
   },
 
   components: {
@@ -41,7 +44,7 @@ export const theme = createTheme({
   },
   typography: {
     body1: {
-      color: "#0B1134CC",
+      color: "#101010B2",
     },
   },
 });

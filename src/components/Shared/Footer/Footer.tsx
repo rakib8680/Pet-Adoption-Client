@@ -21,9 +21,8 @@ const Footer = () => {
             <Image
               src={logo2}
               alt="Pet Adoption Center Logo"
-              width={150}
-              height={150}
-              className="rounded-full bg-slate-200 p-1  mb-2 cursor-pointer"
+              width={130}
+              className="rounded-full bg-slate-200 p-1  mb-2"
             />
             <Typography fontWeight={600} fontSize={23} color="primary">
               <Box component="span" color="accent.main" className="font-black ">

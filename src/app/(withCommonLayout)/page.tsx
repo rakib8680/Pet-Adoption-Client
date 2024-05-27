@@ -1,14 +1,13 @@
-import { Button } from "@mui/material";
+import HeroSection from "@/components/Ui/HomePage/HeroSection/HeroSection";
 
 
 
 
 const HomePage = () => {
   return (
-     <div>
-         <h1>This is HomePage component</h1>
-         <Button disableElevation variant="contained" color="primary">Contained</Button>
-     </div>
+     <>
+         <HeroSection/>
+     </>
   )
 };
 

@@ -11,8 +11,6 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
       </div>
       <Box sx={{
         minHeight: "calc(100vh - 100px)",
-        position: "relative",
-        zIndex: 1
       }}>
       {children}
       </Box>

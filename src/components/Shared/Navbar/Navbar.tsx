@@ -60,9 +60,6 @@ const Navbar = () => {
           <Typography component={Link} href="/faq" fontSize={15}>
             FAQ
           </Typography>
-          <Typography component={Link} href="/testimonials" fontSize={15}>
-            Testimonials
-          </Typography>
           <Typography component={Link} href="/contact" fontSize={15}>
             Contact
           </Typography>

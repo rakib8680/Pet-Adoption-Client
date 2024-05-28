@@ -64,7 +64,7 @@ const RegisterPage = () => {
 
   return (
 
-    <div className="h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4] ">
+    <div className="min-h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4] ">
 
       {/* logo   */}
       <Stack
@@ -91,7 +91,7 @@ const RegisterPage = () => {
       </Stack>
 
       {/* parent div  */}
-      <div className=" container  mx-auto flex justify-center items-center h-[80vh] gap-40">
+      <div className=" container  mx-auto md:flex justify-center items-center h-[80vh] gap-40">
 
         {/* left side  */}
         <Lottie
@@ -146,7 +146,7 @@ const RegisterPage = () => {
           {/* main form  */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2} my={1}>
-              
+
               {/* name */}
               <Grid item md={12}>
                 <TextField

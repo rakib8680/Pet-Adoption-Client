@@ -1,9 +1,9 @@
 "use server";
 
-import { TUserRegistrationInputs } from "@/app/register/page";
+import { TLoginInputs } from "@/app/login/page";
 
-export const registerUser = async (userData: TUserRegistrationInputs) => {
-  const res = await fetch(`${process.env.PET_ADOPTION_BACKEND_URL}/register`, {
+export const loginUser = async (userData: TLoginInputs) => {
+  const res = await fetch(`${process.env.PET_ADOPTION_BACKEND_URL}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

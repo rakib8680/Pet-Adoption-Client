@@ -13,8 +13,43 @@ import {
 import Image from "next/image";
 import logo2 from "@/assets/logo2.png";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { useState } from "react";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { loginUser } from "@/services/actions/loginUser";
+
+export type TLoginInputs = {
+  email: string;
+  password: string;
+};
 
 const LoginPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TLoginInputs>();
+
+  // Login user function
+  const onSubmit: SubmitHandler<TLoginInputs> = async (data) => {
+    // console.log(data);
+    try {
+      const res = await loginUser(data);
+      if (res.success) {
+        toast.success(res.message, { duration: 3000 });
+        // router.push("/login");
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div
       className="
@@ -97,23 +132,63 @@ const LoginPage = () => {
                 marginBottom: "20px",
               }}
             />
-            <TextField label="Enter your email" variant="outlined" />
-            <TextField label="Password" type="password" variant="outlined" />
-            <Typography
-              fontSize={12}
-              component={Link}
-              href="/change-password"
-              sx={{
-                ":hover": {
-                  textDecoration: "underline",
-                },
-              }}
-            >
-              Forgot Password?
-            </Typography>
-            <Button disableElevation color="primary">
-              Login
-            </Button>
+
+            {/* Login form  */}
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+              {/* email  */}
+              <TextField
+                label="Enter your email"
+                variant="outlined"
+                fullWidth
+                {...register("email")}
+              />
+
+              {/* password  */}
+              <Box sx={{ position: "relative" }}>
+                <TextField
+                  label="Password"
+                  type={showPassword ? "text" : "password"}
+                  variant="outlined"
+                  fullWidth
+                  {...register("password")}
+                />
+                <Box
+                  sx={{
+                    position: "absolute",
+                    right: 15,
+                    top: 15,
+                    cursor: "pointer",
+                    color: "accent.main",
+                  }}
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </Box>
+              </Box>
+              <Typography
+                fontSize={12}
+                component={Link}
+                href="/change-password"
+                sx={{
+                  ":hover": {
+                    textDecoration: "underline",
+                  },
+                  display: "block",
+                }}
+              >
+                Forgot Password?
+              </Typography>
+              <Button
+                type="submit"
+                disableElevation
+                color="primary"
+                sx={{ mb: 2, mt: 1 }}
+              >
+                Login
+              </Button>
+            </form>
+
+            {/* sign-up link  */}
             <Typography
               align="center"
               color="accent.main"

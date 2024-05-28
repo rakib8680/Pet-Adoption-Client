@@ -1,4 +1,5 @@
 import { authKey } from "@/constants/authKey"
+import { decodedToken } from "@/utils/jwt";
 import { getFromLocalStorage, removeFromLocalStorage, setToLocalStorage } from "@/utils/local-storage"
 
 
@@ -19,5 +20,9 @@ export const removeAccessToken = ()=>{
 // get userinfo from access token 
  export const getUserInfo = () =>{
     const accessToken = getFromLocalStorage(authKey)
-    console.log(accessToken);
+    
+    if(!accessToken) return null
+    const decodedData :any = decodedToken(accessToken)
+
+    return decodedData
  }

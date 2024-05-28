@@ -1,16 +1,18 @@
+"use client";
 
-'use client'
-
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import logo2 from "@/assets/logo2.png";
 import Link from "next/link";
-import { getUserInfo } from "@/services/auth.service";
+import dynamic from "next/dynamic";
 
 const Navbar = () => {
-
-  const userInfo = getUserInfo();
-
+  
+  //  use this code to handle hydration error
+  const AuthButton = dynamic(
+    () => import("@/components/Ui/AuthButton/AuthButton"),
+    { ssr: false }
+  );
 
   return (
     <Container>
@@ -20,8 +22,6 @@ const Navbar = () => {
         alignItems="center"
         justifyContent="space-between"
       >
-
-        
         {/* logo   */}
         <Stack
           direction="row"
@@ -45,8 +45,6 @@ const Navbar = () => {
             Adoption Center 🐾
           </Typography>
         </Stack>
-
-
 
         {/* nav items */}
         <Stack direction="row" gap={4}>
@@ -73,27 +71,8 @@ const Navbar = () => {
           </Typography>
         </Stack>
 
-
-
         {/* auth buttons  */}
-        <Stack gap={1} direction="row">
-          <Button
-            disableElevation
-            color="secondary"
-            component={Link}
-            href="/login"
-          >
-            Login
-          </Button>
-          <Button
-            disableElevation
-            color="primary"
-            component={Link}
-            href="/register"
-          >
-            Register
-          </Button>
-        </Stack>
+        <AuthButton />
       </Stack>
     </Container>
   );

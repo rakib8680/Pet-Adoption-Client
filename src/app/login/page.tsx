@@ -2,7 +2,14 @@
 
 import Lottie from "lottie-react";
 import login_animation2 from "@/assets/login_animation2.json";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
 import logo2 from "@/assets/logo2.png";
 import Link from "next/link";
@@ -11,8 +18,7 @@ const LoginPage = () => {
   return (
     <div
       className="
-    h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4] flex flex-col justify-between
-    "
+    h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4] "
     >
       {/* logo   */}
       <Stack
@@ -39,7 +45,7 @@ const LoginPage = () => {
       </Stack>
 
       <div
-        className=" container  mx-auto flex justify-center items-center h-[90vh] gap-60
+        className=" container  mx-auto flex justify-center items-center h-[80vh] gap-60
       "
       >
         <Lottie
@@ -50,7 +56,6 @@ const LoginPage = () => {
 
         <Box
           sx={{
-            border: "1px solid #B6B9B8",
             padding: "50px",
             borderRadius: "10px",
             bgcolor: "#fff",
@@ -85,8 +90,27 @@ const LoginPage = () => {
             >
               Sign In
             </Typography>
+            <Divider
+              sx={{
+                bgcolor: "primary.main",
+                height: "2px",
+                marginBottom: "20px",
+              }}
+            />
             <TextField label="Enter your email" variant="outlined" />
             <TextField label="Password" type="password" variant="outlined" />
+            <Typography
+              fontSize={12}
+              component={Link}
+              href="/change-password"
+              sx={{
+                ":hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
+              Forgot Password?
+            </Typography>
             <Button disableElevation color="primary">
               Login
             </Button>

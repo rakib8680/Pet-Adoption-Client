@@ -20,6 +20,7 @@ import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { loginUser } from "@/services/actions/loginUser";
+import { storeAccessToken } from "@/services/auth.service";
 
 export type TLoginInputs = {
   email: string;
@@ -40,8 +41,9 @@ const LoginPage = () => {
   const onSubmit: SubmitHandler<TLoginInputs> = async (data) => {
     // console.log(data);
     try {
-      const res = await loginUser(data);
-      if (res.success) {
+      const res = await loginUser(data)
+      if (res?.success) {
+        storeAccessToken(res?.data?.token)
         toast.success(res.message, { duration: 3000 });
         // router.push("/login");
       }

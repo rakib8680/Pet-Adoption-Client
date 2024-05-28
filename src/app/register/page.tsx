@@ -17,13 +17,55 @@ import Link from "next/link";
 import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { registerUser } from "@/services/actions/registerUser";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+
+export type TUserRegistrationInputs = {
+  name: string;
+  email: string;
+  password: string;
+  gender: string;
+  profilePicture: string;
+  age: number;
+  location: string;
+  contactNumber: string;
+};
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TUserRegistrationInputs>();
+
+
+
+  // Register user function
+  const onSubmit: SubmitHandler<TUserRegistrationInputs> = async (data) => {
+    data.age = Number(data.age);
+
+    try {
+      const res = await registerUser(data);
+      if (res.success) {
+        toast.success(res.message, { duration: 3000 });
+        router.push("/login");
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
 
 
   return (
+
     <div className="h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4] ">
+
       {/* logo   */}
       <Stack
         direction="row"
@@ -50,6 +92,7 @@ const RegisterPage = () => {
 
       {/* parent div  */}
       <div className=" container  mx-auto flex justify-center items-center h-[80vh] gap-40">
+
         {/* left side  */}
         <Lottie
           animationData={registration_animation}
@@ -101,57 +144,102 @@ const RegisterPage = () => {
           </Stack>
 
           {/* main form  */}
-          <Grid container spacing={2} my={1}>
-            <Grid item md={12}>
-              <TextField label="Your Name" variant="outlined" fullWidth />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Grid container spacing={2} my={1}>
+              
+              {/* name */}
+              <Grid item md={12}>
+                <TextField
+                  label="Your Name"
+                  variant="outlined"
+                  fullWidth
+                  {...register("name")}
+                />
+              </Grid>
+              {/* email  */}
+              <Grid item md={12}>
+                <TextField
+                  label="Email"
+                  type="email"
+                  variant="outlined"
+                  fullWidth
+                  {...register("email")}
+                />
+              </Grid>
+              {/* password  */}
+              <Grid item md={12} sx={{ position: "relative" }}>
+                <TextField
+                  label="Password"
+                  type={showPassword ? "text" : "password"}
+                  variant="outlined"
+                  fullWidth
+                  {...register("password")}
+                />
+                <Box
+                  sx={{
+                    position: "absolute",
+                    right: 15,
+                    top: 30,
+                    cursor: "pointer",
+                    color: "accent.main",
+                  }}
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </Box>
+              </Grid>
+              {/* gender  */}
+              <Grid item md={6}>
+                <TextField
+                  label="Gender"
+                  variant="outlined"
+                  {...register("gender")}
+                />
+              </Grid>
+              {/* age  */}
+              <Grid item md={6}>
+                <TextField
+                  label="Age"
+                  type="number"
+                  variant="outlined"
+                  {...register("age")}
+                />
+              </Grid>
+              {/* profile  */}
+              <Grid item md={12}>
+                <TextField
+                  label="Profile URL"
+                  variant="outlined"
+                  fullWidth
+                  {...register("profilePicture")}
+                />
+              </Grid>
+              {/* location  */}
+              <Grid item md={6}>
+                <TextField
+                  label="Location"
+                  variant="outlined"
+                  {...register("location")}
+                />
+              </Grid>
+              {/* contact  */}
+              <Grid item md={6}>
+                <TextField
+                  label="Contact Number"
+                  variant="outlined"
+                  {...register("contactNumber")}
+                />
+              </Grid>
             </Grid>
-            <Grid item md={12}>
-              <TextField
-                label="Email"
-                type="email"
-                variant="outlined"
-                fullWidth
-              />
-            </Grid>
-            <Grid item md={12} sx={{ position: "relative" }}>
-              <TextField
-                label="Password"
-                type={showPassword ? "text" : "password"}
-                variant="outlined"
-                fullWidth
-              />
-              <Box
-                sx={{
-                  position: "absolute",
-                  right: 15,
-                  top: 30,
-                  cursor: "pointer",
-                  color: "accent.main",
-                }}
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-              </Box>
-            </Grid>
-            <Grid item md={6}>
-              <TextField label="Gender" variant="outlined" />
-            </Grid>
-            <Grid item md={6}>
-              <TextField label="Age" type="number" variant="outlined" />
-            </Grid>
-            <Grid item md={12}>
-              <TextField label="Profile URL" variant="outlined" fullWidth />
-            </Grid>
-            <Grid item md={6}>
-              <TextField label="Location" variant="outlined" />
-            </Grid>
-            <Grid item md={6}>
-              <TextField label="Contact Number" variant="outlined" />
-            </Grid>
-          </Grid>
-          <Button disableElevation color="primary" sx={{ mb: 2, mt: 1 }}>
-            Sign Up
-          </Button>
+            <Button
+              type="submit"
+              disableElevation
+              color="primary"
+              sx={{ mb: 2, mt: 1 }}
+            >
+              Sign Up
+            </Button>
+          </form>
 
           <Typography
             align="center"

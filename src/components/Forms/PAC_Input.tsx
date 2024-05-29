@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { SxProps, TextField } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
 
 type TFormProps = {
@@ -8,6 +8,8 @@ type TFormProps = {
   type?: string;
   size?: "small" | "medium";
   variant?: "standard" | "outlined" | "filled";
+  sx?: SxProps;
+  required?: boolean;
 };
 
 const PAC_Input = ({
@@ -17,6 +19,8 @@ const PAC_Input = ({
   size,
   variant,
   type,
+  sx,
+  required,
 }: TFormProps) => {
   const { control } = useFormContext();
 
@@ -32,6 +36,8 @@ const PAC_Input = ({
           size={size}
           type={type || "text"}
           fullWidth={fullWidth || false}
+          sx={{ ...sx }}
+          required={required || false}
         />
       )}
     />

@@ -2,27 +2,21 @@
 
 import Lottie from "lottie-react";
 import registration_animation from "@/assets/registration_animation.json";
-import {
-  Box,
-  Button,
-  Divider,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Divider, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import logo2 from "@/assets/logo2.png";
 import Link from "next/link";
 import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import { registerUser } from "@/services/actions/registerUser";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { loginUser } from "@/services/actions/loginUser";
 import { storeAccessToken } from "@/services/auth.service";
+import PAC_Form from "@/components/Forms/PAC_Form";
+import PAC_Input from "@/components/Forms/PAC_Input";
 
 export type TUserRegistrationInputs = {
   name: string;
@@ -35,20 +29,16 @@ export type TUserRegistrationInputs = {
   contactNumber: string;
 };
 
+
+
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<TUserRegistrationInputs>();
 
-
-
+  
   // Register user function
-  const onSubmit: SubmitHandler<TUserRegistrationInputs> = async (data) => {
+  const handleRegistration = async (data: FieldValues) => {
     data.age = Number(data.age);
 
     try {
@@ -70,7 +60,6 @@ const RegisterPage = () => {
       console.log(error.message);
     }
   };
-
 
 
 
@@ -102,12 +91,15 @@ const RegisterPage = () => {
 
       {/* parent div  */}
       <div className=" container  mx-auto md:flex justify-center items-center h-[80vh] gap-40">
+
         {/* left side  */}
         <Lottie
           animationData={registration_animation}
           loop={true}
           className="w-[550px]"
         />
+
+
 
         {/* right side  */}
         <Box
@@ -120,6 +112,7 @@ const RegisterPage = () => {
             marginRight: "100px",
           }}
         >
+
           {/* image and Text  */}
           <Stack spacing={2}>
             <Image
@@ -152,39 +145,44 @@ const RegisterPage = () => {
             />
           </Stack>
 
-          {/* main form  */}
-          <form onSubmit={handleSubmit(onSubmit)}>
+
+
+          {/* main form  ***********************************************************************************/}
+          <PAC_Form onSubmit={handleRegistration}>
             <Grid container spacing={2} my={1}>
               {/* name */}
               <Grid item md={12}>
-                <TextField
+                <PAC_Input
                   label="Your Name"
                   variant="outlined"
                   fullWidth
                   size="small"
-                  {...register("name")}
+                  name="name"
+                  required
                 />
               </Grid>
               {/* email  */}
               <Grid item md={12}>
-                <TextField
+                <PAC_Input
                   label="Email"
                   type="email"
                   variant="outlined"
                   size="small"
                   fullWidth
-                  {...register("email")}
+                  name="email"
+                  required
                 />
               </Grid>
               {/* password  */}
               <Grid item md={12} sx={{ position: "relative" }}>
-                <TextField
+                <PAC_Input
                   label="Password"
                   type={showPassword ? "text" : "password"}
                   variant="outlined"
                   size="small"
                   fullWidth
-                  {...register("password")}
+                  name="password"
+                  required
                 />
                 <Box
                   sx={{
@@ -196,73 +194,77 @@ const RegisterPage = () => {
                   }}
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon  fontSize="small"/>}
+                  {showPassword ? (
+                    <VisibilityOffIcon fontSize="small" />
+                  ) : (
+                    <VisibilityIcon fontSize="small" />
+                  )}
                 </Box>
               </Grid>
               {/* gender  */}
               <Grid item md={6}>
-                <TextField
+                <PAC_Input
                   label="Gender"
                   variant="outlined"
                   size="small"
-                  {...register("gender")}
+                  name="gender"
+                  required
                 />
               </Grid>
               {/* age  */}
               <Grid item md={6}>
-                <TextField
+                <PAC_Input
                   label="Age"
                   type="number"
                   variant="outlined"
                   size="small"
-                  {...register("age")}
+                  name="age"
+                  required
                 />
               </Grid>
               {/* profile  */}
               <Grid item md={12}>
-                <TextField
+                <PAC_Input
                   label="Profile URL"
                   variant="outlined"
                   fullWidth
                   size="small"
-                  {...register("profilePicture")}
+                  name="profilePicture"
+                  required
                 />
               </Grid>
               {/* location  */}
               <Grid item md={6}>
-                <TextField
+                <PAC_Input
                   label="Location"
                   variant="outlined"
                   size="small"
-                  {...register("location")}
+                  name="location"
+                  required
                 />
               </Grid>
               {/* contact  */}
               <Grid item md={6}>
-                <TextField
+                <PAC_Input
                   label="Contact Number"
                   variant="outlined"
                   size="small"
-                  {...register("contactNumber")}
+                  name="contactNumber"
+                  required
                 />
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              disableElevation
-              color="primary"
-              size="small"
-              sx={{ mb: 2, mt: 1 }}
-            >
+            <Button type="submit" disableElevation color="primary" size="small">
               Sign Up
             </Button>
-          </form>
+          </PAC_Form>
 
           <Typography
             align="center"
             color="accent.main"
             fontSize="14px"
             fontWeight={100}
+            mt={3}
           >
             Already have an account?{" "}
             <Box

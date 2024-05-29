@@ -15,9 +15,14 @@ import { loginUser } from "@/services/actions/loginUser";
 import { storeAccessToken } from "@/services/auth.service";
 import PAC_Form from "@/components/Forms/PAC_Form";
 import PAC_Input from "@/components/Forms/PAC_Input";
+import { useRouter } from "next/navigation";
+
+
+
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
   // Login user function
   const handleLogin = async (data: FieldValues) => {
@@ -26,13 +31,15 @@ const LoginPage = () => {
       if (res?.success) {
         storeAccessToken(res?.data?.token);
         toast.success(res.message, { duration: 3000 });
-        // router.push("/login");
+        router.push("/");
       }
     } catch (error: any) {
       console.log(error.message);
     }
   };
 
+
+  
   return (
     <div
       className="

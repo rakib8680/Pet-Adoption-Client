@@ -22,13 +22,14 @@ const PAC_Input = ({
   sx,
   required,
 }: TFormProps) => {
+  
   const { control } = useFormContext();
 
   return (
     <Controller
       control={control}
       name={name}
-      render={({ field }) => (
+      render={({ field, fieldState:{error} }) => (
         <TextField
           {...field}
           label={label}
@@ -38,6 +39,8 @@ const PAC_Input = ({
           fullWidth={fullWidth || false}
           sx={{ ...sx }}
           required={required || false}
+          error={!!error?.message}
+          helperText={error?.message}
         />
       )}
     />

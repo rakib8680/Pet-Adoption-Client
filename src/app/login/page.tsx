@@ -16,9 +16,8 @@ import { storeAccessToken } from "@/services/auth.service";
 import PAC_Form from "@/components/Forms/PAC_Form";
 import PAC_Input from "@/components/Forms/PAC_Input";
 import { useRouter } from "next/navigation";
-
-
-
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginValidationSchema } from "@/utils/formValidation";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -38,8 +37,6 @@ const LoginPage = () => {
     }
   };
 
-
-  
   return (
     <div
       className="
@@ -120,8 +117,12 @@ const LoginPage = () => {
               }}
             />
 
-            {/* Login form  */}
-            <PAC_Form onSubmit={handleLogin}>
+            {/* Login form  *********************************************************/}
+            <PAC_Form
+              onSubmit={handleLogin}
+              resolver={zodResolver(loginValidationSchema)}
+              defaultValues={{ email: "", password: "" }}
+            >
               {/* email  */}
               <PAC_Input
                 name="email"

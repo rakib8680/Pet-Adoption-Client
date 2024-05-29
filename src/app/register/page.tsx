@@ -17,6 +17,8 @@ import { loginUser } from "@/services/actions/loginUser";
 import { storeAccessToken } from "@/services/auth.service";
 import PAC_Form from "@/components/Forms/PAC_Form";
 import PAC_Input from "@/components/Forms/PAC_Input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerValidationSchema } from "@/utils/formValidation";
 
 export type TUserRegistrationInputs = {
   name: string;
@@ -30,8 +32,22 @@ export type TUserRegistrationInputs = {
 };
 
 
+const registerDefaultValues ={
+  name: "",
+  email: "",
+  password: "",
+  gender: "",
+  profilePicture: "",
+  age: 0,
+  location: "",
+  contactNumber: "",
+}
+
+
+
 
 const RegisterPage = () => {
+
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
@@ -148,7 +164,7 @@ const RegisterPage = () => {
 
 
           {/* main form  ***********************************************************************************/}
-          <PAC_Form onSubmit={handleRegistration}>
+          <PAC_Form onSubmit={handleRegistration} resolver={zodResolver(registerValidationSchema)} defaultValues={registerDefaultValues}>
             <Grid container spacing={2} my={1}>
               {/* name */}
               <Grid item md={12}>
@@ -158,7 +174,6 @@ const RegisterPage = () => {
                   fullWidth
                   size="small"
                   name="name"
-                  required
                 />
               </Grid>
               {/* email  */}
@@ -170,7 +185,6 @@ const RegisterPage = () => {
                   size="small"
                   fullWidth
                   name="email"
-                  required
                 />
               </Grid>
               {/* password  */}
@@ -182,7 +196,6 @@ const RegisterPage = () => {
                   size="small"
                   fullWidth
                   name="password"
-                  required
                 />
                 <Box
                   sx={{
@@ -219,7 +232,6 @@ const RegisterPage = () => {
                   variant="outlined"
                   size="small"
                   name="age"
-                  required
                 />
               </Grid>
               {/* profile  */}
@@ -230,7 +242,6 @@ const RegisterPage = () => {
                   fullWidth
                   size="small"
                   name="profilePicture"
-                  required
                 />
               </Grid>
               {/* location  */}
@@ -240,7 +251,6 @@ const RegisterPage = () => {
                   variant="outlined"
                   size="small"
                   name="location"
-                  required
                 />
               </Grid>
               {/* contact  */}
@@ -250,7 +260,6 @@ const RegisterPage = () => {
                   variant="outlined"
                   size="small"
                   name="contactNumber"
-                  required
                 />
               </Grid>
             </Grid>

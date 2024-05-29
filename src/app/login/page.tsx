@@ -19,9 +19,14 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidationSchema } from "@/utils/formValidation";
 
+
+
 const LoginPage = () => {
+
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
+
 
   // Login user function
   const handleLogin = async (data: FieldValues) => {
@@ -31,11 +36,17 @@ const LoginPage = () => {
         storeAccessToken(res?.data?.token);
         toast.success(res.message, { duration: 3000 });
         router.push("/");
+      }else{
+          setError(res.message);
+          console.log(error);
       }
     } catch (error: any) {
       console.log(error.message);
     }
   };
+
+
+
 
   return (
     <div
@@ -118,6 +129,16 @@ const LoginPage = () => {
             />
 
             {/* Login form  *********************************************************/}
+            <Box>
+              {error && (
+                <Typography
+                  color="accent.main"
+                  sx={{ fontSize: 15, fontWeight: 400 }}
+                >
+                  {error}
+                </Typography>
+              )}
+            </Box>
             <PAC_Form
               onSubmit={handleLogin}
               resolver={zodResolver(loginValidationSchema)}

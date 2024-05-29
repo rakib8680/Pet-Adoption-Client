@@ -31,8 +31,7 @@ export type TUserRegistrationInputs = {
   contactNumber: string;
 };
 
-
-const registerDefaultValues ={
+const registerDefaultValues = {
   name: "",
   email: "",
   password: "",
@@ -41,18 +40,17 @@ const registerDefaultValues ={
   age: 0,
   location: "",
   contactNumber: "",
-}
-
+};
 
 
 
 const RegisterPage = () => {
-
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
 
-  
+
   // Register user function
   const handleRegistration = async (data: FieldValues) => {
     data.age = Number(data.age);
@@ -71,6 +69,8 @@ const RegisterPage = () => {
           storeAccessToken(loginData?.data?.token);
           router.push("/");
         }
+      } else {
+        setError(res.message);
       }
     } catch (error: any) {
       console.log(error.message);
@@ -81,6 +81,7 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4] ">
+
       {/* logo   */}
       <Stack
         direction="row"
@@ -108,14 +109,13 @@ const RegisterPage = () => {
       {/* parent div  */}
       <div className=" container  mx-auto md:flex justify-center items-center h-[80vh] gap-40">
 
+
         {/* left side  */}
         <Lottie
           animationData={registration_animation}
           loop={true}
           className="w-[550px]"
         />
-
-
 
         {/* right side  */}
         <Box
@@ -163,8 +163,27 @@ const RegisterPage = () => {
 
 
 
+          {/* server error */}
+          <Box>
+            {error && (
+              <Typography
+                color="accent.main"
+                sx={{ fontSize: 15, fontWeight: 400, mt: 2 }}
+              >
+                {error}
+              </Typography>
+            )}
+          </Box>
+
+
+
+
           {/* main form  ***********************************************************************************/}
-          <PAC_Form onSubmit={handleRegistration} resolver={zodResolver(registerValidationSchema)} defaultValues={registerDefaultValues}>
+          <PAC_Form
+            onSubmit={handleRegistration}
+            resolver={zodResolver(registerValidationSchema)}
+            defaultValues={registerDefaultValues}
+          >
             <Grid container spacing={2} my={1}>
               {/* name */}
               <Grid item md={12}>

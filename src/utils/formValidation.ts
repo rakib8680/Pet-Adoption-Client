@@ -11,7 +11,7 @@ export const registerValidationSchema = z.object({
   password: z.string().min(4, "Password must be at least 4 characters long"),
   gender: z.string(),
   profilePicture: z.string().url("Enter a valid URL"),
-  age: z.number().int().positive("Enter a valid age"),
+  age: z.string().min(1, "Enter your age"),
   location: z.string().min(3, "Enter your location"),
   contactNumber: z.string().min(10, "Enter a valid contact number"),
 });

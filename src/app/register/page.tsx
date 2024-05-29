@@ -21,6 +21,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { registerUser } from "@/services/actions/registerUser";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { loginUser } from "@/services/actions/loginUser";
+import { storeAccessToken } from "@/services/auth.service";
 
 export type TUserRegistrationInputs = {
   name: string;
@@ -53,7 +55,16 @@ const RegisterPage = () => {
       const res = await registerUser(data);
       if (res.success) {
         toast.success(res.message, { duration: 3000 });
-        router.push("/login");
+
+        // Login user after registration
+        const loginData = await loginUser({
+          email: data.email,
+          password: data.password,
+        });
+        if (loginData?.success) {
+          storeAccessToken(loginData?.data?.token);
+          router.push("/");
+        }
       }
     } catch (error: any) {
       console.log(error.message);
@@ -62,10 +73,9 @@ const RegisterPage = () => {
 
 
 
+
   return (
-
     <div className="min-h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4] ">
-
       {/* logo   */}
       <Stack
         direction="row"
@@ -92,7 +102,6 @@ const RegisterPage = () => {
 
       {/* parent div  */}
       <div className=" container  mx-auto md:flex justify-center items-center h-[80vh] gap-40">
-
         {/* left side  */}
         <Lottie
           animationData={registration_animation}
@@ -146,13 +155,13 @@ const RegisterPage = () => {
           {/* main form  */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2} my={1}>
-
               {/* name */}
               <Grid item md={12}>
                 <TextField
                   label="Your Name"
                   variant="outlined"
                   fullWidth
+                  size="small"
                   {...register("name")}
                 />
               </Grid>
@@ -162,6 +171,7 @@ const RegisterPage = () => {
                   label="Email"
                   type="email"
                   variant="outlined"
+                  size="small"
                   fullWidth
                   {...register("email")}
                 />
@@ -172,6 +182,7 @@ const RegisterPage = () => {
                   label="Password"
                   type={showPassword ? "text" : "password"}
                   variant="outlined"
+                  size="small"
                   fullWidth
                   {...register("password")}
                 />
@@ -179,13 +190,13 @@ const RegisterPage = () => {
                   sx={{
                     position: "absolute",
                     right: 15,
-                    top: 30,
+                    top: 25,
                     cursor: "pointer",
                     color: "accent.main",
                   }}
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                  {showPassword ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon  fontSize="small"/>}
                 </Box>
               </Grid>
               {/* gender  */}
@@ -193,6 +204,7 @@ const RegisterPage = () => {
                 <TextField
                   label="Gender"
                   variant="outlined"
+                  size="small"
                   {...register("gender")}
                 />
               </Grid>
@@ -202,6 +214,7 @@ const RegisterPage = () => {
                   label="Age"
                   type="number"
                   variant="outlined"
+                  size="small"
                   {...register("age")}
                 />
               </Grid>
@@ -211,6 +224,7 @@ const RegisterPage = () => {
                   label="Profile URL"
                   variant="outlined"
                   fullWidth
+                  size="small"
                   {...register("profilePicture")}
                 />
               </Grid>
@@ -219,6 +233,7 @@ const RegisterPage = () => {
                 <TextField
                   label="Location"
                   variant="outlined"
+                  size="small"
                   {...register("location")}
                 />
               </Grid>
@@ -227,6 +242,7 @@ const RegisterPage = () => {
                 <TextField
                   label="Contact Number"
                   variant="outlined"
+                  size="small"
                   {...register("contactNumber")}
                 />
               </Grid>
@@ -235,6 +251,7 @@ const RegisterPage = () => {
               type="submit"
               disableElevation
               color="primary"
+              size="small"
               sx={{ mb: 2, mt: 1 }}
             >
               Sign Up

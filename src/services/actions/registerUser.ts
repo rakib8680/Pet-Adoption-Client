@@ -1,8 +1,8 @@
 "use server";
 
-import { TUserRegistrationInputs } from "@/app/register/page";
+import { FieldValues } from "react-hook-form";
 
-export const registerUser = async (userData: TUserRegistrationInputs) => {
+export const registerUser = async (userData: FieldValues) => {
   const res = await fetch(`${process.env.PET_ADOPTION_BACKEND_URL}/register`, {
     method: "POST",
     headers: {

@@ -2,48 +2,29 @@
 
 import Lottie from "lottie-react";
 import login_animation2 from "@/assets/login_animation2.json";
-import {
-  Box,
-  Button,
-  Divider,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Divider, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import logo2 from "@/assets/logo2.png";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { loginUser } from "@/services/actions/loginUser";
 import { storeAccessToken } from "@/services/auth.service";
-
-export type TLoginInputs = {
-  email: string;
-  password: string;
-};
+import PAC_Form from "@/components/Forms/PAC_Form";
+import PAC_Input from "@/components/Forms/PAC_Input";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<TLoginInputs>();
 
   // Login user function
-  const onSubmit: SubmitHandler<TLoginInputs> = async (data) => {
-    // console.log(data);
+  const handleLogin = async (data: FieldValues) => {
     try {
-      const res = await loginUser(data)
+      const res = await loginUser(data);
       if (res?.success) {
-        storeAccessToken(res?.data?.token)
+        storeAccessToken(res?.data?.token);
         toast.success(res.message, { duration: 3000 });
         // router.push("/login");
       }
@@ -81,10 +62,7 @@ const LoginPage = () => {
         </Typography>
       </Stack>
 
-      <div
-        className=" container  mx-auto flex justify-center items-center h-[80vh] gap-60
-      "
-      >
+      <div className=" container  mx-auto flex justify-center items-center h-[80vh] gap-60">
         <Lottie
           animationData={login_animation2}
           loop={true}
@@ -125,7 +103,7 @@ const LoginPage = () => {
               fontSize="30px"
               className="font-bold"
             >
-              Sign In
+              Login Here
             </Typography>
             <Divider
               sx={{
@@ -136,23 +114,23 @@ const LoginPage = () => {
             />
 
             {/* Login form  */}
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+            <PAC_Form onSubmit={handleLogin}>
               {/* email  */}
-              <TextField
+              <PAC_Input
+                name="email"
                 label="Enter your email"
                 variant="outlined"
                 fullWidth
-                {...register("email")}
               />
 
               {/* password  */}
               <Box sx={{ position: "relative" }}>
-                <TextField
+                <PAC_Input
                   label="Password"
                   type={showPassword ? "text" : "password"}
                   variant="outlined"
                   fullWidth
-                  {...register("password")}
+                  name="password"
                 />
                 <Box
                   sx={{
@@ -188,7 +166,7 @@ const LoginPage = () => {
               >
                 Login
               </Button>
-            </form>
+            </PAC_Form>
 
             {/* sign-up link  */}
             <Typography

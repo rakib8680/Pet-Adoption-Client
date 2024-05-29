@@ -1,8 +1,8 @@
 "use server";
 
-import { TLoginInputs } from "@/app/login/page";
+import { FieldValues } from "react-hook-form";
 
-export const loginUser = async (userData: TLoginInputs) => {
+export const loginUser = async (userData: FieldValues) => {
   const res = await fetch(`${process.env.PET_ADOPTION_BACKEND_URL}/login`, {
     method: "POST",
     headers: {

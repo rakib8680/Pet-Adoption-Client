@@ -1,10 +1,34 @@
+import { ReactNode } from "react";
+import {
+  useForm,
+  FormProvider,
+  useFormContext,
+  FieldValues,
+  SubmitHandler,
+} from "react-hook-form";
 
-const PAC_Form = () => {
+
+type TFormProps ={
+  children: ReactNode;
+  onSubmit : SubmitHandler<FieldValues>;
+
+}
+
+const PAC_Form = ({ children, onSubmit }: TFormProps) => {
+  const methods = useForm();
+
+  const { handleSubmit, reset } = methods;
+
+  const submit = (data: FieldValues) => {
+    onSubmit(data);
+    reset();
+  };
+
   return (
-     <div>
-         <h1>This is PAC_Form component</h1>
-     </div>
-  )
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(submit)} className="space-y-3">{children}</form>
+    </FormProvider>
+  );
 };
 
 export default PAC_Form;

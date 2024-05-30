@@ -72,11 +72,11 @@ const Footer = () => {
                 </Typography>
                 <Typography
                   component={Link}
-                  href="/adoption"
+                  href="/all-pets"
                   variant="body2"
                   className="text-gray-400 hover:text-gray-100"
                 >
-                  Adopt
+                  All Pets
                 </Typography>
               </Stack>
               <Stack spacing={2}>

@@ -7,7 +7,6 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 const Navbar = () => {
-  
   //  use this code to handle hydration error
   const AuthButton = dynamic(
     () => import("@/components/Ui/AuthButton/AuthButton"),
@@ -51,14 +50,14 @@ const Navbar = () => {
           <Typography component={Link} href="/" fontSize={15}>
             Home
           </Typography>
+          <Typography component={Link} href="/all-pets" fontSize={15}>
+            All Pets
+          </Typography>
           <Typography component={Link} href="/about" fontSize={15}>
             About
           </Typography>
           <Typography component={Link} href="/blog" fontSize={15}>
             Blog
-          </Typography>
-          <Typography component={Link} href="/adoption" fontSize={15}>
-            Adopt
           </Typography>
           <Typography component={Link} href="/gallery" fontSize={15}>
             Gallery

@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 const CommonLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div>
-      <div className="bg-[#10101017]">
+      <div className="bg-[#efefef]">
         <Navbar />
       </div>
       <Box sx={{

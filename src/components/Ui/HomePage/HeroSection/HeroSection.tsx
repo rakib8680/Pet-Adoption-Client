@@ -7,7 +7,7 @@ import heroImage3 from "@/assets/adopt_pet3.png";
 const HeroSection = () => {
   return (
     <div>
-      <Box sx={{ bgcolor: "#10101017", py: 10 }}>
+      <Box sx={{ bgcolor: "#efefef", py: 15, pb: 20 }}>
         <Container maxWidth="xl">
           <div className="flex justify-center items-center  gap-80">
             <Box>

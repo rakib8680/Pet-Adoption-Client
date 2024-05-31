@@ -46,10 +46,17 @@ export const theme = createTheme({
     body1: {
       color: "#101010B2",
     },
+    body2: {
+      color: "none",
+    },
+    h6: {
+      color: "none",
+    },
     subtitle1: {
       color: "#101010B2",
     },
     allVariants: {
+      color: "#101010B2",
       fontFamily: "Poppins",
     },
   },

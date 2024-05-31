@@ -122,7 +122,7 @@ const Footer = () => {
             <Typography variant="body2" sx={{ mb: 5, mt: 1 }}>
               Get updates on new pets available for adoption.
             </Typography>
-            <Box className=" flex space-x-2">
+            <Box className="flex space-x-2">
               <TextField
                 variant="outlined"
                 placeholder="Enter your email"

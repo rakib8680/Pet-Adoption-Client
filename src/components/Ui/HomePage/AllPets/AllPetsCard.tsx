@@ -43,7 +43,7 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button disableElevation size="small" component={Link} href="/">
+          <Button disableElevation size="small" component={Link} href={`/all-pets/${pet.id}`}>
             View Pet
           </Button>
           <Button

@@ -10,9 +10,15 @@ export const petApi = baseApi.injectEndpoints({
                 url:'/pets',
                 method:'GET',
             })
+        }),
+        getSinglePet : builder.query({
+            query:(petId:string)=>({
+                url:`/pets/${petId}`,
+                method:'GET',
+            })
         })
     })
 });
 
 
-export const {useGetAllPetsQuery} = petApi
+export const {useGetAllPetsQuery, useGetSinglePetQuery} = petApi

@@ -40,7 +40,7 @@ const Footer = () => {
             </Box>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6" className="font-semibold">
+            <Typography color='#EFEFEF' fontSize={20}>
               Quick Links
             </Typography>
 
@@ -116,7 +116,7 @@ const Footer = () => {
             </Stack>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6" className="font-semibold">
+            <Typography color='#EFEFEF' fontSize={24}>
               Subscribe to our Newsletter
             </Typography>
             <Typography variant="body2" sx={{ mb: 5, mt: 1 }}>

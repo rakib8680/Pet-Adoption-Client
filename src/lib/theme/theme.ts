@@ -50,7 +50,6 @@ export const theme = createTheme({
       color: "none",
     },
     h6: {
-      color: "none",
     },
     subtitle1: {
       color: "#101010B2",

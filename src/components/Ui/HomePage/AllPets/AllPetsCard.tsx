@@ -21,7 +21,7 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
           marginTop: "10px",
           borderRadius: "10px",
         }}
-        className="w-[350px] h-[430px] px-3 flex flex-col justify-around py-3"
+        className="w-[350px] h-[480px] px-3 flex flex-col justify-around py-3"
       >
         <CardMedia
           sx={{ height: 180, borderRadius: "12px" }}
@@ -29,7 +29,7 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
             pet.photos.length > 0 ? pet.photos[0] : "/src/assets/pet_avatar.jpg"
           }
         />
-        <CardContent>
+        <CardContent className="space-y-2">
           <Typography
             gutterBottom
             variant="h5"
@@ -41,9 +41,20 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
           <Typography variant="body2" color="text.secondary">
             {pet.description}
           </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Age: {pet.age}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Breed: {pet.breed}
+          </Typography>
         </CardContent>
         <CardActions>
-          <Button disableElevation size="small" component={Link} href={`/all-pets/${pet.id}`}>
+          <Button
+            disableElevation
+            size="small"
+            component={Link}
+            href={`/all-pets/${pet.id}`}
+          >
             View Pet
           </Button>
           <Button

@@ -184,7 +184,7 @@ const SinglePetPage = ({ params }: TParams) => {
                 endIcon={<PetsIcon />}
                 color="secondary"
                 component={Link}
-                href={`/adoption-request/${pet?.id}`}
+                href={`/adopt-pet/${pet?.id}`}
               >
                 Adopt This Pet
               </Button>

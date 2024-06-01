@@ -24,7 +24,7 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
         className="w-[350px] h-[480px] px-3 flex flex-col justify-around py-3"
       >
         <CardMedia
-          sx={{ height: 180, borderRadius: "12px" }}
+          sx={{ height: 200, borderRadius: "12px" }}
           image={
             pet.photos.length > 0 ? pet.photos[0] : "/src/assets/pet_avatar.jpg"
           }
@@ -59,6 +59,8 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
           </Button>
           <Button
             disableElevation
+            component={Link}
+            href={`/adopt-pet/${pet.id}`}
             size="small"
             variant="contained"
             color="secondary"

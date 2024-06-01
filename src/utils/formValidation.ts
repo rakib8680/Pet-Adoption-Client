@@ -15,3 +15,12 @@ export const registerValidationSchema = z.object({
   location: z.string().min(3, "Enter your location"),
   contactNumber: z.string().min(10, "Enter a valid contact number"),
 });
+
+export const adoptionRequestValidationSchema = z.object({
+  userName: z.string().min(3, "Enter your name"),
+  userEmail: z.string().email("Please enter a valid email address"),
+  userContactNumber: z.string().min(8, "Enter a valid contact number"),
+  petOwnershipExperience: z
+    .string()
+    .min(4, "Enter your experience with pet ownership"),
+});

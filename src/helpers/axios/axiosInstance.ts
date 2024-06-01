@@ -1,5 +1,4 @@
 import { authKey } from "@/constants/authKey";
-import { TGenericErrorResponse, TResponseSuccess } from "@/types";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import axios from "axios";
 
@@ -8,6 +7,7 @@ const instance = axios.create();
 instance.defaults.headers.post["Content-Type"] = "application/json"; // this makes sure that all requests made by this instance have the content-type set to application/json as default
 instance.defaults.headers["Accept"] = "application/json"; // this makes sure that all requests made by this instance have the accept header set to application/json
 instance.defaults.timeout = 60000; // this means that if the request takes more than 60 seconds, it will be aborted
+
 
 
 
@@ -27,6 +27,7 @@ instance.interceptors.request.use(
 
 
 
+
 // Customize the response configuration
 instance.interceptors.response.use(
   function (response) {
@@ -36,6 +37,7 @@ instance.interceptors.response.use(
     return { error: error.response?.data || "Something went wrong!!!" };
   }
 );
+
 
 
 

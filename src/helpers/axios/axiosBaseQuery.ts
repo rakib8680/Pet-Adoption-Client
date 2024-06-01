@@ -30,13 +30,23 @@ export const axiosBaseQuery =
           "Content-Type": contentType || "application/json",
         },
       });
-      return {data:result.data};
+
+
+      
+      if (result.status >= 200 && result.status < 300) {
+        return { data: result.data };
+      } else {
+        return result;
+      }
+
+
     } catch (axiosError) {
       const err = axiosError as AxiosError;
       return {
         error: {
           status: err.response?.status,
           data: err.response?.data || err.message,
+          message: err.message,
         },
       };
     }

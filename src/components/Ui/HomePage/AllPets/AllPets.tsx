@@ -21,6 +21,8 @@ const AllPets = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [species, setSpecies] = useState<string>("");
   const [age, setAge] = useState<string>("");
+  const [size, setSize] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
 
   // console.log(searchTerm);
 
@@ -40,6 +42,12 @@ const AllPets = () => {
   }
   if (!!age) {
     query["age"] = age;
+  }
+  if (!!size) {
+    query["size"] = size;
+  }
+  if(!!gender){
+    query["gender"] = gender;
   }
 
 
@@ -69,7 +77,7 @@ const AllPets = () => {
 
 
         {/* searching/filtering section  */}
-       <FilterPet setSpecies={setSpecies} setSearchTerm={setSearchTerm} setAge={setAge}/>
+       <FilterPet setSpecies={setSpecies} setSearchTerm={setSearchTerm} setAge={setAge} setSize={setSize} setGender={setGender}/>
 
 
 

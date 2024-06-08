@@ -7,10 +7,15 @@ import {
   TextField,
 } from "@mui/material";
 
-const FilterPet = ({ setSpecies, setSearchTerm, setAge }: any) => {
+const FilterPet = ({
+  setSpecies,
+  setSearchTerm,
+  setAge,
+  setSize,
+  setGender,
+}: any) => {
   return (
     <div className="flex gap-5 m-6 bg-[#EFEFEF] p-5 rounded-lg">
-
 
 
       {/* filter by species */}
@@ -33,7 +38,6 @@ const FilterPet = ({ setSpecies, setSearchTerm, setAge }: any) => {
       </FormControl>
 
 
-
       {/* filter by Age */}
       <FormControl
         color="secondary"
@@ -54,6 +58,40 @@ const FilterPet = ({ setSpecies, setSearchTerm, setAge }: any) => {
       </FormControl>
 
 
+      {/* filter by Size */}
+      <FormControl
+        color="secondary"
+        size="small"
+        sx={{ width: "100%", bgcolor: "white" }}
+      >
+        <InputLabel>Size</InputLabel>
+        <Select defaultValue="" onChange={(e) => setSize(e.target.value)}>
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value="Small">Small</MenuItem>
+          <MenuItem value="Medium">Medium</MenuItem>
+          <MenuItem value="Large">Large</MenuItem>
+        </Select>
+      </FormControl>
+
+
+      {/* filter by Gender */}
+      <FormControl
+        color="secondary"
+        size="small"
+        sx={{ width: "100%", bgcolor: "white" }}
+      >
+        <InputLabel>Gender</InputLabel>
+        <Select defaultValue="" onChange={(e) => setGender(e.target.value)}>
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value="MALE">Male</MenuItem>
+          <MenuItem value="FEMALE">Female</MenuItem>
+        </Select>
+      </FormControl>
+
 
       {/* searching */}
       <div className="flex gap-2 w-full">
@@ -62,14 +100,21 @@ const FilterPet = ({ setSpecies, setSearchTerm, setAge }: any) => {
           color="secondary"
           size="small"
           onChange={(e) => setSearchTerm(e.target.value)}
-          sx={{ width: "100%", bgcolor: "white" }}
+          sx={{ width: "200px", bgcolor: "white" }}
         />
         <Button
           disableElevation
           color="secondary"
-          sx={{ color: "white", width: 150 }}
+          sx={{ color: "white" }}
+          onClick={() => {
+            setGender('');
+            setSearchTerm('');
+            setSize('');
+            setAge('');
+            setSpecies('');
+          }}
         >
-          Filter
+          RESET
         </Button>
       </div>
 

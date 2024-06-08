@@ -24,11 +24,14 @@ type TParams = {
 };
 
 const AdoptionRequestPage = ({ params }: TParams) => {
+
+  
   // api calling
   const { data, isLoading } = useGetMyProfileQuery(undefined);
   const [submitAdoption] = useSubmitAdoptionRequestMutation();
-
   const myProfile = data?.data;
+
+
 
   // Adoption Request function
   const handleAdoptionRequest = async (values: FieldValues) => {
@@ -37,7 +40,6 @@ const AdoptionRequestPage = ({ params }: TParams) => {
       ...values,
     };
 
-    // console.log(payload);
 
     try {
       const res = await submitAdoption(payload).unwrap();
@@ -52,6 +54,7 @@ const AdoptionRequestPage = ({ params }: TParams) => {
     }
   };
 
+
   // Default values for form
   const AdoptionDefaultValues = {
     userName: myProfile?.name || "",
@@ -60,8 +63,11 @@ const AdoptionRequestPage = ({ params }: TParams) => {
     petOwnershipExperience: "",
   };
 
+
+
   return (
     <div className="py-10 flex flex-col  items-center gap-5 ">
+
       <div className="text-center">
         <Typography variant="h4" color="secondary">
           Pet Adoption Request
@@ -71,6 +77,7 @@ const AdoptionRequestPage = ({ params }: TParams) => {
           back to you soon.
         </Typography>
       </div>
+
       <Divider
         sx={{ width: "20%", bgcolor: "secondary.main", height: "2px" }}
         className="!mb-5"

@@ -3,6 +3,7 @@ import Image from "next/image";
 import heroImage from "@/assets/adopt_pet.png";
 import heroImage2 from "@/assets/adopt_pet2.png";
 import heroImage3 from "@/assets/adopt_pet3.png";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -32,6 +33,8 @@ const HeroSection = () => {
               </Typography>
               <Button
                 disableElevation
+                component={Link}
+                href="/all-pets"
                 variant="contained"
                 sx={{ bgcolor: "#F2994A" }}
               >

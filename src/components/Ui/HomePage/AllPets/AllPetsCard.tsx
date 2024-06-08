@@ -24,7 +24,7 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
         className="w-[350px] h-[480px] px-3 flex flex-col justify-around py-3"
       >
         <CardMedia
-          sx={{ height: 200, borderRadius: "12px" }}
+          sx={{ height: '300px', borderRadius: "12px" }}
           image={
             pet.photos.length > 0 ? pet.photos[0] : "/src/assets/pet_avatar.jpg"
           }
@@ -39,7 +39,7 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
             {pet.name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {pet.description}
+            {pet.description.slice(0, 100)}...
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Age: {pet.age}
@@ -47,6 +47,9 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
           <Typography variant="body2" color="text.secondary">
             Breed: {pet.breed}
           </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Size: {pet.size}
+            </Typography>
         </CardContent>
         <CardActions>
           <Button

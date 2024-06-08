@@ -1,10 +1,6 @@
 "use client";
 import { useGetAllPetsQuery } from "@/redux/api/petApi";
-import {
-  Button,
-  Container,
-  Typography,
-} from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import AllPetsCard from "./AllPetsCard";
 import { TPet } from "@/types/pet";
 import Link from "next/link";
@@ -13,18 +9,16 @@ import { useState } from "react";
 import { useDebounced } from "@/redux/hooks";
 import FilterPet from "@/components/Shared/Filtering/FilterPet";
 
-
-
-
 const AllPets = () => {
-  // states 
+
+
+  // states
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [species, setSpecies] = useState<string>("");
   const [age, setAge] = useState<string>("");
   const [size, setSize] = useState<string>("");
   const [gender, setGender] = useState<string>("");
 
-  // console.log(searchTerm);
 
 
 
@@ -46,19 +40,17 @@ const AllPets = () => {
   if (!!size) {
     query["size"] = size;
   }
-  if(!!gender){
+  if (!!gender) {
     query["gender"] = gender;
   }
 
-
+  
 
   // api calling
-  const { data, isLoading } = useGetAllPetsQuery({...query});
+  const { data, isLoading } = useGetAllPetsQuery({ ...query });
 
   const allPets = data?.data;
   const meta = data?.meta;
-
-
 
   return (
     <>
@@ -75,11 +67,14 @@ const AllPets = () => {
 
 
 
-
         {/* searching/filtering section  */}
-       <FilterPet setSpecies={setSpecies} setSearchTerm={setSearchTerm} setAge={setAge} setSize={setSize} setGender={setGender}/>
-
-
+        <FilterPet
+          setSpecies={setSpecies}
+          setSearchTerm={setSearchTerm}
+          setAge={setAge}
+          setSize={setSize}
+          setGender={setGender}
+        />
 
 
 
@@ -95,7 +90,9 @@ const AllPets = () => {
           ))}
         </div>
 
-        {!isLoading && allPets?.length > 8  && (
+
+
+        {!isLoading && allPets?.length > 8 && (
           <div className="flex justify-center mt-10">
             <Button
               component={Link}
@@ -114,18 +111,18 @@ const AllPets = () => {
           </div>
         )}
 
-        {
-          !isLoading && allPets?.length === 0 && (
-            <div className="text-center py-10">
-              <Typography variant="h5" color="text.secondary">
-                No pets found
-              </Typography>
-            </div>
-          )
-        }
+
+        {!isLoading && allPets?.length === 0 && (
+          <div className="text-center py-10">
+            <Typography variant="h5" color="text.secondary">
+              No pets found
+            </Typography>
+          </div>
+        )}
 
 
       </Container>
+
     </>
   );
 };

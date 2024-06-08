@@ -74,7 +74,7 @@ const AllPetsPage = () => {
         <div className="flex justify-center items-center h-[20vh]">
           <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
         </div>
-      )};
+      )}
 
 
       <div className="md:grid grid-cols-4 gap-5">

@@ -20,6 +20,7 @@ const AllPets = () => {
   // states 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [species, setSpecies] = useState<string>("");
+  const [age, setAge] = useState<string>("");
 
   // console.log(searchTerm);
 
@@ -36,6 +37,9 @@ const AllPets = () => {
   }
   if (!!species) {
     query["species"] = species;
+  }
+  if (!!age) {
+    query["age"] = age;
   }
 
 
@@ -65,7 +69,7 @@ const AllPets = () => {
 
 
         {/* searching/filtering section  */}
-       <FilterPet setSpecies={setSpecies} setSearchTerm={setSearchTerm}/>
+       <FilterPet setSpecies={setSpecies} setSearchTerm={setSearchTerm} setAge={setAge}/>
 
 
 

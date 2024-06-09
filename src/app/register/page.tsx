@@ -19,6 +19,9 @@ import PAC_Form from "@/components/Forms/PAC_Form";
 import PAC_Input from "@/components/Forms/PAC_Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerValidationSchema } from "@/utils/formValidation";
+import PAC_Select from "@/components/Forms/PAC_Select";
+import { Gender } from "@/types";
+
 
 export type TUserRegistrationInputs = {
   name: string;
@@ -43,8 +46,9 @@ const registerDefaultValues = {
 };
 
 
-
 const RegisterPage = () => {
+
+
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
@@ -80,7 +84,9 @@ const RegisterPage = () => {
 
 
   return (
+
     <div className="min-h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4] ">
+
 
       {/* logo   */}
       <Stack
@@ -106,6 +112,7 @@ const RegisterPage = () => {
         </Typography>
       </Stack>
 
+
       {/* parent div  */}
       <div className=" container  mx-auto md:flex justify-center items-center h-[80vh] gap-40">
 
@@ -128,7 +135,6 @@ const RegisterPage = () => {
             marginRight: "100px",
           }}
         >
-
           {/* image and Text  */}
           <Stack spacing={2}>
             <Image
@@ -161,8 +167,6 @@ const RegisterPage = () => {
             />
           </Stack>
 
-
-
           {/* server error */}
           <Box>
             {error && (
@@ -174,9 +178,6 @@ const RegisterPage = () => {
               </Typography>
             )}
           </Box>
-
-
-
 
           {/* main form  ***********************************************************************************/}
           <PAC_Form
@@ -235,13 +236,7 @@ const RegisterPage = () => {
               </Grid>
               {/* gender  */}
               <Grid item md={6}>
-                <PAC_Input
-                  label="Gender"
-                  variant="outlined"
-                  size="small"
-                  name="gender"
-                  required
-                />
+                <PAC_Select items={Gender} name="gender" label="Gender" />
               </Grid>
               {/* age  */}
               <Grid item md={6}>
@@ -286,6 +281,7 @@ const RegisterPage = () => {
               Sign Up
             </Button>
           </PAC_Form>
+
 
           <Typography
             align="center"

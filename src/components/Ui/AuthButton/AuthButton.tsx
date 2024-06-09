@@ -17,9 +17,14 @@ const AuthButton = () => {
     <>
       {/* conditionally render login/logout button */}
       {userInfo?.id ? (
-        <Button disableElevation color="error" onClick={handleLogout}>
-          LogOut
-        </Button>
+        <>
+          <Button disableElevation color="error" onClick={handleLogout}>
+            LogOut
+          </Button>
+         <Button>
+          
+         </Button>
+        </>
       ) : (
         <Stack gap={1} direction="row">
           <Button

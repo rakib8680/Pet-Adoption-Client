@@ -1,56 +1,43 @@
 "use client";
 
-import { useGetSinglePetQuery } from "@/redux/api/petApi";
-import { getUserInfo } from "@/services/auth.service";
-import { TPet } from "@/types/pet";
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Container,
-  Divider,
-  Typography,
-} from "@mui/material";
-import Image from "next/image";
-import PetsIcon from "@mui/icons-material/Pets";
+import { useGetMyProfileQuery } from "@/redux/api/userApi";
+import { Box, Button, Typography } from "@mui/material";
+import dynamic from "next/dynamic";
 import Link from "next/link";
+import HomeIcon from "@mui/icons-material/Home";
+import Image from "next/image";
 
-type TParams = {
-  params: {
-    petId: string;
-  };
-};
+const ProfilePage = () => {
+  //  use this code to handle hydration error
+  const AuthButton = dynamic(
+    () => import("@/components/Ui/AuthButton/AuthButton"),
+    { ssr: false }
+  );
 
-const SinglePetPage = ({ params }: TParams) => {
-  const userInfo = getUserInfo();
+  const { data, isLoading } = useGetMyProfileQuery(undefined);
 
-  const petId = params.petId;
-
-  const { data, isLoading } = useGetSinglePetQuery(petId);
-
-  //   console.log(data);
-
-  const pet: TPet = data?.data;
+  const myProfile = data?.data;
 
   return (
-    <Container className="py-10 pb-40">
-      <div className="space-y-10">
-        <div>
-          <Typography variant="h2">Pet Profile</Typography>
-          <Typography variant="h5">
-            Detailed information about your pet
-          </Typography>
-        </div>
-        <Divider>--- o ---</Divider>
+    <div className="my-10">
+      {/* buttons  */}
+      <div className="flex justify-end items-center gap-10">
+        <Button
+          disableElevation
+          component={Link}
+          href="/"
+          className="w-10 h-10 !rounded-full"
+        >
+          <HomeIcon />
+        </Button>
+        <AuthButton />
+      </div>
 
-        {isLoading ? (
-          <div className="flex justify-center items-center h-[20vh]">
-            <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
-          </div>
-        ) : (
-          <div className="md:flex  justify-center gap-24 ">
+
+      {/* main content  */}
+      <div className="md:flex  justify-center gap-24 ">
             
-            {/* pet details */}
+            {/* My details */}
             <div className="grid grid-cols-3 gap-5">
               <Typography
                 variant="h6"
@@ -58,7 +45,7 @@ const SinglePetPage = ({ params }: TParams) => {
               >
                 Name:{" "}
                 <Box component="span" color="accent.main">
-                  {pet?.name}
+                  {myProfile?.name}
                 </Box>
               </Typography>
               <Typography
@@ -67,7 +54,7 @@ const SinglePetPage = ({ params }: TParams) => {
               >
                 Age:{" "}
                 <Box component="span" color="accent.main">
-                  {pet?.age}
+                  {myProfile?.age}
                 </Box>
               </Typography>
               <Typography
@@ -76,7 +63,7 @@ const SinglePetPage = ({ params }: TParams) => {
               >
                 Breed:{" "}
                 <Box component="span" color="accent.main" fontSize={14}>
-                  {pet?.breed}
+                  {myProfile?.breed}
                 </Box>
               </Typography>
               <Typography
@@ -85,7 +72,7 @@ const SinglePetPage = ({ params }: TParams) => {
               >
                 Temperament:{" "}
                 <Box component="span" color="accent.main">
-                  {pet?.temperament}
+                  {myProfile?.temperament}
                 </Box>
               </Typography>
               <Typography
@@ -94,7 +81,7 @@ const SinglePetPage = ({ params }: TParams) => {
               >
                 Gender:{" "}
                 <Box component="span" color="accent.main">
-                  {pet?.gender}
+                  {myProfile?.gender}
                 </Box>
               </Typography>
               <Typography
@@ -103,7 +90,7 @@ const SinglePetPage = ({ params }: TParams) => {
               >
                 Species:{" "}
                 <Box component="span" color="accent.main">
-                  {pet?.species}
+                  {myProfile?.species}
                 </Box>
               </Typography>
               <Typography
@@ -112,7 +99,7 @@ const SinglePetPage = ({ params }: TParams) => {
               >
                 Status:{" "}
                 <Box component="span" color="accent.main">
-                  {pet?.healthStatus}
+                  {myProfile?.healthStatus}
                 </Box>
               </Typography>
               <Typography
@@ -121,7 +108,7 @@ const SinglePetPage = ({ params }: TParams) => {
               >
                 Size:{" "}
                 <Box component="span" color="accent.main">
-                  {pet?.size}
+                  {myProfile?.size}
                 </Box>
               </Typography>
               <Typography
@@ -130,7 +117,7 @@ const SinglePetPage = ({ params }: TParams) => {
               >
                 Medical History:{" "}
                 <Box component="span" color="accent.main">
-                  {pet?.medicalHistory}
+                  {myProfile?.medicalHistory}
                 </Box>
               </Typography>
               <Typography
@@ -139,13 +126,13 @@ const SinglePetPage = ({ params }: TParams) => {
               >
                 Location:{" "}
                 <Box component="span" color="accent.main">
-                  {pet?.location}
+                  {myProfile?.location}
                 </Box>
               </Typography>
               <Typography fontSize={17} className="bg-[#efefef] rounded-lg p-5">
                 Special Needs:{" "}
                 <Box component="span" color="accent.main">
-                  {pet?.specialNeeds}
+                  {myProfile?.specialNeeds}
                 </Box>
               </Typography>
               <Typography
@@ -154,7 +141,7 @@ const SinglePetPage = ({ params }: TParams) => {
               >
                 Adoption Requirements:{" "}
                 <Box component="span" fontSize={16} color="gray">
-                  {pet?.adoptionRequirements}
+                  {myProfile?.adoptionRequirements}
                 </Box>
               </Typography>
             </div>
@@ -170,31 +157,28 @@ const SinglePetPage = ({ params }: TParams) => {
               className="md:w-[1000px] space-y-5"
             >
               <Image
-                src={pet?.photos[0]}
-                alt="pet image"
+                src={myProfile?.profilePicture}
+                alt="myProfile image"
                 width={600}
                 height={600}
                 className="rounded-lg"
               />
               <Typography fontSize={17} className="">
-                * {pet?.description}
+                * {myProfile?.description}
               </Typography>
               <Button
                 fullWidth
                 disableElevation
-                endIcon={<PetsIcon />}
                 color="secondary"
                 component={Link}
-                href={`/adopt-pet/${pet?.id}`}
+                href={`/adopt-myProfile/${myProfile?.id}`}
               >
                 Adopt This Pet
               </Button>
             </Box>
           </div>
-        )}
-      </div>
-    </Container>
+    </div>
   );
 };
 
-export default SinglePetPage;
+export default ProfilePage;

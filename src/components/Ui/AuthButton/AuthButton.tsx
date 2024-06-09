@@ -4,12 +4,12 @@ import { getUserInfo } from "@/services/auth.service";
 import { Avatar, Button, Stack, Tooltip } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const AuthButton = () => {
   const router = useRouter();
   const userInfo = getUserInfo();
-  const {data, isLoading} = useGetMyProfileQuery(undefined);
+  const { data, isLoading } = useGetMyProfileQuery(undefined);
   const myProfile = data?.data;
 
   //   logout function
@@ -22,13 +22,27 @@ const AuthButton = () => {
       {/* conditionally render login/logout button */}
       {userInfo?.id ? (
         <div className="flex items-center justify-center gap-10">
-         <Tooltip title={myProfile?.email} className="cursor-pointer border-2 border-green-400">
-           <Avatar src={myProfile?.profilePicture} alt="profile picture" sx={{height:50, width:50}}/>
-         </Tooltip>
-          <Tooltip title='Log Out'>
-          <Button disableElevation color="error" onClick={handleLogout} className="w-10 h-10 !rounded-full">
-           <LogoutIcon/>
-          </Button>
+          <Tooltip
+            title={myProfile?.email}
+            className="cursor-pointer border-2 border-green-400"
+          >
+            <Avatar
+              component={Link}
+              href="/profile"
+              src={myProfile?.profilePicture}
+              alt="profile picture"
+              sx={{ height: 50, width: 50 }}
+            />
+          </Tooltip>
+          <Tooltip title="Log Out">
+            <Button
+              disableElevation
+              color="error"
+              onClick={handleLogout}
+              className="w-10 h-10 !rounded-full"
+            >
+              <LogoutIcon />
+            </Button>
           </Tooltip>
         </div>
       ) : (

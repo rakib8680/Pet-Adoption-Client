@@ -13,6 +13,11 @@ const Navbar = () => {
     { ssr: false }
   );
 
+  const DashboardButton = dynamic(
+    () => import("@/components/Ui/DashboardButton/DashboardButton"),
+    {ssr: false}
+  );
+
   return (
     <Container>
       <Stack
@@ -59,15 +64,12 @@ const Navbar = () => {
           <Typography component={Link} href="/blog" fontSize={15}>
             Blog
           </Typography>
-          <Typography component={Link} href="/gallery" fontSize={15}>
-            Gallery
-          </Typography>
-          <Typography component={Link} href="/faq" fontSize={15}>
-            FAQ
-          </Typography>
           <Typography component={Link} href="/contact" fontSize={15}>
             Contact
           </Typography>
+
+          {/* dashboard button */}
+          <DashboardButton />
         </Stack>
 
         {/* auth buttons  */}

@@ -1,3 +1,4 @@
+import PAC_Select from "@/components/Forms/PAC_Select";
 import {
   Button,
   FormControl,
@@ -6,6 +7,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+
 
 const FilterPet = ({
   setSpecies,
@@ -16,7 +18,6 @@ const FilterPet = ({
 }: any) => {
   return (
     <div className="flex gap-5 m-6 bg-[#EFEFEF] p-5 rounded-lg">
-
 
       {/* filter by species */}
       <FormControl
@@ -37,7 +38,6 @@ const FilterPet = ({
         </Select>
       </FormControl>
 
-
       {/* filter by Age */}
       <FormControl
         color="secondary"
@@ -57,7 +57,6 @@ const FilterPet = ({
         </Select>
       </FormControl>
 
-
       {/* filter by Size */}
       <FormControl
         color="secondary"
@@ -75,7 +74,6 @@ const FilterPet = ({
         </Select>
       </FormControl>
 
-
       {/* filter by Gender */}
       <FormControl
         color="secondary"
@@ -92,7 +90,6 @@ const FilterPet = ({
         </Select>
       </FormControl>
 
-
       {/* searching */}
       <div className="flex gap-2 w-full">
         <TextField
@@ -107,18 +104,16 @@ const FilterPet = ({
           color="secondary"
           sx={{ color: "white" }}
           onClick={() => {
-            setGender('');
-            setSearchTerm('');
-            setSize('');
-            setAge('');
-            setSpecies('');
+            setGender("");
+            setSearchTerm("");
+            setSize("");
+            setAge("");
+            setSpecies("");
           }}
         >
           RESET
         </Button>
       </div>
-
-
     </div>
   );
 };

@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 const ProfileLayout = ({children}:{children:ReactNode}) => {
   return (
      <>
-         <div className="min-h-screen container mx-auto">
+         <div className="container mx-auto">
          {children}
          </div>
          <Footer/>

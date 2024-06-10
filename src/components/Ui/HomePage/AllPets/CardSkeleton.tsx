@@ -1,16 +1,13 @@
 import {
-  Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
   Skeleton,
-  Typography,
 } from "@mui/material";
 
 const CardSkeleton = () => {
   return (
-    <>
       <Card
         sx={{
           boxShadow: "none",
@@ -20,6 +17,7 @@ const CardSkeleton = () => {
         }}
         className="w-[350px] h-[480px] px-3 flex flex-col justify-around py-3"
       >
+
         <CardMedia sx={{ height: "300px", borderRadius: "12px" }}>
           <Skeleton
             variant="rectangular"
@@ -39,12 +37,25 @@ const CardSkeleton = () => {
           <Skeleton variant="text" width="40%" animation="wave" />
           <Skeleton variant="text" width="20%" animation="wave" />
         </CardContent>
+
         <CardActions className="flex">
-          <Skeleton variant="rectangular" width="40%" height="40px" animation="wave" className="rounded-md" />
-          <Skeleton variant="rectangular" width="40%" height="40px" animation="wave"  className="rounded-md" />
+          <Skeleton
+            variant="rectangular"
+            width="40%"
+            height="40px"
+            animation="wave"
+            className="rounded-md"
+          />
+          <Skeleton
+            variant="rectangular"
+            width="40%"
+            height="40px"
+            animation="wave"
+            className="rounded-md"
+          />
         </CardActions>
+
       </Card>
-    </>
   );
 };
 

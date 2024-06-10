@@ -7,6 +7,7 @@ import AllPetsCard from "@/components/Ui/HomePage/AllPets/AllPetsCard";
 import { useState } from "react";
 import { useDebounced } from "@/redux/hooks";
 import FilterPet from "@/components/Shared/Filtering/FilterPet";
+import CardSkeleton from "@/components/Ui/HomePage/AllPets/CardSkeleton";
 
 const AllPetsPage = () => {
   
@@ -71,9 +72,19 @@ const AllPetsPage = () => {
 
 
       {isLoading && (
-        <div className="flex justify-center items-center h-[20vh]">
-          <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
-        </div>
+        // <div className="flex justify-center items-center h-[20vh]">
+        //   <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
+        // </div>
+        <div className="grid grid-cols-4 gap-5">
+        <CardSkeleton/>
+        <CardSkeleton/>
+        <CardSkeleton/>
+        <CardSkeleton/>
+        <CardSkeleton/>
+        <CardSkeleton/>
+        <CardSkeleton/>
+        <CardSkeleton/>
+    </div>
       )}
 
 

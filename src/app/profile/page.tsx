@@ -7,7 +7,8 @@ import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
 import Image from "next/image";
 import EditOffIcon from "@mui/icons-material/EditOff";
-import KeyIcon from '@mui/icons-material/Key';
+import KeyIcon from "@mui/icons-material/Key";
+import MyAdoptions from "@/components/Ui/ProfilePage/MyAdoptions/MyAdoptions";
 
 const ProfilePage = () => {
   //  use this code to handle hydration error
@@ -23,27 +24,23 @@ const ProfilePage = () => {
   return (
     <div className="my-10">
 
-
       {/* buttons  */}
       <div className="flex justify-end items-center gap-10">
-       <Tooltip title="Home">
-       <Button
-          disableElevation
-          component={Link}
-          href="/"
-          className="w-10 h-10 !rounded-full"
-        >
-          <HomeIcon />
-        </Button>
-       </Tooltip>
+        <Tooltip title="Home">
+          <Button
+            disableElevation
+            component={Link}
+            href="/"
+            className="w-10 h-10 !rounded-full"
+          >
+            <HomeIcon />
+          </Button>
+        </Tooltip>
         <AuthButton />
       </div>
 
-
-
-      {/* main content  */}
+      {/* Profile Information  */}
       <div className="md:flex  justify-center gap-24  mt-20">
-
         {/* My details */}
         <div className="grid gap-5 items-center content-center">
           <Typography variant="h6" className="bg-[#efefef] rounded-lg p-5 px-8">
@@ -89,16 +86,25 @@ const ProfilePage = () => {
             </Box>
           </Typography>
 
-          <Button disableElevation component={Link} href="/profile/update"  color="secondary">
+          <Button
+            disableElevation
+            component={Link}
+            href="/profile/update"
+            color="secondary"
+          >
             Edit Details
-            <EditOffIcon className="ml-2"/>
+            <EditOffIcon className="ml-2" />
           </Button>
-          <Button disableElevation component={Link} href="/change-password" color="inherit">
+          <Button
+            disableElevation
+            component={Link}
+            href="/change-password"
+            color="inherit"
+          >
             Change Password
             <KeyIcon className="ml-2" />
           </Button>
         </div>
-
 
         {/* image and description */}
         <Box
@@ -119,12 +125,22 @@ const ProfilePage = () => {
             className=" mx-auto my-auto bg-black p-4"
           />
         </Box>
-
-
-
       </div>
 
 
+      {/* My Adoption Requests */}
+      <div className="my-36">
+        <div className="space-y-2 pb-10">
+          <Typography variant="h4" component="h2" textAlign="center">
+            My Adoption Requests
+          </Typography>
+          <Typography variant="subtitle2" component="p" textAlign="center" color='gray'>
+            All your adoption requests are listed here. You can view the status
+            of your requests here.
+          </Typography>
+        </div>
+        <MyAdoptions />
+      </div>
     </div>
   );
 };

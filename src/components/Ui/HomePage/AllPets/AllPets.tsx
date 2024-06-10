@@ -1,6 +1,6 @@
 "use client";
 import { useGetAllPetsQuery } from "@/redux/api/petApi";
-import { Button, Container, Typography } from "@mui/material";
+import { Button, Container, Skeleton, Typography } from "@mui/material";
 import AllPetsCard from "./AllPetsCard";
 import { TPet } from "@/types/pet";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useState } from "react";
 import { useDebounced } from "@/redux/hooks";
 import FilterPet from "@/components/Shared/Filtering/FilterPet";
+import CardSkeleton from "./CardSkeleton";
 
 const AllPets = () => {
 
@@ -79,9 +80,16 @@ const AllPets = () => {
 
 
         {isLoading && (
-          <div className="flex justify-center items-center h-[20vh]">
-            <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
-          </div>
+          // <div className="flex justify-center items-center h-[20vh]">
+          //   <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
+          // </div>
+
+          <div className="grid grid-cols-4 gap-5">
+            <CardSkeleton/>
+            <CardSkeleton/>
+            <CardSkeleton/>
+            <CardSkeleton/>
+        </div>
         )}
 
         <div className="grid grid-cols-4 gap-5">

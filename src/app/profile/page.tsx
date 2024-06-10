@@ -9,6 +9,7 @@ import Image from "next/image";
 import EditOffIcon from "@mui/icons-material/EditOff";
 import KeyIcon from "@mui/icons-material/Key";
 import MyAdoptions from "@/components/Ui/ProfilePage/MyAdoptions/MyAdoptions";
+import dummyImage from "@/assets/pet_avatar.jpg"
 
 const ProfilePage = () => {
   //  use this code to handle hydration error
@@ -118,7 +119,7 @@ const ProfilePage = () => {
           className="md:w-[1000px] space-y-5"
         >
           <Image
-            src={myProfile?.profilePicture}
+            src={myProfile?.profilePicture || dummyImage}
             alt="myProfile image"
             width={500}
             height={500}

@@ -41,7 +41,9 @@ const ProfilePage = () => {
       </div>
 
       {/* Profile Information  */}
-      <div className="md:flex  justify-center gap-24  mt-20">
+      <div className="md:flex  justify-center gap-24  mt-20
+      bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] rounded-2xl p-10
+      ">
         {/* My details */}
         <div className="grid gap-5 items-center content-center">
           <Typography variant="h6" className="bg-[#efefef] rounded-lg p-5 px-8">
@@ -130,7 +132,8 @@ const ProfilePage = () => {
 
 
       {/* My Adoption Requests */}
-      <div className="my-36">
+      <div className="my-36 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] rounded-2xl p-10 
+      ">
         <div className="space-y-2 pb-10">
           <Typography variant="h4" component="h2" textAlign="center">
             My Adoption Requests

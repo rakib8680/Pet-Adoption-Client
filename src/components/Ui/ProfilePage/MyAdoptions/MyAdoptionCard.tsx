@@ -18,7 +18,7 @@ const MyAdoptionCard = ({adoption}:any) => {
 
 
     const pet = adoption.pet as TPet;
-    console.log(adoption);
+    // console.log(adoption);
 
   return (
     <Card
@@ -28,7 +28,7 @@ const MyAdoptionCard = ({adoption}:any) => {
       marginTop: "10px",
       borderRadius: "10px",
     }}
-    className="w-[350px] h-[480px] px-3 flex flex-col justify-around py-3"
+    className="w-[350px] h-[480px] px-3 flex flex-col justify-around py-3 "
   >
     <CardMedia
       sx={{ height: '300px', borderRadius: "12px" }}

@@ -1,10 +1,9 @@
 "use client";
 import { useGetAllPetsQuery } from "@/redux/api/petApi";
-import { Button, Container, Skeleton, Typography } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import AllPetsCard from "./AllPetsCard";
 import { TPet } from "@/types/pet";
 import Link from "next/link";
-import CircularProgress from "@mui/material/CircularProgress";
 import { useState } from "react";
 import { useDebounced } from "@/redux/hooks";
 import FilterPet from "@/components/Shared/Filtering/FilterPet";

@@ -6,6 +6,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { useGetMyAdoptionRequestsQuery } from "@/redux/api/adopionApi";
 import MyAdoptionCard from "./MyAdoptionCard";
+import CardSkeleton from "../../HomePage/AllPets/CardSkeleton";
+
 
 
 const MyAdoptions = () => {
@@ -19,7 +21,9 @@ const MyAdoptions = () => {
   const { data, isLoading } = useGetMyAdoptionRequestsQuery({ status });
 
   const myAdoptions = data?.data;
-    // console.log(myAdoptions);
+  // console.log(myAdoptions);
+
+
 
   return (
     <div>
@@ -45,23 +49,28 @@ const MyAdoptions = () => {
         </Tabs>
       </Box>
 
-    {
-        isLoading ? (
-            <div>Loading...</div>
-        ) : (
-             <div className="grid grid-cols-4 gap-5">
-            {myAdoptions?.map((adoption:any) => (
-                <MyAdoptionCard key={adoption.id} adoption={adoption} />
-            ))}
-            </div>
-        )
-    }
-    {
-        myAdoptions?.length === 0 && (
-            <div className="text-center mt-20">No Data found</div>
-        )
-    }
-      
+      {isLoading ? (
+
+        <div className="mt-10 flex flex-wrap justify-center gap-10">
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+        </div>
+
+      ) : (
+
+        <div className=" mt-10  flex flex-wrap justify-center gap-10 ">
+          {myAdoptions?.map((adoption: any) => (
+            <MyAdoptionCard key={adoption.id} adoption={adoption} />
+          ))}
+        </div>
+        
+      )}
+
+      {myAdoptions?.length === 0 && (
+        <div className="text-center mt-20">No Data found</div>
+      )}
+
     </div>
   );
 };

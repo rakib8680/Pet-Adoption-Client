@@ -9,7 +9,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 const AuthButton = () => {
   const router = useRouter();
   const userInfo = getUserInfo();
-  const { data, isLoading } = useGetMyProfileQuery(undefined);
+  const { data, isLoading } = useGetMyProfileQuery({});
   const myProfile = data?.data;
 
   //   logout function

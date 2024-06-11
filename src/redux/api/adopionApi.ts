@@ -11,14 +11,25 @@ export const adoptionApi = baseApi.injectEndpoints({
       invalidatesTags: ["adoption"],
     }),
     getMyAdoptionRequests: builder.query({
-      query:(args:Record<string, any>)=>({
-        url:'/my-adoption-requests',
-        method:'GET',
-        params : args
+      query: (args: Record<string, any>) => ({
+        url: "/my-adoption-requests",
+        method: "GET",
+        params: args,
       }),
       providesTags: ["adoption"],
-    })
+    }),
+    deleteMyAdoptionRequest: builder.mutation({
+      query: (id: string) => ({
+        url: `/my-adoption-requests/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["adoption"],
+    }),
   }),
 });
 
-export const { useSubmitAdoptionRequestMutation, useGetMyAdoptionRequestsQuery } = adoptionApi;
+export const {
+  useSubmitAdoptionRequestMutation,
+  useGetMyAdoptionRequestsQuery,
+  useDeleteMyAdoptionRequestMutation,
+} = adoptionApi;

@@ -23,7 +23,7 @@ const ProfilePage = () => {
   const myProfile = data?.data;
 
   return (
-    <div className="my-10">
+    <div className="my-10 container mx-auto">
 
       {/* buttons  */}
       <div className="flex justify-end items-center gap-10">
@@ -101,7 +101,7 @@ const ProfilePage = () => {
           <Button
             disableElevation
             component={Link}
-            href="/change-password"
+            href="/profile/change-password"
             color="inherit"
           >
             Change Password

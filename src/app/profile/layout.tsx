@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 const ProfileLayout = ({children}:{children:ReactNode}) => {
   return (
      <>
-         <div className="container mx-auto">
+         <div className="">
          {children}
          </div>
          <Footer/>

@@ -102,6 +102,7 @@ const MyAdoptionCard = ({ adoption }: any) => {
           Remove Request <DeleteIcon className="ml-2" />
         </Button>
       </CardActions>
+      
     </Card>
   );
 };

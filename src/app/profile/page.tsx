@@ -10,17 +10,27 @@ import EditOffIcon from "@mui/icons-material/EditOff";
 import KeyIcon from "@mui/icons-material/Key";
 import MyAdoptions from "@/components/Ui/ProfilePage/MyAdoptions/MyAdoptions";
 import dummyImage from "@/assets/pet_avatar.jpg"
+import { useState } from "react";
+import EditProfileModal from "@/components/Ui/ProfilePage/EditProfile/EditProfileModal";
+
+
+
+
 
 const ProfilePage = () => {
+
   //  use this code to handle hydration error
   const AuthButton = dynamic(
     () => import("@/components/Ui/AuthButton/AuthButton"),
     { ssr: false }
   );
 
+  const [open, setOpen] =useState(false);
   const { data, isLoading } = useGetMyProfileQuery(undefined);
-
   const myProfile = data?.data;
+
+
+
 
   return (
     <div className="my-10 container mx-auto">
@@ -91,9 +101,8 @@ const ProfilePage = () => {
 
           <Button
             disableElevation
-            component={Link}
-            href="/profile/update"
             color="secondary"
+            onClick={()=>setOpen(!open)}
           >
             Edit Details
             <EditOffIcon className="ml-2" />
@@ -108,6 +117,9 @@ const ProfilePage = () => {
             <KeyIcon className="ml-2" />
           </Button>
         </div>
+
+        {/* edit details modal  */}
+        <EditProfileModal open={open} setOpen={setOpen}/>
 
         {/* image and description */}
         <Box

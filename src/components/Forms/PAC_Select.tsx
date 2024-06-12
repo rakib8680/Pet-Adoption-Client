@@ -5,6 +5,7 @@ interface TSelectFieldProps {
   name: string;
   size?: "small" | "medium";
   placeholder?: string;
+  color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
   label?: string;
   required?: boolean;
   fullWidth?: boolean;
@@ -17,7 +18,8 @@ const PAC_Select = ({
   items,
   name,
   label,
-  size = "small",
+  color,
+  size,
   required,
   variant,
   fullWidth = true,
@@ -39,6 +41,7 @@ const PAC_Select = ({
           label={label}
           required={required}
           fullWidth={fullWidth}
+          color={color}
           variant={variant}
           error={isError}
           helperText={

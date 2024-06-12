@@ -11,9 +11,17 @@ export const userApi = baseApi.injectEndpoints({
                 method:"GET"
             }),
             providesTags:["user"]
+        }),
+        changePassword : builder.mutation({
+            query:(payload)=>({
+                url:"/change-password",
+                method:"POST",
+                data:payload
+            }),
+            invalidatesTags:["user"]
         })
     })
 })
 
 
-export const {useGetMyProfileQuery} = userApi
+export const {useGetMyProfileQuery, useChangePasswordMutation} = userApi

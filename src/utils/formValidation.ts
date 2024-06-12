@@ -24,3 +24,12 @@ export const adoptionRequestValidationSchema = z.object({
     .string()
     .min(4, "Enter your experience with pet ownership"),
 });
+
+
+
+export const changePasswordValidationSchema = z.object({
+  oldPassword: z.string().min(4, "Password must be at least 4 characters long").optional(),
+  newPassword: z.string().min(4, "Password must be at least 4 characters long"),
+  confirmPassword: z.string().min(4, "Password must be at least 4 characters long"),
+
+})

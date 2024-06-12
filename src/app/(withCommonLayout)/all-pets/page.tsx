@@ -98,7 +98,7 @@ const AllPetsPage = () => {
       {!isLoading && allPets?.length === 0 && (
         <div className="text-center py-10">
           <Typography variant="h5" color="text.secondary">
-            No pets found
+            No pet found
           </Typography>
         </div>
 

@@ -1,6 +1,6 @@
 
 
-// set anything to local storage 
+// set value to local storage 
 export const setToLocalStorage = (key:string, value:string) =>{
     if (!key || typeof window === "undefined") {
         return "";

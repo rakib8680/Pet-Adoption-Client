@@ -32,3 +32,14 @@ export const getUserInfo = () => {
 
   return decodedData;
 };
+
+
+
+
+// check if the user is logged in 
+export const isLoggedIn = () => {
+  const authToken = getFromLocalStorage(authKey);
+  if (authToken) {
+    return !!authToken;
+  }
+};

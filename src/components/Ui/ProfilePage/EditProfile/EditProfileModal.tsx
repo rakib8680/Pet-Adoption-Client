@@ -7,13 +7,16 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Box, Button, CircularProgress, Grid } from "@mui/material";
 import PAC_Form from "@/components/Forms/PAC_Form";
 import PAC_Input from "@/components/Forms/PAC_Input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { registerValidationSchema } from "@/utils/formValidation";
 import PAC_Select from "@/components/Forms/PAC_Select";
 import { Gender } from "@/types";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useGetMyProfileQuery } from "@/redux/api/userApi";
+import {
+  useGetMyProfileQuery,
+  useUpdateMyProfileMutation,
+} from "@/redux/api/userApi";
+import { FieldValues } from "react-hook-form";
+import { toast } from "sonner";
+
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -24,17 +27,39 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
+
+
 const EditProfileModal = ({ open, setOpen }: any) => {
-  const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
 
+
+  const [updateProfile] = useUpdateMyProfileMutation();
   const { data, isLoading } = useGetMyProfileQuery({});
-
   const myProfile = data?.data;
 
-  const handleEditProfile = async () => {};
 
+
+  // update profile
+  const handleEditProfile = async (data: FieldValues) => {
+    data.age = Number(data.age);
+
+
+    try {
+      const res = await updateProfile(data).unwrap();
+      if (res.success) {
+        toast.success(res?.message, {
+          duration: 3500,
+          style: { background: "#187f5b", color: "#ceffee" },
+        });
+        setOpen(false);
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
+
+
+  // default values
   const defaultProfileValues = {
     name: myProfile?.name,
     gender: myProfile?.gender,
@@ -48,8 +73,10 @@ const EditProfileModal = ({ open, setOpen }: any) => {
     setOpen(false);
   };
 
+
+
+
   return (
-    <>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -86,22 +113,10 @@ const EditProfileModal = ({ open, setOpen }: any) => {
                 maxWidth: "500px",
               }}
             >
-              {/* server error */}
-              <Box>
-                {/* {error && (
-              <Typography
-                color="accent.main"
-                sx={{ fontSize: 15, fontWeight: 400, mt: 2 }}
-              >
-                {error}
-              </Typography>
-            )} */}
-              </Box>
 
               {/* main form  ***********************************************************************************/}
               <PAC_Form
                 onSubmit={handleEditProfile}
-                resolver={zodResolver(registerValidationSchema)}
                 defaultValues={defaultProfileValues}
               >
                 <Grid container spacing={4} my={1}>
@@ -163,6 +178,7 @@ const EditProfileModal = ({ open, setOpen }: any) => {
                     />
                   </Grid>
                 </Grid>
+                {/* action buttons */}
                 <div className="flex justify-between py-5">
                   <Button
                     type="submit"
@@ -186,7 +202,6 @@ const EditProfileModal = ({ open, setOpen }: any) => {
           )}
         </DialogContent>
       </BootstrapDialog>
-    </>
   );
 };
 

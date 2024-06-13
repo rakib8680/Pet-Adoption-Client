@@ -16,6 +16,9 @@ export const registerValidationSchema = z.object({
   contactNumber: z.string().min(10, "Enter a valid contact number"),
 });
 
+
+
+
 export const adoptionRequestValidationSchema = z.object({
   userName: z.string().min(3, "Enter your name"),
   userEmail: z.string().email("Please enter a valid email address"),
@@ -31,5 +34,4 @@ export const changePasswordValidationSchema = z.object({
   oldPassword: z.string().min(4, "Password must be at least 4 characters long").optional(),
   newPassword: z.string().min(4, "Password must be at least 4 characters long"),
   confirmPassword: z.string().min(4, "Password must be at least 4 characters long"),
-
 })

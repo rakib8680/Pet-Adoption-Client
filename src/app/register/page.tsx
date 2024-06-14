@@ -236,7 +236,7 @@ const RegisterPage = () => {
               </Grid>
               {/* gender  */}
               <Grid item md={6}>
-                <PAC_Select items={Gender} name="gender" label="Gender" />
+                <PAC_Select items={Gender} name="gender" label="Gender" size="small" />
               </Grid>
               {/* age  */}
               <Grid item md={6}>

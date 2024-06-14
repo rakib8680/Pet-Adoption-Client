@@ -9,31 +9,36 @@ import Image from "next/image";
 import EditOffIcon from "@mui/icons-material/EditOff";
 import KeyIcon from "@mui/icons-material/Key";
 import MyAdoptions from "@/components/Ui/ProfilePage/MyAdoptions/MyAdoptions";
-import dummyImage from "@/assets/pet_avatar.jpg"
+import dummyImage from "@/assets/pet_avatar.jpg";
 import { useState } from "react";
 import EditProfileModal from "@/components/Ui/ProfilePage/EditProfile/EditProfileModal";
-
+import { getUserInfo } from "@/services/auth.service";
 
 
 
 
 const ProfilePage = () => {
-
   //  use this code to handle hydration error
   const AuthButton = dynamic(
     () => import("@/components/Ui/AuthButton/AuthButton"),
     { ssr: false }
   );
 
-  const [open, setOpen] =useState(false);
+  const [open, setOpen] = useState(false);
   const { data, isLoading } = useGetMyProfileQuery(undefined);
   const myProfile = data?.data;
-
+  const userInfo = getUserInfo();
 
 
 
   return (
-    <div className="my-10 container mx-auto">
+
+    <div
+      className={`my-10 container mx-auto ${
+        userInfo?.role === "ADMIN" && "h-screen"
+      }`}
+    >
+
 
       {/* buttons  */}
       <div className="flex justify-end items-center gap-10">
@@ -50,10 +55,12 @@ const ProfilePage = () => {
         <AuthButton />
       </div>
 
+
+
       {/* Profile Information  */}
-      <div className="md:flex  justify-center gap-24  mt-20
-      bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] rounded-2xl p-10
-      ">
+      <div
+        className={`md:flex  justify-center gap-24  mt-20 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] rounded-2xl p-10`}
+      >
         {/* My details */}
         <div className="grid gap-5 items-center content-center">
           <Typography variant="h6" className="bg-[#efefef] rounded-lg p-5 px-8">
@@ -102,7 +109,7 @@ const ProfilePage = () => {
           <Button
             disableElevation
             color="secondary"
-            onClick={()=>setOpen(!open)}
+            onClick={() => setOpen(!open)}
           >
             Edit Details
             <EditOffIcon className="ml-2" />
@@ -119,7 +126,7 @@ const ProfilePage = () => {
         </div>
 
         {/* edit details modal  */}
-        <EditProfileModal open={open} setOpen={setOpen}/>
+        <EditProfileModal open={open} setOpen={setOpen} />
 
         {/* image and description */}
         <Box
@@ -143,20 +150,32 @@ const ProfilePage = () => {
       </div>
 
 
+
       {/* My Adoption Requests */}
-      <div className="my-36 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] rounded-2xl px-10 py-20
-      ">
-        <div className="space-y-2 pb-10">
-          <Typography variant="h4" component="h2" textAlign="center">
-            My Adoption Requests
-          </Typography>
-          <Typography variant="subtitle2" component="p" textAlign="center" color='gray'>
-            All your adoption requests are listed here. You can view the status
-            of your requests here.
-          </Typography>
+      {userInfo?.role === "USER" && (
+        <div
+          className="my-36 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] rounded-2xl px-10 py-20
+      "
+        >
+          <div className="space-y-2 pb-10">
+            <Typography variant="h4" component="h2" textAlign="center">
+              My Adoption Requests
+            </Typography>
+            <Typography
+              variant="subtitle2"
+              component="p"
+              textAlign="center"
+              color="gray"
+            >
+              All your adoption requests are listed here. You can view the
+              status of your requests here.
+            </Typography>
+          </div>
+          <MyAdoptions />
         </div>
-        <MyAdoptions />
-      </div>
+      )}
+
+      
     </div>
   );
 };

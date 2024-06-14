@@ -177,7 +177,7 @@ const LoginPage = () => {
               <Typography
                 fontSize={12}
                 component={Link}
-                href="/change-password"
+                href="/forgot-password"
                 sx={{
                   ":hover": {
                     textDecoration: "underline",

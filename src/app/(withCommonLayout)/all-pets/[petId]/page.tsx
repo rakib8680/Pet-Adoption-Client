@@ -49,7 +49,6 @@ const SinglePetPage = ({ params }: TParams) => {
           </div>
         ) : (
           <div className="md:flex  justify-center gap-24 ">
-            
             {/* pet details */}
             <div className="grid grid-cols-3 gap-5">
               <Typography
@@ -179,16 +178,18 @@ const SinglePetPage = ({ params }: TParams) => {
               <Typography fontSize={17} className="">
                 * {pet?.description}
               </Typography>
-              <Button
-                fullWidth
-                disableElevation
-                endIcon={<PetsIcon />}
-                color="secondary"
-                component={Link}
-                href={`/adopt-pet/${pet?.id}`}
-              >
-                Adopt This Pet
-              </Button>
+              {userInfo?.role === "USER" && (
+                <Button
+                  fullWidth
+                  disableElevation
+                  endIcon={<PetsIcon />}
+                  color="secondary"
+                  component={Link}
+                  href={`/adopt-pet/${pet?.id}`}
+                >
+                  Adopt This Pet
+                </Button>
+              )}
             </Box>
           </div>
         )}

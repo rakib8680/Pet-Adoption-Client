@@ -10,7 +10,7 @@ const DashboardButton = () => {
   return (
     <>
       {userInfo?.role === "ADMIN" && (
-        <Typography component={Link} href="/dashboard" fontSize={15}>
+        <Typography component={Link} href="/dashboard/admin" fontSize={15}>
           <Tooltip title="Dashboard">
             <DashboardIcon />
           </Tooltip>

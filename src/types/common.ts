@@ -1,3 +1,6 @@
+import { SvgIconTypeMap } from "@mui/material";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
+
 export type TMeta = {
   page: number;
   limit: number;
@@ -25,5 +28,15 @@ export type TGenericErrorMessage = {
     message: string;
   }>;
 };
+
+
+
+export interface DrawerItem {
+  title: string;
+  path: string;
+  parentPath?: string;
+  icon?: OverridableComponent<SvgIconTypeMap<{}, "svg">> & { muiName: string };
+  child?: DrawerItem[];
+}
 
 export const Gender = ["MALE", "FEMALE"];

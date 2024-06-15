@@ -32,6 +32,14 @@ export const userApi = baseApi.injectEndpoints({
       }),
       providesTags: ["user"],
     }),
+    updateUser: builder.mutation({
+      query: (payload) => ({
+        url: `/user/${payload?.id}`,
+        method: "PATCH",
+        data: payload?.data,
+      }),
+      invalidatesTags: ["user"],
+    }),
   }),
 });
 
@@ -40,4 +48,5 @@ export const {
   useChangePasswordMutation,
   useUpdateMyProfileMutation,
   useGetAllUsersQuery,
+  useUpdateUserMutation,
 } = userApi;

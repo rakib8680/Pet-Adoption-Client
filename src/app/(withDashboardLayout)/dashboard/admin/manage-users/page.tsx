@@ -1,28 +1,28 @@
 "use client";
-import { useGetAllUsersQuery } from "@/redux/api/userApi";
-import {
-  Box,
-  Button,
-  CircularProgress,
-  IconButton,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { useGetAllUsersQuery, useUpdateUserMutation } from "@/redux/api/userApi";
+import { Box, CircularProgress, Tooltip, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Image from "next/image";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import LocalPoliceIcon from '@mui/icons-material/LocalPolice';
-import RemoveModeratorIcon from '@mui/icons-material/RemoveModerator';
-
-
+import EditOffIcon from "@mui/icons-material/EditOff";
+import LocalPoliceIcon from "@mui/icons-material/LocalPolice";
+import RemoveModeratorIcon from "@mui/icons-material/RemoveModerator";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
 const ManageUser = () => {
   const { data, isLoading } = useGetAllUsersQuery({});
+  const [updateUser] = useUpdateUserMutation();
 
   const allUsers = data?.data;
-  // console.log(allUsers);
   const meta = data?.meta;
+
+
+
+
+
+
+
+
+
 
   //columns
   const columns: GridColDef[] = [
@@ -60,21 +60,50 @@ const ManageUser = () => {
       align: "center",
       renderCell: ({ row }) => {
         return (
-          <Box sx={{display:'flex',height:"100%",width:'100%', justifyContent:"center", alignItems:'center', gap:'10px'}}>
+          <Box
+            sx={{
+              display: "flex",
+              height: "100%",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            {/* role  */}
             <Tooltip
-              className={`rounded-lg !h-[30px] !w-[30px] p-1 cursor-pointer ${row?.role === "ADMIN" ? 'bg-[#F2994A] text-white' : 'bg-gray-300'}`}
+              className={`rounded-lg !h-[30px] !w-[30px] p-1 cursor-pointer ${
+                row?.role === "ADMIN"
+                  ? "bg-[#F2994A] text-white"
+                  : "bg-gray-300"
+              }`}
               title="Change Role"
               // onClick={}
             >
-              {row.role === "ADMIN"? <LocalPoliceIcon fontSize="medium" /> : <RemoveModeratorIcon fontSize="medium" />}
+              {row.role === "ADMIN" ? (
+                <LocalPoliceIcon fontSize="medium" />
+              ) : (
+                <RemoveModeratorIcon fontSize="medium" />
+              )}
             </Tooltip>
+              
+              {/*Info*/}
             <Tooltip
               className="rounded-lg !h-[30px] !w-[30px] p-1 cursor-pointer"
               sx={{ backgroundColor: "secondary.main", color: "white" }}
               title="Edit User"
               // onClick={}
             >
-              <EditIcon fontSize="medium" />
+              <EditOffIcon fontSize="medium" />
+            </Tooltip>
+
+            {/* status  */}
+            <Tooltip
+              className="rounded-lg !h-[30px] !w-[30px] p-1 cursor-pointer bg-sky-200"
+              title="Change Status"
+              // onClick={}
+            >
+              <ManageAccountsIcon fontSize="medium" />
             </Tooltip>
           </Box>
         );
@@ -83,8 +112,10 @@ const ManageUser = () => {
   ];
 
   return (
-    <div>
-      <Typography variant="h4" className="">
+    <div className="container  mx-auto mt-20">
+
+      <div className="  bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg px-10">
+      <Typography variant="h4" className="pt-5">
         Manage Users
       </Typography>
 
@@ -93,12 +124,14 @@ const ManageUser = () => {
           rows={allUsers ?? []}
           columns={columns}
           hideFooter
+          loading={isLoading}
           rowHeight={70}
           getRowClassName={(params) =>
-            params.row.status === "BLOCKED" ? "bg-gray-100" : ""
+            params.row.status === "BLOCKED" ? "bg-gray-200" : ""
           }
         />
       </Box>
+      </div>
     </div>
   );
 };

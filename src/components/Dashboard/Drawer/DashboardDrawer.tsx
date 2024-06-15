@@ -47,7 +47,7 @@ export default function DashboardDrawer({
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
           boxShadow: "none",
-          padding: "20px 0",
+          padding: "28px 0",
         }}
       >
         {/* logo */}

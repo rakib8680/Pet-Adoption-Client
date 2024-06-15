@@ -7,4 +7,4 @@ const DashboardHomePage = () => {
   )
 };
 
-export default DashboardHomePage;
+export default DashboardHomePage;   

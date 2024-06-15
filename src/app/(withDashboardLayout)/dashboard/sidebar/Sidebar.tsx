@@ -8,7 +8,10 @@ import Link from "next/link";
 const Sidebar = () => {
   return (
     <>
-      <Link href="/" className="flex items-center mx-auto  h-24">
+      <Link
+        href="/"
+        className="flex items-center justify-center h-24 bg-[#F5F5F5] w-full"
+      >
         <Image
           src={logo2}
           alt="logo"
@@ -18,7 +21,10 @@ const Sidebar = () => {
         />
       </Link>
       <Divider />
-      <List>
+      <List
+        className="h-screen bg-[#F5F5F5]
+ "
+      >
         {drawerItems().map((item, index) => (
           <SidebarItem key={index} item={item} />
         ))}

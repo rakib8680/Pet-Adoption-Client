@@ -8,9 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/material";
-import Image from "next/image";
 import Link from "next/link";
-import logo2 from "@/assets/logo2.png";
 import Sidebar from "@/app/(withDashboardLayout)/dashboard/sidebar/Sidebar";
 
 const drawerWidth = 240;
@@ -68,13 +66,6 @@ export default function DashboardDrawer({
           >
             <MenuIcon />
           </IconButton>
-          <Image
-            src={logo2}
-            alt="logo"
-            quality={100}
-            width={40}
-            className="rounded-full"
-          />
           <Typography component={Link} href="/" fontWeight={600} fontSize={21}>
             <Box component="span" color="accent.main" className="font-black ">
               Pet
@@ -132,6 +123,7 @@ export default function DashboardDrawer({
         sx={{
           flexGrow: 1,
           p: 3,
+          pt:5,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >

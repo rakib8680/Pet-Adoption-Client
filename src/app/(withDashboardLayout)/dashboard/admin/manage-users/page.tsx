@@ -1,8 +1,11 @@
 "use client";
+import { useGetAllUsersQuery } from "@/redux/api/userApi";
 import {
-  useGetAllUsersQuery,
-} from "@/redux/api/userApi";
-import { Box, Button, CircularProgress, Tooltip, Typography } from "@mui/material";
+  Box,
+  CircularProgress,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Image from "next/image";
 import EditOffIcon from "@mui/icons-material/EditOff";
@@ -10,32 +13,17 @@ import LocalPoliceIcon from "@mui/icons-material/LocalPolice";
 import RemoveModeratorIcon from "@mui/icons-material/RemoveModerator";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { useState } from "react";
-import { FieldValues } from "react-hook-form";
 import ChangeRoleModal from "./components/ChangeRoleModal";
-
-
-
-
-
-
+import ChangeStatusModal from "./components/ChangeStatusModal";
 
 const ManageUser = () => {
-
-
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isRoleModalOpen, setIsRoleModalOpen] = useState<boolean>(false);
+  const [isStatusModalOpen, setIsStatusModalOpen] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
   const { data, isLoading } = useGetAllUsersQuery({});
 
   const allUsers = data?.data;
   const meta = data?.meta;
-
-
-
-
-
-
-
-
 
   //columns
   const columns: GridColDef[] = [
@@ -93,7 +81,7 @@ const ManageUser = () => {
               title="Change Role"
               onClick={() => {
                 setUserId(row.id);
-                setIsModalOpen(true);
+                setIsRoleModalOpen(true);
               }}
             >
               {row.role === "ADMIN" ? (
@@ -101,26 +89,32 @@ const ManageUser = () => {
               ) : (
                 <RemoveModeratorIcon fontSize="medium" />
               )}
-              
             </Tooltip>
+
+
+            {/* status  */}
+            <Tooltip
+              className={`rounded-lg !h-[30px] !w-[30px] p-1 cursor-pointer ${
+                row?.status === "ACTIVE" ? "bg-sky-200" : "bg-gray-300"
+              }`}
+              title="Change Status"
+              onClick={() => {
+                setUserId(row.id);
+                setIsStatusModalOpen(true);
+              }}
+            >
+              <ManageAccountsIcon fontSize="medium" />
+            </Tooltip>
+
 
             {/*Info*/}
             <Tooltip
               className="rounded-lg !h-[30px] !w-[30px] p-1 cursor-pointer"
               sx={{ backgroundColor: "secondary.main", color: "white" }}
               title="Edit User"
-              onClick={() => setIsModalOpen(true)}
+              // onClick={() => setIsModalOpen(true)}
             >
               <EditOffIcon fontSize="medium" />
-            </Tooltip>
-
-            {/* status  */}
-            <Tooltip
-              className="rounded-lg !h-[30px] !w-[30px] p-1 cursor-pointer bg-sky-200"
-              title="Change Status"
-              // onClick={}
-            >
-              <ManageAccountsIcon fontSize="medium" />
             </Tooltip>
           </Box>
         );
@@ -128,16 +122,23 @@ const ManageUser = () => {
     },
   ];
 
-
-
   return (
     <div className="container  mx-auto mt-20">
       <div className="  bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg px-10">
-      <ChangeRoleModal id={userId} open={isModalOpen} setOpen={setIsModalOpen} />
+        <ChangeRoleModal
+          id={userId}
+          open={isRoleModalOpen}
+          setOpen={setIsRoleModalOpen}
+        />
+        <ChangeStatusModal
+          id={userId}
+          open={isStatusModalOpen}
+          setOpen={setIsStatusModalOpen}
+        />
         <Typography variant="h4" className="pt-5">
           Manage Users
         </Typography>
-        
+
         <Box my={3}>
           <DataGrid
             rows={allUsers ?? []}

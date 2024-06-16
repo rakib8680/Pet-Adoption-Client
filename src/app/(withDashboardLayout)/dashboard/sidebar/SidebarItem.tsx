@@ -14,7 +14,14 @@ type TSidebarPros = {
 };
 
 const SidebarItem = ({ item }: TSidebarPros) => {
-  const linkPath = `/dashboard/${item.path}`;
+  let linkPath = `/dashboard/${item.path}`;
+  
+
+  // If the path is '/dashboard/profile/change-password', change it to '/profile/change-password'
+  if (linkPath === '/dashboard/profile/change-password') {
+    linkPath = '/profile/change-password';
+  }
+
   const pathName = usePathname();
 
   return (

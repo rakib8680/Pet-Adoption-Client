@@ -1,6 +1,7 @@
 import PetsIcon from "@mui/icons-material/Pets";
 import PeopleIcon from "@mui/icons-material/People";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import KeyIcon from '@mui/icons-material/Key';
 
 export const drawerItems = () => {
   const items = [
@@ -18,6 +19,11 @@ export const drawerItems = () => {
       title: "Manage Pets",
       path: `admin/manage-pets`,
       icon: PetsIcon,
+    },
+    {
+      title: "Change Password",
+      path: `profile/change-password`,
+      icon: KeyIcon,
     },
   ];
 

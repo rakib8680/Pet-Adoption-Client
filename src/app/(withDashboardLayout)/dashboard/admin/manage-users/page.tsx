@@ -2,7 +2,6 @@
 import { useGetAllUsersQuery } from "@/redux/api/userApi";
 import {
   Box,
-  CircularProgress,
   Tooltip,
   Typography,
 } from "@mui/material";

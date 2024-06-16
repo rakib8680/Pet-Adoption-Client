@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/material";
 import Link from "next/link";
 import Sidebar from "@/app/(withDashboardLayout)/dashboard/sidebar/Sidebar";
+import dynamic from "next/dynamic";
 
 const drawerWidth = 240;
 
@@ -18,6 +19,12 @@ export default function DashboardDrawer({
 }: {
   children: React.ReactNode;
 }) {
+  //  use this code to handle hydration error
+  const AuthButton = dynamic(
+    () => import("@/components/Ui/AuthButton/AuthButton"),
+    { ssr: false }
+  );
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
 
@@ -47,9 +54,15 @@ export default function DashboardDrawer({
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
           boxShadow: "none",
-          padding: "28px 0",
+          padding: "19px 0",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
         }}
       >
+
+        <div style={{ flex: 1 }}></div>
+
         {/* logo */}
         <Stack
           direction="row"
@@ -73,7 +86,19 @@ export default function DashboardDrawer({
             Adoption Center 🐾
           </Typography>
         </Stack>
+
+        <div
+          style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}
+        ></div>
+
+        {/* auth button */}
+        <div className="md:mr-14">
+        <AuthButton />
+        </div>
+
       </AppBar>
+
+
 
       {/* drawer */}
       <Box
@@ -123,7 +148,7 @@ export default function DashboardDrawer({
         sx={{
           flexGrow: 1,
           p: 3,
-          pt:5,
+          pt: 5,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >

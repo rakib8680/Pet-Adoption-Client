@@ -16,7 +16,12 @@ import { useState } from "react";
 import ChangeRoleModal from "./components/ChangeRoleModal";
 import ChangeStatusModal from "./components/ChangeStatusModal";
 
+
+
+
 const ManageUser = () => {
+
+  
   const [isRoleModalOpen, setIsRoleModalOpen] = useState<boolean>(false);
   const [isStatusModalOpen, setIsStatusModalOpen] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
@@ -24,6 +29,8 @@ const ManageUser = () => {
 
   const allUsers = data?.data;
   const meta = data?.meta;
+
+
 
   //columns
   const columns: GridColDef[] = [
@@ -121,6 +128,8 @@ const ManageUser = () => {
       },
     },
   ];
+
+
 
   return (
     <div className="container  mx-auto mt-20">

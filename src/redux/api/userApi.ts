@@ -32,6 +32,13 @@ export const userApi = baseApi.injectEndpoints({
       }),
       providesTags: ["user"],
     }),
+    getSingleUser: builder.query({
+      query: (id:string) => ({
+        url: `/user/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["user"],
+    }),
     updateUser: builder.mutation({
       query: (payload) => ({
         url: `/user/${payload?.id}`,
@@ -49,4 +56,5 @@ export const {
   useUpdateMyProfileMutation,
   useGetAllUsersQuery,
   useUpdateUserMutation,
+  useGetSingleUserQuery,
 } = userApi;

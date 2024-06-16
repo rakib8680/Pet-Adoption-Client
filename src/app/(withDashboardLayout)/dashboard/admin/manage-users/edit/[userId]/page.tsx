@@ -1,111 +1,65 @@
-import { styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
+"use client";
+
 import { Box, Button, CircularProgress, Grid } from "@mui/material";
 import PAC_Form from "@/components/Forms/PAC_Form";
 import PAC_Input from "@/components/Forms/PAC_Input";
 import PAC_Select from "@/components/Forms/PAC_Select";
 import { Gender } from "@/types";
-import {
-  useGetMyProfileQuery,
-  useGetSingleUserQuery,
-  useUpdateMyProfileMutation,
-} from "@/redux/api/userApi";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
+import { Typography } from "@mui/material";
+import { useGetSingleUserQuery } from "@/redux/api/userApi";
+import Link from "next/link";
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
-
-type TProps = {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+type TParams = {
+  params: {
+    userId: string;
+  };
 };
 
-
-
-
-const EditProfileModal = ({ open, setOpen }: TProps) => {
-
-  const [updateProfile] = useUpdateMyProfileMutation();
-  const { data, isLoading } = useGetMyProfileQuery({});
-  const myProfile = data?.data;
-
-
+const UpdateUserPage = ({ params }: TParams) => {
+  const { userId } = params;
+  const { data, isLoading } = useGetSingleUserQuery(userId);
+  const userProfile = data?.data;
 
   // update profile
   const handleEditProfile = async (data: FieldValues) => {
     data.age = Number(data.age);
 
-    try {
-      const res = await updateProfile(data).unwrap();
-      if (res.success) {
-        toast.success(res?.message, {
-          duration: 3500,
-          style: { background: "#187f5b", color: "#ceffee" },
-        });
-        setOpen(false);
-      }
-    } catch (error: any) {
-      console.log(error.message);
-    }
+    // try {
+    //   const res = await updateProfile(data).unwrap();
+    //   if (res.success) {
+    //     toast.success(res?.message, {
+    //       duration: 3500,
+    //       style: { background: "#187f5b", color: "#ceffee" },
+    //     });
+    //     setOpen(false);
+    //   }
+    // } catch (error: any) {
+    //   console.log(error.message);
+    // }
   };
-
-
 
   // default values
   const defaultProfileValues = {
-    name: myProfile?.name,
-    gender: myProfile?.gender,
-    age: myProfile?.age,
-    profilePicture: myProfile?.profilePicture,
-    location: myProfile?.location,
-    contactNumber: myProfile?.contactNumber,
+    name: userProfile?.name || "",
+    gender: userProfile?.gender || "",
+    age: userProfile?.age || 0,
+    profilePicture: userProfile?.profilePicture || "",
+    location: userProfile?.location || "",
+    contactNumber: userProfile?.contactNumber || "",
   };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-
-
 
   return (
-    <BootstrapDialog
-      onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={open}
-    >
-      <DialogTitle
-        sx={{ textAlign: "center", fontSize: "25px", p: "30px 0" }}
-        id="customized-dialog-title"
+    <div className="container max-w-6xl mx-auto space-y-5 pb-10">
+      <Typography
+        className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg  text-center"
+        sx={{ fontSize: "25px", p: "30px 0" }}
       >
-        Update Your Information
-      </DialogTitle>
+        {userProfile ? `Update ${userProfile.name}'s Info` : "Edit Profile"}
+      </Typography>
 
-      <IconButton
-        aria-label="close"
-        onClick={handleClose}
-        sx={{
-          position: "absolute",
-          right: 8,
-          top: 8,
-          color: (theme) => theme.palette.grey[500],
-        }}
-      >
-        <CloseIcon />
-      </IconButton>
-
-      <DialogContent dividers>
+      <div className="flex justify-center items-center bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg py-10  px-10">
         {isLoading ? (
           <div className="flex justify-center items-center h-[50vh]">
             <CircularProgress color="secondary" />
@@ -114,14 +68,15 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
           <Box
             sx={{
               padding: "0px 50px",
-              maxWidth: "500px",
+              maxWidth: "700px",
+              bgcolor: "#fdfdfd",
+              borderRadius: "10px",
             }}
           >
-
             {/* main form  ***********************************************************************************/}
             <PAC_Form
               onSubmit={handleEditProfile}
-              defaultValues={defaultProfileValues}
+              defaultValues={data && defaultProfileValues}
             >
               <Grid container spacing={4} my={1}>
                 {/* name */}
@@ -135,21 +90,23 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
                   />
                 </Grid>
                 {/* gender  */}
-                <Grid item md={6}>
+                <Grid item md={12}>
                   <PAC_Select
                     items={Gender}
                     name="gender"
                     label="Gender"
+                    fullWidth
                     color="secondary"
                   />
                 </Grid>
                 {/* age  */}
-                <Grid item md={6}>
+                <Grid item md={12}>
                   <PAC_Input
                     label="Age"
                     type="number"
                     variant="outlined"
                     color="secondary"
+                    fullWidth
                     name="age"
                   />
                 </Grid>
@@ -164,20 +121,22 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
                   />
                 </Grid>
                 {/* location  */}
-                <Grid item md={6}>
+                <Grid item md={12}>
                   <PAC_Input
                     label="Location"
                     variant="outlined"
                     color="secondary"
+                    fullWidth
                     name="location"
                   />
                 </Grid>
                 {/* contact  */}
-                <Grid item md={6}>
+                <Grid item md={12}>
                   <PAC_Input
                     label="Contact Number"
                     variant="outlined"
                     color="secondary"
+                    fullWidth
                     name="contactNumber"
                   />
                 </Grid>
@@ -193,21 +152,21 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
                   Update
                 </Button>
                 <Button
+                  component={Link}
+                  href="/dashboard/admin/manage-users"
                   disableElevation
                   color="inherit"
                   size="small"
-                  onClick={handleClose}
                 >
                   Cancel
                 </Button>
               </div>
             </PAC_Form>
-
           </Box>
         )}
-      </DialogContent>
-    </BootstrapDialog>
+      </div>
+    </div>
   );
 };
 
-export default EditProfileModal;
+export default UpdateUserPage;

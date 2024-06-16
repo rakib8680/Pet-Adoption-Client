@@ -37,33 +37,31 @@ const ChangeStatusModal = ({ id, open, setOpen }: TProps) => {
   };
 
   return (
-    <>
-      <PAC_Modal open={open} setOpen={setOpen} title="Change User Status">
-        <PAC_Form onSubmit={handleChangeStatus} defaultValues={{ status: "" }}>
-          <Box
-            sx={{
-              padding: "20px",
-              width: "350px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "30px",
-            }}
-            className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg !px-10 space-y-8 !py-14"
-          >
-            <PAC_Select
-              items={Status}
-              name="status"
-              label="Status"
-              fullWidth
-              color="secondary"
-            />
-            <Button disableElevation fullWidth color="secondary" type="submit">
-              Submit
-            </Button>
-          </Box>
-        </PAC_Form>
-      </PAC_Modal>
-    </>
+    <PAC_Modal open={open} setOpen={setOpen} title="Change User Status">
+      <PAC_Form onSubmit={handleChangeStatus} defaultValues={{ status: "" }}>
+        <Box
+          sx={{
+            padding: "20px",
+            width: "350px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "30px",
+          }}
+          className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg !px-10 space-y-8 !py-14"
+        >
+          <PAC_Select
+            items={Status}
+            name="status"
+            label="Status"
+            fullWidth
+            color="secondary"
+          />
+          <Button disableElevation fullWidth color="secondary" type="submit">
+            Submit
+          </Button>
+        </Box>
+      </PAC_Form>
+    </PAC_Modal>
   );
 };
 

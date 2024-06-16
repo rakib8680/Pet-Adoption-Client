@@ -15,6 +15,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { useState } from "react";
 import ChangeRoleModal from "./components/ChangeRoleModal";
 import ChangeStatusModal from "./components/ChangeStatusModal";
+import Link from "next/link";
 
 
 
@@ -115,14 +116,14 @@ const ManageUser = () => {
 
 
             {/*Info*/}
+            <Link href={`/dashboard/admin/manage-users/edit/${row?.id}`}>
             <Tooltip
               className="rounded-lg !h-[30px] !w-[30px] p-1 cursor-pointer"
               sx={{ backgroundColor: "secondary.main", color: "white" }}
               title="Edit User"
-              // onClick={() => setIsModalOpen(true)}
             >
               <EditOffIcon fontSize="medium" />
-            </Tooltip>
+            </Tooltip></Link>
           </Box>
         );
       },
@@ -133,7 +134,7 @@ const ManageUser = () => {
 
   return (
     <div className="container  mx-auto mt-20">
-      <div className="  bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg px-10">
+      <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg px-10">
         <ChangeRoleModal
           id={userId}
           open={isRoleModalOpen}

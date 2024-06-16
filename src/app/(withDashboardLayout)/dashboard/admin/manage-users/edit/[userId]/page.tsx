@@ -8,7 +8,10 @@ import { Gender } from "@/types";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import { Typography } from "@mui/material";
-import { useGetSingleUserQuery } from "@/redux/api/userApi";
+import {
+  useGetSingleUserQuery,
+  useUpdateUserMutation,
+} from "@/redux/api/userApi";
 import Link from "next/link";
 
 type TParams = {
@@ -17,28 +20,39 @@ type TParams = {
   };
 };
 
+
+
 const UpdateUserPage = ({ params }: TParams) => {
   const { userId } = params;
-  const { data, isLoading } = useGetSingleUserQuery(userId);
+  const [updateUser] = useUpdateUserMutation();
+  const { data, isLoading, isFetching } = useGetSingleUserQuery(userId);
   const userProfile = data?.data;
+
+
 
   // update profile
   const handleEditProfile = async (data: FieldValues) => {
     data.age = Number(data.age);
 
-    // try {
-    //   const res = await updateProfile(data).unwrap();
-    //   if (res.success) {
-    //     toast.success(res?.message, {
-    //       duration: 3500,
-    //       style: { background: "#187f5b", color: "#ceffee" },
-    //     });
-    //     setOpen(false);
-    //   }
-    // } catch (error: any) {
-    //   console.log(error.message);
-    // }
+    const payload = {
+      id: userId,
+      data,
+    };
+
+    try {
+      const res = await updateUser(payload).unwrap();
+      if (res.success) {
+        toast.success(res?.message, {
+          duration: 3500,
+          style: { background: "#187f5b", color: "#ceffee" },
+        });
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
   };
+
+
 
   // default values
   const defaultProfileValues = {
@@ -50,8 +64,11 @@ const UpdateUserPage = ({ params }: TParams) => {
     contactNumber: userProfile?.contactNumber || "",
   };
 
+
+
   return (
     <div className="container max-w-6xl mx-auto space-y-5 pb-10">
+
       <Typography
         className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg  text-center"
         sx={{ fontSize: "25px", p: "30px 0" }}
@@ -60,11 +77,13 @@ const UpdateUserPage = ({ params }: TParams) => {
       </Typography>
 
       <div className="flex justify-center items-center bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg py-10  px-10">
-        {isLoading ? (
+
+        {isLoading || isFetching ? (
           <div className="flex justify-center items-center h-[50vh]">
             <CircularProgress color="secondary" />
           </div>
         ) : (
+
           <Box
             sx={{
               padding: "0px 50px",
@@ -158,11 +177,12 @@ const UpdateUserPage = ({ params }: TParams) => {
                   color="inherit"
                   size="small"
                 >
-                  Cancel
+                  Back
                 </Button>
               </div>
             </PAC_Form>
           </Box>
+
         )}
       </div>
     </div>

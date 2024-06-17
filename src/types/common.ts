@@ -42,3 +42,5 @@ export interface DrawerItem {
 export const Gender = ["MALE", "FEMALE"];
 export const Role = ["ADMIN", "USER"];
 export const Status = ["ACTIVE", "BLOCKED"];
+export const HealthStatus = ['HEALTHY', 'SICK', 'INJURED']
+export const PetSize = ['Large', 'Medium', 'Small']

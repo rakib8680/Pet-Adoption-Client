@@ -25,6 +25,21 @@ export const petApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["pet"],
     }),
+    deletePet: builder.mutation({
+      query: (id: string) => ({
+        url: `/pets/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["pet"],
+    }),
+    addPet: builder.mutation({
+      query: (data) => ({
+        url: "/pets",
+        method: "POST",
+        data,
+      }),
+      invalidatesTags: ["pet"],
+    }),
   }),
 });
 
@@ -32,4 +47,6 @@ export const {
   useGetAllPetsQuery,
   useGetSinglePetQuery,
   useUpdatePetMutation,
+  useDeletePetMutation,
+  useAddPetMutation,
 } = petApi;

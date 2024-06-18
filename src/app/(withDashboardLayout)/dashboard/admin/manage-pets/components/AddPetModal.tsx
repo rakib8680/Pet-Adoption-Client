@@ -1,93 +1,78 @@
-"use client";
 
-import { Box, Button, CircularProgress, Grid } from "@mui/material";
 import PAC_Form from "@/components/Forms/PAC_Form";
+import PAC_Modal from "@/components/Shared/Modal/PAC_Modal";
+import { Box, Button, CircularProgress, Grid } from "@mui/material";
 import PAC_Input from "@/components/Forms/PAC_Input";
 import PAC_Select from "@/components/Forms/PAC_Select";
 import { Gender, HealthStatus, PetSize } from "@/types";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
-import { Typography } from "@mui/material";
-import Link from "next/link";
-import { useGetSinglePetQuery, useUpdatePetMutation } from "@/redux/api/petApi";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { addPetValidationSchema } from "@/utils/formValidation";
+import AddIcon from '@mui/icons-material/Add';
+import { useAddPetMutation } from "@/redux/api/petApi";
 
-type TParams = {
-  params: {
-    petId: string;
+
+
+
+type TProps = {
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   };
-};
-
-
-
-const EditPetPage = ({ params }: TParams) => {
   
-  const { petId } = params;
-  const [updatePet] = useUpdatePetMutation();
-  const { data, isLoading, isFetching } = useGetSinglePetQuery(petId);
-  const singlePet = data?.data;
 
 
+const AddPetModal = ({open, setOpen}:TProps) => {
 
-  // update Pet
-  const handleEditPet = async (data: FieldValues) => {
-    data.age = Number(data.age);
-    data.photos = [data.photos];
 
-    const payload = {
-      id: petId,
-      data,
-    };
+    const [addPet] = useAddPetMutation();
 
-    try {
-      const res = await updatePet(payload).unwrap();
-      if (res.success) {
-        toast.success("Pet Information Updated !", {
-          duration: 3500,
-          style: { background: "#187f5b", color: "#ceffee" },
-        });
-      }
-    } catch (error: any) {
-      console.log(error.message);
+
+    // add pet function
+    const handleAddPet = async (data:FieldValues)=>{
+
+        data.age = Number(data.age);
+        data.photos = [data.photos];
+
+
+        try {
+            const res = await addPet(data).unwrap();
+            if(res.success){
+                toast.success("Pet Information Updated !", {
+                    duration: 3500,
+                    style: { background: "#187f5b", color: "#ceffee" },
+                  });
+                setOpen(false);
+            }            
+        } catch (error) {
+            toast.error("Something went wrong!");
+        }
     }
-  };
 
 
-
-  // default values
+// default values
   const defaultPetValues = {
-    name: singlePet?.name || "",
-    species: singlePet?.species || "",
-    gender: singlePet?.gender || "",
-    age: singlePet?.age || 0,
-    photos: singlePet?.photos[0] || "",
-    healthStatus: singlePet?.healthStatus || "",
-    breed: singlePet?.breed || "",
-    size: singlePet?.size || "",
-    location: singlePet?.location || "",
-    specialNeeds: singlePet?.specialNeeds || "",
-    temperament: singlePet?.temperament || "",
-    medicalHistory: singlePet?.medicalHistory || "",
-    description: singlePet?.description || "",
-    adoptionRequirements: singlePet?.adoptionRequirements || "",
+    name: "",
+    species: "",
+    gender: "",
+    age: 0,
+    photos:"",
+    healthStatus: "",
+    breed: "",
+    size: "",
+    location: "",
+    specialNeeds: "",
+    temperament: "",
+    medicalHistory: "",
+    description: "",
+    adoptionRequirements: "",
   };
 
 
   return (
-    <div className="container max-w-6xl mx-auto space-y-5 pb-10">
-      <Typography
-        className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg  text-center"
-        sx={{ fontSize: "25px", p: "15px 0" }}
-      >
-        {singlePet ? `Update ${singlePet.name}'s Info` : "Edit Profile"}
-      </Typography>
-
-      <div className="flex justify-center items-center bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg py-10  px-10">
-        {isLoading || isFetching ? (
-          <div className="flex justify-center items-center h-[50vh]">
-            <CircularProgress color="secondary" />
-          </div>
-        ) : (
-          <Box
+     <div>
+         <PAC_Modal title="Add a pet" open={open} setOpen={setOpen}>
+         <Box
             sx={{
               padding: "0px 50px",
               maxWidth: "700px",
@@ -97,10 +82,11 @@ const EditPetPage = ({ params }: TParams) => {
           >
             {/* main form  ***********************************************************************************/}
             <PAC_Form
-              onSubmit={handleEditPet}
-              defaultValues={data && defaultPetValues}
+              onSubmit={handleAddPet}
+              defaultValues={defaultPetValues}
+              resolver={zodResolver(addPetValidationSchema)}
             >
-              <Grid container spacing={4} my={1}>
+              <Grid container spacing={3} my={1}>
                 {/* name */}
                 <Grid item md={6}>
                   <PAC_Input
@@ -254,25 +240,24 @@ const EditPetPage = ({ params }: TParams) => {
                   disableElevation
                   color="secondary"
                   size="small"
+                  endIcon={<AddIcon />}
                 >
-                  Update
+                  Add
                 </Button>
                 <Button
-                  component={Link}
-                  href="/dashboard/admin/manage-pets"
                   disableElevation
                   color="inherit"
                   size="small"
+                    onClick={() => setOpen(false)}
                 >
-                  Back
+                  Cancel
                 </Button>
               </div>
             </PAC_Form>
           </Box>
-        )}
-      </div>
-    </div>
-  );
+         </PAC_Modal>
+     </div>
+  )
 };
 
-export default EditPetPage;
+export default AddPetModal;

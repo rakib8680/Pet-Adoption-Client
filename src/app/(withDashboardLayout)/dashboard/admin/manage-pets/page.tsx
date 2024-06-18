@@ -1,28 +1,33 @@
 "use client";
-import {
-  Box,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Tooltip, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Image from "next/image";
 import EditOffIcon from "@mui/icons-material/EditOff";
-import { useState } from "react";
-
 import Link from "next/link";
-import { useGetAllPetsQuery } from "@/redux/api/petApi";
+import { useDeletePetMutation, useGetAllPetsQuery } from "@/redux/api/petApi";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useState } from "react";
+import AddPetModal from "./components/AddPetModal";
+import PetsIcon from '@mui/icons-material/Pets';
+
 
 
 
 
 const ManagePets = () => {
 
-  
-  const [userId, setUserId] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deletePet] = useDeletePetMutation();
   const { data, isLoading } = useGetAllPetsQuery({});
-
   const allPets = data?.data;
   const meta = data?.meta;
+
+
+
+
+
+
+
 
 
 
@@ -32,8 +37,8 @@ const ManagePets = () => {
       field: "photos",
       headerName: "Image",
       flex: 1,
-      cellClassName:"!ps-7",
-      headerClassName:"!ps-7",
+      cellClassName: "!ps-7",
+      headerClassName: "!ps-7",
       renderCell: ({ row }) => {
         return (
           <div className="flex items-center h-full ">
@@ -75,31 +80,44 @@ const ManagePets = () => {
           >
             {/*Edit Info*/}
             <Link href={`/dashboard/admin/manage-pets/edit/${row?.id}`}>
-            <Tooltip
-              className="rounded-lg !h-[35px] !w-[35px] p-1 cursor-pointer"
-              sx={{ backgroundColor: "secondary.main", color: "white" }}
-              title="Edit Pet"
-            >
-              <EditOffIcon fontSize="medium" />
-            </Tooltip></Link>
+              <Tooltip
+                className="rounded-lg !h-[35px] !w-[35px] p-1 cursor-pointer"
+                sx={{ backgroundColor: "secondary.main", color: "white" }}
+                title="Edit Pet"
+              >
+                <EditOffIcon fontSize="medium" />
+              </Tooltip>
+            </Link>
+            {/*Delete Pet*/}
+              <Tooltip
+                className="rounded-lg !h-[35px] !w-[35px] p-1 cursor-pointer"
+                sx={{ backgroundColor: "#e5677a", color: "white" }}
+                title="Delete Pet"
+                onClick={()=>handleDeletePet(row.id)}
+              >
+                <DeleteIcon fontSize="medium" />
+              </Tooltip>
           </Box>
         );
       },
     },
   ];
 
-
-
   return (
     <div className="container  mx-auto my-10">
+      <AddPetModal open={isModalOpen} setOpen={setIsModalOpen} />
       <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg px-10">
-
-        <Typography variant="h4" className="pt-5">
-          Manage All Pets
-        </Typography>
-        <Typography variant="body1" className="text-gray-500">
-          You can manage all pets here
-        </Typography>
+        <div className="flex justify-between items-center">
+          <div>
+            <Typography variant="h4" className="pt-5">
+              Manage All Pets
+            </Typography>
+            <Typography variant="body1" className="text-gray-500">
+              You can manage all pets here
+            </Typography>
+          </div>
+          <Button disableElevation onClick={()=>setIsModalOpen(true)} endIcon={<PetsIcon/>}>Add Pet</Button>
+        </div>
         <hr className="my-5" />
 
         <Box my={3}>

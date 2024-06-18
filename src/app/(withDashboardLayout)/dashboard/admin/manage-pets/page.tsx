@@ -8,14 +8,12 @@ import { useDeletePetMutation, useGetAllPetsQuery } from "@/redux/api/petApi";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 import AddPetModal from "./components/AddPetModal";
-import PetsIcon from '@mui/icons-material/Pets';
-
-
+import PetsIcon from "@mui/icons-material/Pets";
+import Swal from "sweetalert2";
 
 
 
 const ManagePets = () => {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deletePet] = useDeletePetMutation();
   const { data, isLoading } = useGetAllPetsQuery({});
@@ -24,10 +22,44 @@ const ManagePets = () => {
 
 
 
-
-
-
-
+  // delete pet function 
+  const handleDeletePet = async (id: string) => {
+    try {
+      Swal.fire({
+        title: "Remove This Pet ?",
+        icon: "warning",
+        showCancelButton: true,
+        allowOutsideClick: false,
+        showCloseButton: true,
+        background: "#1F2937",
+        iconColor: "#E5D7B6",
+        color: "#E5D7B6",
+        backdrop: false,
+        padding: "0 0 4rem 0",
+        confirmButtonColor: "#d35b00",
+        cancelButtonColor: "#48565E",
+        confirmButtonText: "Remove",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const res = await deletePet(id).unwrap();
+          if (res.success) {
+            Swal.fire({
+              title: "Pet Removed Successfully !",
+              icon: "success",
+              background: "#1F2937",
+              backdrop: false,
+              iconColor: "#E5D7B6",
+              color: "#E5D7B6",
+              padding: "0 0 4rem 0",
+              confirmButtonColor: "#d35b00",
+            });
+          }
+        }
+      });
+    } catch (error: any) {
+      console.log(error?.message);
+    }
+  };
 
 
 
@@ -89,20 +121,22 @@ const ManagePets = () => {
               </Tooltip>
             </Link>
             {/*Delete Pet*/}
-              <Tooltip
-                className="rounded-lg !h-[35px] !w-[35px] p-1 cursor-pointer"
-                sx={{ backgroundColor: "#e5677a", color: "white" }}
-                title="Delete Pet"
-                onClick={()=>handleDeletePet(row.id)}
-              >
-                <DeleteIcon fontSize="medium" />
-              </Tooltip>
+            <Tooltip
+              className="rounded-lg !h-[35px] !w-[35px] p-1 cursor-pointer"
+              sx={{ backgroundColor: "#e5677a", color: "white" }}
+              title="Delete Pet"
+              onClick={() => handleDeletePet(row.id)}
+            >
+              <DeleteIcon fontSize="medium" />
+            </Tooltip>
           </Box>
         );
       },
     },
   ];
 
+
+  
   return (
     <div className="container  mx-auto my-10">
       <AddPetModal open={isModalOpen} setOpen={setIsModalOpen} />
@@ -116,7 +150,13 @@ const ManagePets = () => {
               You can manage all pets here
             </Typography>
           </div>
-          <Button disableElevation onClick={()=>setIsModalOpen(true)} endIcon={<PetsIcon/>}>Add Pet</Button>
+          <Button
+            disableElevation
+            onClick={() => setIsModalOpen(true)}
+            endIcon={<PetsIcon />}
+          >
+            Add Pet
+          </Button>
         </div>
         <hr className="my-5" />
 

@@ -38,7 +38,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
         try {
             const res = await addPet(data).unwrap();
             if(res.success){
-                toast.success("Pet Information Updated !", {
+                toast.success(res?.message, {
                     duration: 3500,
                     style: { background: "#187f5b", color: "#ceffee" },
                   });

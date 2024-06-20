@@ -1,11 +1,12 @@
 "use client";
-import { Box,Tooltip, Typography } from "@mui/material";
+import { Box, CircularProgress, Tooltip, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Image from "next/image";
 import EditOffIcon from "@mui/icons-material/EditOff";
 import { useState } from "react";
 import { useGetAllAdoptionRequestsQuery } from "@/redux/api/adopionApi";
 import ChangeAdoptionStatusModal from "./components/ChangeAdoptionStatusModal";
+
 
 const AdminPage = () => {
   const [adoptionId, setAdoptionId] = useState("");
@@ -15,6 +16,8 @@ const AdminPage = () => {
   const adoptionRequests = data?.data;
 
   // console.log(adoptionRequests);
+
+
 
   //columns
   const columns: GridColDef[] = [
@@ -103,7 +106,7 @@ const AdminPage = () => {
     },
   ];
 
-  
+
 
   return (
     <div className="container  mx-auto my-10">
@@ -123,21 +126,26 @@ const AdminPage = () => {
         </div>
         <hr className="my-5" />
 
-        <Box my={3}>
-          <DataGrid
-            rows={adoptionRequests ?? []}
-            columns={columns}
-            hideFooter
-            loading={isLoading}
-            rowHeight={70}
-            className="pb-3"
-            getRowClassName={(params) =>
-              (params.row.status === "APPROVED" && "bg-green-50") ||
-              (params.row.status === "REJECTED" && "bg-red-50") ||
-              ""
-            }
-          />
-        </Box>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-[50vh]">
+            <CircularProgress color="secondary" />
+          </div>
+        ) : (
+          <Box my={3}>
+            <DataGrid
+              rows={adoptionRequests ?? []}
+              columns={columns}
+              hideFooter
+              rowHeight={70}
+              className="pb-3"
+              getRowClassName={(params) =>
+                (params.row.status === "APPROVED" && "bg-green-50") ||
+                (params.row.status === "REJECTED" && "bg-red-50") ||
+                ""
+              }
+            />
+          </Box>
+        )}
       </div>
     </div>
   );

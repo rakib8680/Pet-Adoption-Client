@@ -1,10 +1,6 @@
 "use client";
 import { useGetAllUsersQuery } from "@/redux/api/userApi";
-import {
-  Box,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Tooltip, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Image from "next/image";
 import EditOffIcon from "@mui/icons-material/EditOff";
@@ -16,12 +12,7 @@ import ChangeRoleModal from "./components/ChangeRoleModal";
 import ChangeStatusModal from "./components/ChangeStatusModal";
 import Link from "next/link";
 
-
-
-
 const ManageUser = () => {
-
-  
   const [isRoleModalOpen, setIsRoleModalOpen] = useState<boolean>(false);
   const [isStatusModalOpen, setIsStatusModalOpen] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
@@ -29,8 +20,6 @@ const ManageUser = () => {
 
   const allUsers = data?.data;
   const meta = data?.meta;
-
-
 
   //columns
   const columns: GridColDef[] = [
@@ -98,7 +87,6 @@ const ManageUser = () => {
               )}
             </Tooltip>
 
-
             {/* status  */}
             <Tooltip
               className={`rounded-lg !h-[30px] !w-[30px] p-1 cursor-pointer ${
@@ -113,23 +101,21 @@ const ManageUser = () => {
               <ManageAccountsIcon fontSize="medium" />
             </Tooltip>
 
-
             {/*Info*/}
             <Link href={`/dashboard/admin/manage-users/edit/${row?.id}`}>
-            <Tooltip
-              className="rounded-lg !h-[30px] !w-[30px] p-1 cursor-pointer"
-              sx={{ backgroundColor: "secondary.main", color: "white" }}
-              title="Edit User"
-            >
-              <EditOffIcon fontSize="medium" />
-            </Tooltip></Link>
+              <Tooltip
+                className="rounded-lg !h-[30px] !w-[30px] p-1 cursor-pointer"
+                sx={{ backgroundColor: "secondary.main", color: "white" }}
+                title="Edit User"
+              >
+                <EditOffIcon fontSize="medium" />
+              </Tooltip>
+            </Link>
           </Box>
         );
       },
     },
   ];
-
-
 
   return (
     <div className="container  mx-auto mt-20">
@@ -148,18 +134,23 @@ const ManageUser = () => {
           Manage Users
         </Typography>
 
-        <Box my={3}>
-          <DataGrid
-            rows={allUsers ?? []}
-            columns={columns}
-            hideFooter
-            loading={isLoading}
-            rowHeight={70}
-            getRowClassName={(params) =>
-              params.row.status === "BLOCKED" ? "bg-gray-200" : ""
-            }
-          />
-        </Box>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-[50vh]">
+            <CircularProgress color="secondary" />
+          </div>
+        ) : (
+          <Box my={3}>
+            <DataGrid
+              rows={allUsers ?? []}
+              columns={columns}
+              hideFooter
+              rowHeight={70}
+              getRowClassName={(params) =>
+                params.row.status === "BLOCKED" ? "bg-gray-200" : ""
+              }
+            />
+          </Box>
+        )}
       </div>
     </div>
   );

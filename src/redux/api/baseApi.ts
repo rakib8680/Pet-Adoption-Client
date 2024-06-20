@@ -5,7 +5,7 @@ export const baseApi = createApi({
   reducerPath: "api",
   tagTypes: ["user", "pet", "adoption"],
   baseQuery: axiosBaseQuery({
-    baseUrl: `http://localhost:5000/api`,
+    baseUrl: `https://pet-adoption-server-new.vercel.app/api`,
   }),
   endpoints: (builder) => ({}),
 });

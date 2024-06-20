@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Tooltip, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Tooltip, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Image from "next/image";
 import EditOffIcon from "@mui/icons-material/EditOff";
@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 
 
 
+
 const ManagePets = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deletePet] = useDeletePetMutation();
@@ -21,8 +22,7 @@ const ManagePets = () => {
   const meta = data?.meta;
 
 
-
-  // delete pet function 
+  // delete pet function
   const handleDeletePet = async (id: string) => {
     try {
       Swal.fire({
@@ -60,7 +60,6 @@ const ManagePets = () => {
       console.log(error?.message);
     }
   };
-
 
 
   //columns
@@ -136,7 +135,7 @@ const ManagePets = () => {
   ];
 
 
-  
+
   return (
     <div className="container  mx-auto my-10">
       <AddPetModal open={isModalOpen} setOpen={setIsModalOpen} />
@@ -160,16 +159,21 @@ const ManagePets = () => {
         </div>
         <hr className="my-5" />
 
-        <Box my={3}>
-          <DataGrid
-            rows={allPets ?? []}
-            columns={columns}
-            hideFooter
-            loading={isLoading}
-            rowHeight={70}
-            className="pb-3"
-          />
-        </Box>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-[50vh]">
+            <CircularProgress color="secondary" />
+          </div>
+        ) : (
+          <Box my={3}>
+            <DataGrid
+              rows={allPets ?? []}
+              columns={columns}
+              hideFooter
+              rowHeight={70}
+              className="pb-3"
+            />
+          </Box>
+        )}
       </div>
     </div>
   );

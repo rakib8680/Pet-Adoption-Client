@@ -13,6 +13,7 @@ import {
   useUpdateUserMutation,
 } from "@/redux/api/userApi";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type TParams = {
   params: {
@@ -24,8 +25,9 @@ type TParams = {
 
 const UpdateUserPage = ({ params }: TParams) => {
   const { userId } = params;
+  const router = useRouter();
   const [updateUser] = useUpdateUserMutation();
-  const { data, isLoading, isFetching } = useGetSingleUserQuery(userId);
+  const { data, isLoading } = useGetSingleUserQuery(userId);
   const userProfile = data?.data;
 
 
@@ -46,6 +48,7 @@ const UpdateUserPage = ({ params }: TParams) => {
           duration: 3500,
           style: { background: "#187f5b", color: "#ceffee" },
         });
+        router.push("/dashboard/admin/manage-users");
       }
     } catch (error: any) {
       console.log(error.message);
@@ -78,7 +81,7 @@ const UpdateUserPage = ({ params }: TParams) => {
 
       <div className="flex justify-center items-center bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg py-10  px-10">
 
-        {isLoading || isFetching ? (
+        {isLoading ? (
           <div className="flex justify-center items-center h-[50vh]">
             <CircularProgress color="secondary" />
           </div>

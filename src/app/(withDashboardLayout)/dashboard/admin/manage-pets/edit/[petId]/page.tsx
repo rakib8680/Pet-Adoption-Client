@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { Typography } from "@mui/material";
 import Link from "next/link";
 import { useGetSinglePetQuery, useUpdatePetMutation } from "@/redux/api/petApi";
+import { useRouter } from "next/navigation";
 
 type TParams = {
   params: {
@@ -22,8 +23,9 @@ type TParams = {
 const EditPetPage = ({ params }: TParams) => {
   
   const { petId } = params;
+  const router = useRouter();
   const [updatePet] = useUpdatePetMutation();
-  const { data, isLoading, isFetching } = useGetSinglePetQuery(petId);
+  const { data, isLoading } = useGetSinglePetQuery(petId);
   const singlePet = data?.data;
 
 
@@ -45,6 +47,7 @@ const EditPetPage = ({ params }: TParams) => {
           duration: 3500,
           style: { background: "#187f5b", color: "#ceffee" },
         });
+        router.push("/dashboard/admin/manage-pets");
       }
     } catch (error: any) {
       console.log(error.message);
@@ -82,7 +85,7 @@ const EditPetPage = ({ params }: TParams) => {
       </Typography>
 
       <div className="flex justify-center items-center bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg py-10  px-10">
-        {isLoading || isFetching ? (
+        {isLoading? (
           <div className="flex justify-center items-center h-[50vh]">
             <CircularProgress color="secondary" />
           </div>

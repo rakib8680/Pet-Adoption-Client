@@ -25,6 +25,22 @@ export const adoptionApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["adoption"],
     }),
+    getAllAdoptionRequests: builder.query({
+      query: (args: Record<string, any>) => ({
+        url: "/adoption-requests",
+        method: "GET",
+        params: args,
+      }),
+      providesTags: ["adoption"],
+    }),
+    updateAdoptionRequest: builder.mutation({
+      query: (payload) => ({
+        url: `/adoption-requests/${payload?.id}`,
+        method: "PUT",
+        data: payload?.data,
+      }),
+      invalidatesTags:['adoption']
+    }),
   }),
 });
 
@@ -32,4 +48,6 @@ export const {
   useSubmitAdoptionRequestMutation,
   useGetMyAdoptionRequestsQuery,
   useDeleteMyAdoptionRequestMutation,
+  useGetAllAdoptionRequestsQuery,
+  useUpdateAdoptionRequestMutation,
 } = adoptionApi;

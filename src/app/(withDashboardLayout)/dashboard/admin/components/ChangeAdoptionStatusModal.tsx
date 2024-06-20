@@ -1,11 +1,11 @@
 import PAC_Modal from "@/components/Shared/Modal/PAC_Modal";
 import PAC_Form from "@/components/Forms/PAC_Form";
 import PAC_Select from "@/components/Forms/PAC_Select";
-import { Status } from "@/types";
+import { AdoptionStatus } from "@/types";
 import { FieldValues } from "react-hook-form";
 import { Box, Button } from "@mui/material";
-import { useUpdateUserMutation } from "@/redux/api/userApi";
 import { toast } from "sonner";
+import { useUpdateAdoptionRequestMutation } from "@/redux/api/adopionApi";
 
 type TProps = {
   id: string;
@@ -13,8 +13,12 @@ type TProps = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ChangeStatusModal = ({ id, open, setOpen }: TProps) => {
-  const [updateUser] = useUpdateUserMutation();
+
+
+const ChangeAdoptionStatusModal = ({ id, open, setOpen }: TProps) => {
+  const [updateAdoptionStatus] = useUpdateAdoptionRequestMutation();
+
+
 
   const handleChangeStatus = async (data: FieldValues) => {
     const payload = {
@@ -23,9 +27,9 @@ const ChangeStatusModal = ({ id, open, setOpen }: TProps) => {
     };
 
     try {
-      const res = await updateUser(payload).unwrap();
+      const res = await updateAdoptionStatus(payload).unwrap();
       if (res.success) {
-        toast.success("User Status Updated Successfully !", {
+        toast.success(res?.message, {
           duration: 3500,
           style: { background: "#187f5b", color: "#ceffee" },
         });
@@ -36,8 +40,10 @@ const ChangeStatusModal = ({ id, open, setOpen }: TProps) => {
     }
   };
 
+  
+
   return (
-    <PAC_Modal open={open} setOpen={setOpen} title="Change User Status">
+    <PAC_Modal open={open} setOpen={setOpen} title="Update Adoption Status">
       <PAC_Form onSubmit={handleChangeStatus} defaultValues={{ status: "" }}>
         <Box
           sx={{
@@ -50,14 +56,14 @@ const ChangeStatusModal = ({ id, open, setOpen }: TProps) => {
           className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg !px-10 space-y-8 !py-14"
         >
           <PAC_Select
-            items={Status}
+            items={AdoptionStatus}
             name="status"
             label="Status"
             fullWidth
             color="secondary"
           />
           <Button disableElevation fullWidth color="secondary" type="submit">
-            Submit
+            Update
           </Button>
         </Box>
       </PAC_Form>
@@ -65,4 +71,4 @@ const ChangeStatusModal = ({ id, open, setOpen }: TProps) => {
   );
 };
 
-export default ChangeStatusModal;
+export default ChangeAdoptionStatusModal;

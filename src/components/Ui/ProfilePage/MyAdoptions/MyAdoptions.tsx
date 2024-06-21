@@ -18,10 +18,10 @@ const MyAdoptions = () => {
     setValue(newValue);
   };
 
-  const { data, isLoading } = useGetMyAdoptionRequestsQuery({ status });
+  const { data, isFetching } = useGetMyAdoptionRequestsQuery({ status });
 
   const myAdoptions = data?.data;
-  // console.log(myAdoptions);
+  // console.log(isFetching, isLoading);
 
 
 
@@ -49,7 +49,7 @@ const MyAdoptions = () => {
         </Tabs>
       </Box>
 
-      {isLoading ? (
+      {isFetching ? (
 
         <div className="mt-10 flex flex-wrap justify-center gap-10">
           <CardSkeleton />

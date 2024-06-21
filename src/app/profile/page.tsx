@@ -8,12 +8,10 @@ import HomeIcon from "@mui/icons-material/Home";
 import Image from "next/image";
 import EditOffIcon from "@mui/icons-material/EditOff";
 import KeyIcon from "@mui/icons-material/Key";
-import MyAdoptions from "@/components/Ui/ProfilePage/MyAdoptions/MyAdoptions";
 import dummyImage from "@/assets/pet_avatar.jpg";
 import { useState } from "react";
 import EditProfileModal from "@/components/Ui/ProfilePage/EditProfile/EditProfileModal";
 import { getUserInfo } from "@/services/auth.service";
-import DashboardIcon from "@mui/icons-material/Dashboard";
 
 
 
@@ -25,13 +23,21 @@ const ProfilePage = () => {
     { ssr: false }
   );
   const DashboardButton = dynamic(
-    ()=> import("@/components/Ui/DashboardButton/DashboardButton")
+    () => import("@/components/Ui/DashboardButton/DashboardButton"),
+    { ssr: false }
+  );
+
+  const MyAdoptionRequests = dynamic(
+    ()=> import("@/app/profile/components/MyAdoptionRequests")
   )
+
+
 
   const [open, setOpen] = useState(false);
   const { data, isLoading } = useGetMyProfileQuery(undefined);
   const myProfile = data?.data;
   const userInfo = getUserInfo();
+
 
 
 
@@ -54,9 +60,9 @@ const ProfilePage = () => {
           >
             <HomeIcon />
           </Typography>
-        </Tooltip>
+        </Tooltip>    
           <DashboardButton />
-        <AuthButton />
+          <AuthButton />
       </div>
 
 
@@ -65,8 +71,7 @@ const ProfilePage = () => {
       <div
         className={`md:flex  justify-center gap-24  mt-20 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] rounded-2xl p-10`}
       >
-
-
+        
         {/* My details */}
         <div className="grid gap-5 items-center content-center">
           <Typography variant="h6" className="bg-[#efefef] rounded-lg p-5 px-8">
@@ -160,31 +165,8 @@ const ProfilePage = () => {
       </div>
 
 
-
       {/* My Adoption Requests */}
-      {userInfo?.role === "USER" && (
-        <div
-          className="my-36 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] rounded-2xl px-10 py-20
-      "
-        >
-          <div className="space-y-2 pb-10">
-            <Typography variant="h4" component="h2" textAlign="center">
-              My Adoption Requests
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              component="p"
-              textAlign="center"
-              color="gray"
-            >
-              All your adoption requests are listed here. You can view the
-              status of your requests here.
-            </Typography>
-          </div>
-          <MyAdoptions />
-        </div>
-      )}
-
+        <MyAdoptionRequests userInfo={userInfo} />
 
     </div>
   );

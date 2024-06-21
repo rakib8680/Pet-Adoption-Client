@@ -51,7 +51,7 @@ const Navbar = () => {
         </Stack>
 
         {/* nav items */}
-        <Stack direction="row" gap={4}>
+        <Stack direction="row" gap={4} alignItems='center'>
           <Typography component={Link} href="/" fontSize={15}>
             Home
           </Typography>

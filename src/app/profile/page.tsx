@@ -13,16 +13,20 @@ import dummyImage from "@/assets/pet_avatar.jpg";
 import { useState } from "react";
 import EditProfileModal from "@/components/Ui/ProfilePage/EditProfile/EditProfileModal";
 import { getUserInfo } from "@/services/auth.service";
-
+import DashboardIcon from "@mui/icons-material/Dashboard";
 
 
 
 const ProfilePage = () => {
+
   //  use this code to handle hydration error
   const AuthButton = dynamic(
     () => import("@/components/Ui/AuthButton/AuthButton"),
     { ssr: false }
   );
+  const DashboardButton = dynamic(
+    ()=> import("@/components/Ui/DashboardButton/DashboardButton")
+  )
 
   const [open, setOpen] = useState(false);
   const { data, isLoading } = useGetMyProfileQuery(undefined);
@@ -32,7 +36,6 @@ const ProfilePage = () => {
 
 
   return (
-
     <div
       className={`my-10 container mx-auto ${
         userInfo?.role === "ADMIN" && "h-screen"
@@ -43,15 +46,16 @@ const ProfilePage = () => {
       {/* buttons  */}
       <div className="flex justify-end items-center gap-10">
         <Tooltip title="Home">
-          <Button
-            disableElevation
+          <Typography
             component={Link}
             href="/"
-            className="w-10 h-10 !rounded-full"
+            className="bg-[#f4f4f4] p-2 rounded-lg"
+            fontSize={15}
           >
             <HomeIcon />
-          </Button>
+          </Typography>
         </Tooltip>
+          <DashboardButton />
         <AuthButton />
       </div>
 
@@ -61,6 +65,8 @@ const ProfilePage = () => {
       <div
         className={`md:flex  justify-center gap-24  mt-20 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] rounded-2xl p-10`}
       >
+
+
         {/* My details */}
         <div className="grid gap-5 items-center content-center">
           <Typography variant="h6" className="bg-[#efefef] rounded-lg p-5 px-8">
@@ -125,8 +131,12 @@ const ProfilePage = () => {
           </Button>
         </div>
 
+
+
         {/* edit details modal  */}
         <EditProfileModal open={open} setOpen={setOpen} />
+
+
 
         {/* image and description */}
         <Box
@@ -175,7 +185,7 @@ const ProfilePage = () => {
         </div>
       )}
 
-      
+
     </div>
   );
 };

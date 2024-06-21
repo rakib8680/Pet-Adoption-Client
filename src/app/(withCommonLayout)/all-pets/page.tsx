@@ -2,7 +2,6 @@
 import { useGetAllPetsQuery } from "@/redux/api/petApi";
 import { Container, Typography } from "@mui/material";
 import { TPet } from "@/types/pet";
-import CircularProgress from "@mui/material/CircularProgress";
 import AllPetsCard from "@/components/Ui/HomePage/AllPets/AllPetsCard";
 import { useState } from "react";
 import { useDebounced } from "@/redux/hooks";
@@ -41,7 +40,7 @@ const AllPetsPage = () => {
   }
 
   // api calling
-  const { data, isLoading } = useGetAllPetsQuery({ ...query });
+  const { data, isLoading, isFetching } = useGetAllPetsQuery({ ...query });
 
   const allPets = data?.data;
   const meta = data?.meta;
@@ -71,10 +70,7 @@ const AllPetsPage = () => {
         />
 
 
-      {isLoading && (
-        // <div className="flex justify-center items-center h-[20vh]">
-        //   <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
-        // </div>
+      {isFetching && (
         <div className="grid grid-cols-4 gap-5">
         <CardSkeleton/>
         <CardSkeleton/>

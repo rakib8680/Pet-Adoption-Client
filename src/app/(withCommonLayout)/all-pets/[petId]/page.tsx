@@ -38,7 +38,7 @@ const SinglePetPage = ({ params }: TParams) => {
         <div>
           <Typography variant="h2">Pet Profile</Typography>
           <Typography variant="h5">
-            Detailed information about your pet
+            Detailed information about this pet
           </Typography>
         </div>
         <Divider>--- o ---</Divider>

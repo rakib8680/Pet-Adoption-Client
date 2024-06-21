@@ -47,10 +47,13 @@ const AllPets = () => {
   
 
   // api calling
-  const { data, isLoading } = useGetAllPetsQuery({ ...query });
+  const { data, isLoading , isFetching} = useGetAllPetsQuery({ ...query });
 
   const allPets = data?.data;
   const meta = data?.meta;
+
+
+  // console.log(isLoading, isFetching);
 
   return (
     <>
@@ -78,12 +81,16 @@ const AllPets = () => {
 
 
 
-        {isLoading && (
+        {isFetching && (
           // <div className="flex justify-center items-center h-[20vh]">
           //   <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
           // </div>
 
           <div className="grid grid-cols-4 gap-5">
+            <CardSkeleton/>
+            <CardSkeleton/>
+            <CardSkeleton/>
+            <CardSkeleton/>
             <CardSkeleton/>
             <CardSkeleton/>
             <CardSkeleton/>

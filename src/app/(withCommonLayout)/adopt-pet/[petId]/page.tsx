@@ -14,6 +14,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -25,9 +26,11 @@ type TParams = {
 
 const AdoptionRequestPage = ({ params }: TParams) => {
 
+
+  const router = useRouter();
   
   // api calling
-  const { data, isLoading } = useGetMyProfileQuery(undefined);
+  const { data, isLoading } = useGetMyProfileQuery({});
   const [submitAdoption] = useSubmitAdoptionRequestMutation();
   const myProfile = data?.data;
 
@@ -46,6 +49,7 @@ const AdoptionRequestPage = ({ params }: TParams) => {
       if (res.success) {
         toast.success("Adoption request submitted successfully");
       }
+      router.push('/profile')
     } catch (error: any) {
       toast.error(error.message, {
         duration: 3000,

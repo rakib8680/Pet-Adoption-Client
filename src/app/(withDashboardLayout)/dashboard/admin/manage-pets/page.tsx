@@ -137,7 +137,7 @@ const ManagePets = () => {
 
 
   return (
-    <div className="container  mx-auto my-10">
+    <div className="container  mx-auto mb-10">
       <AddPetModal open={isModalOpen} setOpen={setIsModalOpen} />
       <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg px-10">
         <div className="flex justify-between items-center">

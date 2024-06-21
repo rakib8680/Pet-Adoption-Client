@@ -20,7 +20,7 @@ const AdminPage = () => {
 
 
   //columns
-  const columns: GridColDef[] = [
+  const columns: GridColDef[] = [ 
     {
       field: "profilePicture",
       headerName: "Adopter Image",
@@ -109,7 +109,7 @@ const AdminPage = () => {
 
 
   return (
-    <div className="container  mx-auto my-10">
+    <div className="container  mx-auto mb-10">
       <ChangeAdoptionStatusModal
         id={adoptionId}
         open={isModalOpen}

@@ -118,7 +118,7 @@ const ManageUser = () => {
   ];
 
   return (
-    <div className="container  mx-auto mt-20">
+    <div className="container  mx-auto mt-10">
       <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg px-10">
         <ChangeRoleModal
           id={userId}

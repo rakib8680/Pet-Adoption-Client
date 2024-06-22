@@ -2,23 +2,29 @@
 
 import { isLoggedIn } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { toast } from "sonner";
 
 const AdoptPetLayout = ({ children }: { children: ReactNode }) => {
-  const [toastShown, setToastShown] = useState(false);
+  const toastShownRef = useRef(false);
   const router = useRouter();
 
-  if (!isLoggedIn() && !toastShown) {
-    toast.info("Please login to Adopt this pet", {
-      duration: 2500,
-      style: { backgroundColor: "#1F2937", color: "#EFEFEF" },
-    });
-    setToastShown(true);
-    return router.push("/login");
-  }
+  useEffect(() => {
+    const checkAuthentication = () => {
+      const loggedIn = isLoggedIn();
+      if (!loggedIn && !toastShownRef.current) {
+        toast.info("Please login to Adopt this pet", {
+          duration: 2500,
+          style: { backgroundColor: "#1F2937", color: "#EFEFEF" },
+        });
+        toastShownRef.current = true;
+        router.push("/login");
+      }
+    };
+    checkAuthentication();
+  }, []);
 
-  return <>{children}</>;
+  return isLoggedIn() ? <>{children}</> : null;
 };
 
 export default AdoptPetLayout;

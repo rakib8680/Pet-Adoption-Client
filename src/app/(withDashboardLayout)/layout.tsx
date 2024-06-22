@@ -24,6 +24,8 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     }
   }, [router, userInfo]);
 
+
+  
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">

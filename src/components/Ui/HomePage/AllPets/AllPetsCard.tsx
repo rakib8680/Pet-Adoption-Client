@@ -21,7 +21,7 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
         marginTop: "10px",
         borderRadius: "10px",
       }}
-      className="w-[350px] h-[480px] px-3 flex flex-col justify-around py-3"
+      className="w-[350px] h-[490px] px-3 flex flex-col justify-around py-3"
     >
       <CardMedia
         sx={{ height: "300px", borderRadius: "12px" }}
@@ -29,7 +29,7 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
           pet.photos.length > 0 ? pet.photos[0] : "/src/assets/pet_avatar.jpg"
         }
       />
-      <CardContent className="space-y-2">
+      <CardContent className="space-y-2 !pb-2">
         <Typography gutterBottom variant="h5" component="div" fontWeight={600}>
           {pet.name}
         </Typography>
@@ -44,6 +44,9 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Size: {pet.size}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Location: {pet.location}
         </Typography>
       </CardContent>
       <CardActions>

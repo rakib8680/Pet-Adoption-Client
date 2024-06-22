@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetMyProfileQuery } from "@/redux/api/userApi";
-import { Box, Button, Tooltip, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Tooltip, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
@@ -39,9 +39,18 @@ const ProfilePage = () => {
   const userInfo = getUserInfo();
 
 
+ 
 
 
   return (
+    <>
+    {
+      isLoading ? 
+      <div className="flex justify-center items-center h-[70vh] ">
+        <CircularProgress color="secondary" />
+      </div>
+      :
+
     <div
       className={`my-10 container mx-auto ${
         userInfo?.role === "ADMIN" && "h-screen"
@@ -169,6 +178,11 @@ const ProfilePage = () => {
         <MyAdoptionRequests userInfo={userInfo} />
 
     </div>
+    }
+    </>
+
+    
+
   );
 };
 

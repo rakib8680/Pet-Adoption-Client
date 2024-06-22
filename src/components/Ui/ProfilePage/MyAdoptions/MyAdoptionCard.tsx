@@ -69,25 +69,25 @@ const MyAdoptionCard = ({ adoption }: any) => {
       <CardMedia
         sx={{ height: "300px", borderRadius: "12px" }}
         image={
-          pet.photos.length > 0 ? pet.photos[0] : "/src/assets/pet_avatar.jpg"
+          pet?.photos.length > 0 ? pet?.photos[0] : "/src/assets/pet_avatar.jpg"
         }
       />
 
       <CardContent className="space-y-2">
         <Typography gutterBottom variant="h5" component="div" fontWeight={600}>
-          {pet.name}
+          {pet?.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Location: {pet.location}
+          Location: {pet?.location}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Age: {pet.age}
+          Age: {pet?.age}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Breed: {pet.breed}
+          Breed: {pet?.breed}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Size: {pet.size}
+          Size: {pet?.size}
         </Typography>
       </CardContent>
 

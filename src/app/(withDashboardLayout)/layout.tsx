@@ -3,15 +3,35 @@
 import DashboardDrawer from "@/components/Dashboard/Drawer/DashboardDrawer";
 import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import getGreeting from "@/utils/greetingsGenerator";
-import { Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
+
+
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const userInfo = getUserInfo();
   const router = useRouter();
-  if (!isLoggedIn()) return router.push("/login");
-  if (userInfo?.role !== "ADMIN") return router.push("/");
+
+  useEffect(() => {
+    if (!isLoggedIn()) {
+      router.push("/login");
+    } else if (userInfo?.role !== "ADMIN") {
+      router.push("/");
+    } else {
+      setIsLoading(false);
+    }
+  }, [router, userInfo]);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <CircularProgress color="secondary" />
+      </div>
+    );
+  }
+  
 
   return (
     <DashboardDrawer>

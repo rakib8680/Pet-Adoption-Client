@@ -1,3 +1,4 @@
+
 import {
   ListItem,
   ListItemButton,
@@ -6,8 +7,8 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import MailIcon from "@mui/icons-material/Mail";
-import { usePathname } from "next/navigation";
 import { DrawerItem } from "@/types";
+import { usePathname } from "next/navigation";
 
 type TSidebarPros = {
   item: DrawerItem;
@@ -17,7 +18,6 @@ const SidebarItem = ({ item }: TSidebarPros) => {
   let linkPath = `/dashboard/${item.path}`;
   
 
-  // If the path is '/dashboard/profile/change-password', change it to '/profile/change-password'
   if (linkPath === '/dashboard/profile/change-password') {
     linkPath = '/profile/change-password';
   }

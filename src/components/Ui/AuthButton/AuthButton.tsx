@@ -21,7 +21,7 @@ const AuthButton = () => {
     <>
       {/* conditionally render login/logout button */}
       {userInfo?.id ? (
-        <div className="flex items-center justify-center gap-10">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-10">
           <Tooltip
             title={myProfile?.email}
             className="cursor-pointer border-2 border-green-400"
@@ -46,7 +46,11 @@ const AuthButton = () => {
           </Tooltip>
         </div>
       ) : (
-        <Stack gap={1} direction="row">
+        <Stack gap={1} sx={{
+          display: {md: "flex" },
+          flexDirection: {xs: "column", md: "row"},
+          padding:{xs: "0 20px"}
+        }}>
           <Button
             disableElevation
             color="secondary"

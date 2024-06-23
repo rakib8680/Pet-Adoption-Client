@@ -21,10 +21,7 @@ const Sidebar = () => {
         />
       </Link>
       <Divider />
-      <List
-        className="h-screen bg-[#F5F5F5]
- "
-      >
+      <List className="h-screen bg-[#F5F5F5]">
         {drawerItems().map((item, index) => (
           <SidebarItem key={index} item={item} />
         ))}

@@ -71,6 +71,9 @@ const AllPets = () => {
 
 
         {/* searching/filtering section  */}
+        <Typography variant="subtitle2"  className="!ms-6 !-mb-4 lg:hidden">
+          Filter Pets : 
+        </Typography>
         <FilterPet
           setSpecies={setSpecies}
           setSearchTerm={setSearchTerm}
@@ -86,7 +89,7 @@ const AllPets = () => {
           //   <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
           // </div>
 
-          <div className="grid grid-cols-4 gap-5">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             <CardSkeleton/>
             <CardSkeleton/>
             <CardSkeleton/>
@@ -98,8 +101,13 @@ const AllPets = () => {
         </div>
         )}
 
-        <div className="grid grid-cols-4 gap-5">
+        <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 hidden ">
           {allPets?.slice(0, 8).map((pet: TPet) => (
+            <AllPetsCard key={pet.id} pet={pet} />
+          ))}
+        </div>
+        <div className="grid  gap-5 md:hidden">
+          {allPets?.slice(0, 4).map((pet: TPet) => (
             <AllPetsCard key={pet.id} pet={pet} />
           ))}
         </div>

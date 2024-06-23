@@ -1,6 +1,5 @@
 import Footer from "@/components/Shared/Footer/Footer";
 import Navbar from "@/components/Shared/Navbar/Navbar";
-import ResponsiveNavBar from "@/components/Shared/Navbar/ResponsiveNavBar";
 import { Box } from "@mui/material";
 import { ReactNode } from "react";
 
@@ -9,7 +8,6 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
     <div>
       <div className="bg-[#efefef]">
         <Navbar />
-        {/* <ResponsiveNavBar/> */}
       </div>
       <Box
         sx={{

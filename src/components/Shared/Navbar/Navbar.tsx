@@ -152,7 +152,7 @@ const Navbar = () => {
     //   </div>
     // </Container>
     <Container sx={{ display: "flex" }}>
-      
+
     <CssBaseline />
     <AppBar
       position="static"
@@ -167,7 +167,7 @@ const Navbar = () => {
         aria-label="open drawer"
         edge="start"
         onClick={handleDrawerToggle}
-        sx={{ mr: 2, display: { sm: "none" } }}
+        sx={{ mr: 2, display: { md: "none" } }}
       >
         <MenuIcon />
       </IconButton>
@@ -207,7 +207,7 @@ const Navbar = () => {
         gap={4}
         alignItems="center"
         sx={{
-          display: { xs: "none", sm: "flex" },
+          display: { xs: "none", md: "flex" },
         }}
       >
         <Typography component={Link} href="/" fontSize={15}>
@@ -228,7 +228,7 @@ const Navbar = () => {
       </Stack>
 
       {/* auth buttons  */}
-      <div className="hidden md:block">
+      <div className="hidden lg:block ">
         <AuthButton />
       </div>
     </AppBar>
@@ -243,7 +243,7 @@ const Navbar = () => {
           keepMounted: true, // Better open performance on mobile.
         }}
         sx={{
-          display: { xs: "block", sm: "none" },
+          display: { xs: "block", md: "none" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: drawerWidth,

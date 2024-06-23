@@ -1,4 +1,3 @@
-import PAC_Select from "@/components/Forms/PAC_Select";
 import {
   Button,
   FormControl,
@@ -8,7 +7,6 @@ import {
   TextField,
 } from "@mui/material";
 
-
 const FilterPet = ({
   setSpecies,
   setSearchTerm,
@@ -16,9 +14,10 @@ const FilterPet = ({
   setSize,
   setGender,
 }: any) => {
-  return (
-    <div className="flex gap-5 m-6 bg-[#EFEFEF] p-5 rounded-lg">
 
+  
+  return (
+    <div className="flex flex-wrap lg:flex-nowrap gap-5 m-6 bg-[#EFEFEF] p-5 rounded-lg">
       {/* filter by species */}
       <FormControl
         color="secondary"

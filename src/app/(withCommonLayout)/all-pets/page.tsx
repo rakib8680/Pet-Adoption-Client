@@ -71,7 +71,7 @@ const AllPetsPage = () => {
 
 
       {isFetching && (
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         <CardSkeleton/>
         <CardSkeleton/>
         <CardSkeleton/>
@@ -84,7 +84,7 @@ const AllPetsPage = () => {
       )}
 
 
-      <div className="md:grid grid-cols-4 gap-5">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">
         {allPets?.map((pet: TPet) => (
           <AllPetsCard key={pet.id} pet={pet} />
         ))}

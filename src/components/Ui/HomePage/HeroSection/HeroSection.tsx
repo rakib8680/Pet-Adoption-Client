@@ -5,13 +5,12 @@ import heroImage2 from "@/assets/adopt_pet2.png";
 import heroImage3 from "@/assets/adopt_pet3.png";
 import Link from "next/link";
 
-const HeroSection = () => { 
+const HeroSection = () => {
   return (
     <div>
-      <div className="md:py-32 bg-[#efefef] pb-40">
+      <div className="lg:py-32 bg-[#efefef] pb-40">
         <Container maxWidth="xl">
-          <div className="md:flex justify-center items-center  gap-80">
-
+          <div className="lg:flex justify-center items-center lg:gap-40 2xl:gap-80">
             {/* hero text  */}
             <Box>
               <Typography
@@ -43,25 +42,23 @@ const HeroSection = () => {
                 Browse Pets
               </Button>
             </Box>
-              
-              {/* hero image  */}
-            <div
-            className="flex justify-center gap-2 items-center relative"
-            >
+
+            {/* hero image  */}
+            <div className="flex justify-center gap-2 items-center relative">
               <Image
                 src={heroImage}
                 alt="Hero Image"
-                className="rounded-lg border-4 border-white  border-opacity-50  md:w-96 w-48 relative top-10"
+                className="rounded-lg border-4 border-white  border-opacity-50  w-44 md:w-64  2xl:w-96   relative top-28 lg:top-10"
               />
               <Image
                 src={heroImage2}
                 alt="Hero Image"
-                className="rounded-lg border-4 border-white  border-opacity-50 md:w-80 w-40  absolute md: -top-10 z-10"
+                className="rounded-lg border-4 border-white  border-opacity-50 w-40 md:w-56 2xl:w-80  absolute top-16 lg:-top-10 z-10"
               />
               <Image
                 src={heroImage3}
                 alt="Hero Image"
-                className="rounded-lg border-4 border-white  border-opacity-50   md:w-96 w-48 relative top-10 "
+                className="rounded-lg border-4 border-white  border-opacity-50  w-44 md:w-64   2xl:w-96  relative top-28 lg:top-10 "
               />
             </div>
           </div>

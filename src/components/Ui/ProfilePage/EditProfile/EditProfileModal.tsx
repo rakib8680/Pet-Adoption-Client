@@ -113,8 +113,8 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
         ) : (
           <Box
             sx={{
-              padding: "0px 50px",
-              maxWidth: "500px",
+              padding: { xs: "0 10px", lg: "0px 50px"},
+              maxWidth: "500px" 
             }}
           >
 
@@ -125,7 +125,7 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
             >
               <Grid container spacing={4} my={1}>
                 {/* name */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Your Name"
                     variant="outlined"
@@ -135,7 +135,7 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
                   />
                 </Grid>
                 {/* gender  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Select
                     items={Gender}
                     name="gender"
@@ -144,7 +144,7 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
                   />
                 </Grid>
                 {/* age  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Input
                     label="Age"
                     type="number"
@@ -154,7 +154,7 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
                   />
                 </Grid>
                 {/* profile photo  */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Profile URL"
                     variant="outlined"
@@ -164,21 +164,23 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
                   />
                 </Grid>
                 {/* location  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={12}>
                   <PAC_Input
                     label="Location"
                     variant="outlined"
                     color="secondary"
                     name="location"
+                    fullWidth
                   />
                 </Grid>
                 {/* contact  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={12}>
                   <PAC_Input
                     label="Contact Number"
                     variant="outlined"
                     color="secondary"
                     name="contactNumber"
+                    fullWidth
                   />
                 </Grid>
               </Grid>
@@ -206,6 +208,7 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
           </Box>
         )}
       </DialogContent>
+
     </BootstrapDialog>
   );
 };

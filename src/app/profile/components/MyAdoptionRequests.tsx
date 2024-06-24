@@ -5,7 +5,7 @@ const MyAdoptionRequests = ({ userInfo }: any) => {
   return (
     <div>
       {userInfo?.role === "USER" && (
-        <div className="my-36 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] rounded-2xl px-10 py-20">
+        <div className="my-36 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] lg:rounded-2xl px-7 lg:px-10 py-20">
           <div className="space-y-2 pb-10">
             <Typography variant="h4" component="h2" textAlign="center">
               My Adoption Requests

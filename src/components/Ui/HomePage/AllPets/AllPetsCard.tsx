@@ -21,7 +21,7 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
         marginTop: "10px",
         borderRadius: "10px",
       }}
-      className="w-[350px] h-[490px] px-3 flex flex-col justify-around py-3"
+      className="md:w-[340px] h-[490px] px-3 flex flex-col justify-around py-3"
     >
       <CardMedia
         sx={{ height: "300px", borderRadius: "12px" }}

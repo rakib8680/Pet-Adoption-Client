@@ -20,12 +20,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidationSchema } from "@/utils/formValidation";
 
 
-
 const LoginPage = () => {
-
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
+
 
 
   // Login user function
@@ -36,9 +35,9 @@ const LoginPage = () => {
         storeAccessToken(res?.data?.token);
         toast.success(res.message, { duration: 3000 });
         router.push("/");
-      }else{
-          setError(res.message);
-          console.log(error);
+      } else {
+        setError(res.message);
+        console.log(error);
       }
     } catch (error: any) {
       console.log(error.message);
@@ -46,13 +45,11 @@ const LoginPage = () => {
   };
 
 
-
-
   return (
+
     <div
-      className="
-    h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4] "
-    >
+      className="lg:h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4]">
+
       {/* logo   */}
       <Stack
         direction="row"
@@ -77,25 +74,27 @@ const LoginPage = () => {
         </Typography>
       </Stack>
 
-      <div className=" container  mx-auto flex justify-center items-center h-[80vh] gap-60">
+      <div className="container  mx-auto flex flex-col-reverse lg:flex-row justify-center items-center lg:h-[80vh] gap-20 lg:gap-60">
+        
+        {/* Animation  */}
         <Lottie
           animationData={login_animation2}
           loop={true}
-          className="w-[450px]"
+          className="md:w-[450px] px-8 lg:px-0 pb-10 lg:pb-0"
         />
 
         <Box
           sx={{
-            padding: "50px",
+            padding: { xs: "30px", md: "30px", lg: "50px" },
             borderRadius: "10px",
             bgcolor: "#fff",
+            marginTop: { xs: "50px", lg: "0px" },
           }}
         >
           <Stack
             spacing={2}
             sx={{
-              width: "350px",
-              marginRight: "100px",
+              width: { xs: "300px", md: "350px" },
               margin: "0 auto",
             }}
           >
@@ -109,6 +108,7 @@ const LoginPage = () => {
                 padding: "5px",
                 margin: "0 auto",
               }}
+              className="hidden md:block"
             />
             <Typography
               variant="h4"
@@ -128,7 +128,6 @@ const LoginPage = () => {
               }}
             />
 
-            {/* Login form  *********************************************************/}
             <Box>
               {error && (
                 <Typography
@@ -139,6 +138,8 @@ const LoginPage = () => {
                 </Typography>
               )}
             </Box>
+
+            {/* Login form  *********************************************************/}
             <PAC_Form
               onSubmit={handleLogin}
               resolver={zodResolver(loginValidationSchema)}

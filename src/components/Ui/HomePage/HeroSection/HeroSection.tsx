@@ -1,4 +1,4 @@
-import { Typography, Button, Box, Container, Grid } from "@mui/material";
+import { Typography, Button, Box, Container, } from "@mui/material";
 import Image from "next/image";
 import heroImage from "@/assets/adopt_pet.png";
 import heroImage2 from "@/assets/adopt_pet2.png";

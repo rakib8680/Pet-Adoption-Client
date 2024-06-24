@@ -47,7 +47,7 @@ const AllPetsPage = () => {
 
   return (
 
-    <Container className="pb-20 pt-10">
+    <Container className="pb-36 pt-10">
 
       <div className="text-center space-y-3">
         <Typography variant="h3" color="accent.main">

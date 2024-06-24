@@ -89,7 +89,7 @@ const AllPets = () => {
           //   <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
           // </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-3 md:px-0 place-items-center">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-3 md:px-0 md:place-items-center">
             <CardSkeleton/>
             <CardSkeleton/>
             <CardSkeleton/>

@@ -86,7 +86,7 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
       open={open}
     >
       <DialogTitle
-        sx={{ textAlign: "center", fontSize: "25px", p: "30px 0" }}
+        sx={{ textAlign: "center", fontSize: "25px", p: "30px 0",}}
         id="customized-dialog-title"
       >
         Update Your Information

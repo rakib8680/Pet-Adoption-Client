@@ -21,18 +21,15 @@ const defaultValues = {
 };
 
 
-
-
 const ChangePasswordPage = () => {
+  
   const [error, setError] = useState<string>("");
   const [changePassword] = useChangePasswordMutation();
   const router = useRouter();
 
 
-
   // handle change password
   const handleChangePassword = async (data: FieldValues) => {
-
     if (data.newPassword !== data.confirmPassword) {
       setError("New Passwords does not match");
       return;
@@ -62,16 +59,11 @@ const ChangePasswordPage = () => {
   };
 
 
-
-
   return (
     <div
-      className="min-h-screen  flex justify-center items-center   
-    bg-gradient-to-t from-[#1F2937] to-[#101625] 
- "
-    >
+      className="min-h-screen  flex justify-center items-center bg-gradient-to-t from-[#1F2937] to-[#101625] px-3">
       <div>
-        <div className="rounded-md p-10 w-[500px] backdrop-filter backdrop-blur-lg bg-slate-600 bg-opacity-100 shadow-lg ">
+        <div className="rounded-md  p-10 max-w-[500px] backdrop-filter backdrop-blur-lg bg-slate-600 bg-opacity-100 shadow-lg  ">
           <div className="flex justify-center items-center gap-2 pb-10 ">
             <KeyIcon fontSize="large" />
             <h1 className="text-3xl font-semibold text-slate-300 ">
@@ -152,7 +144,6 @@ const ChangePasswordPage = () => {
               Proceed
             </Button>
           </PAC_Form>
-
         </div>
 
         <Button
@@ -166,7 +157,7 @@ const ChangePasswordPage = () => {
           <ArrowBackIosIcon fontSize="small" />
           Back
         </Button>
-      
+
       </div>
     </div>
   );

@@ -22,7 +22,6 @@ import { registerValidationSchema } from "@/utils/formValidation";
 import PAC_Select from "@/components/Forms/PAC_Select";
 import { Gender } from "@/types";
 
-
 export type TUserRegistrationInputs = {
   name: string;
   email: string;
@@ -46,8 +45,8 @@ const registerDefaultValues = {
 };
 
 
-const RegisterPage = () => {
 
+const RegisterPage = () => {
 
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -85,8 +84,7 @@ const RegisterPage = () => {
 
   return (
 
-    <div className="min-h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4] ">
-
+    <div className="  lg:h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4] ">
 
       {/* logo   */}
       <Stack
@@ -112,27 +110,29 @@ const RegisterPage = () => {
         </Typography>
       </Stack>
 
-
       {/* parent div  */}
-      <div className=" container  mx-auto md:flex justify-center items-center h-[80vh] gap-40">
+      <div className=" container  mx-auto flex flex-col-reverse lg:flex-row justify-center items-center lg:h-[80vh] gap-10 lg:gap-40 px-5 lg:px-0">
 
 
         {/* left side  */}
         <Lottie
           animationData={registration_animation}
           loop={true}
-          className="w-[550px]"
+          className="md:w-[550px] px-3 lg:px-0 pb-10 lg:pb-0"
         />
+
+
 
         {/* right side  */}
         <Box
           sx={{
-            padding: "30px 50px",
+            padding: { xs: "40px 30px", lg: "30px 50px" },
             borderRadius: "15px",
             bgcolor: "#fff",
             maxWidth: "500px",
             width: "100%",
-            marginRight: "100px",
+            marginRight: { xs: "0px", lg: "100px" },
+            marginTop: { xs: "30px", lg: "0px" },
           }}
         >
           {/* image and Text  */}
@@ -141,6 +141,7 @@ const RegisterPage = () => {
               src={logo2}
               alt="logo"
               width={70}
+              className="hidden lg:block"
               style={{
                 borderRadius: "50%",
                 border: "1px solid #ccc",
@@ -179,6 +180,7 @@ const RegisterPage = () => {
             )}
           </Box>
 
+
           {/* main form  ***********************************************************************************/}
           <PAC_Form
             onSubmit={handleRegistration}
@@ -187,7 +189,7 @@ const RegisterPage = () => {
           >
             <Grid container spacing={2} my={1}>
               {/* name */}
-              <Grid item md={12}>
+              <Grid item md={12} xs={12}>
                 <PAC_Input
                   label="Your Name"
                   variant="outlined"
@@ -197,7 +199,7 @@ const RegisterPage = () => {
                 />
               </Grid>
               {/* email  */}
-              <Grid item md={12}>
+              <Grid item md={12} xs={12}>
                 <PAC_Input
                   label="Email"
                   type="email"
@@ -208,7 +210,7 @@ const RegisterPage = () => {
                 />
               </Grid>
               {/* password  */}
-              <Grid item md={12} sx={{ position: "relative" }}>
+              <Grid item md={12} xs={12} sx={{ position: "relative" }}>
                 <PAC_Input
                   label="Password"
                   type={showPassword ? "text" : "password"}
@@ -235,11 +237,17 @@ const RegisterPage = () => {
                 </Box>
               </Grid>
               {/* gender  */}
-              <Grid item md={6}>
-                <PAC_Select items={Gender} name="gender" label="Gender" size="small" />
+              <Grid item md={6} xs={6}>
+                <PAC_Select
+                  items={Gender}
+                  name="gender"
+                  label="Gender"
+                  size="small"
+                  sx={{}}
+                />
               </Grid>
               {/* age  */}
-              <Grid item md={6}>
+              <Grid item md={6} xs={6}>
                 <PAC_Input
                   label="Age"
                   type="number"
@@ -249,7 +257,7 @@ const RegisterPage = () => {
                 />
               </Grid>
               {/* profile  */}
-              <Grid item md={12}>
+              <Grid item md={12} xs={12}>
                 <PAC_Input
                   label="Profile URL"
                   variant="outlined"
@@ -259,21 +267,23 @@ const RegisterPage = () => {
                 />
               </Grid>
               {/* location  */}
-              <Grid item md={6}>
+              <Grid item md={6} xs={12}>
                 <PAC_Input
                   label="Location"
                   variant="outlined"
                   size="small"
                   name="location"
+                  fullWidth
                 />
               </Grid>
               {/* contact  */}
-              <Grid item md={6}>
+              <Grid item md={6} xs={12}>
                 <PAC_Input
                   label="Contact Number"
                   variant="outlined"
                   size="small"
                   name="contactNumber"
+                  fullWidth
                 />
               </Grid>
             </Grid>
@@ -281,7 +291,6 @@ const RegisterPage = () => {
               Sign Up
             </Button>
           </PAC_Form>
-
 
           <Typography
             align="center"

@@ -74,8 +74,8 @@ const LoginPage = () => {
         </Typography>
       </Stack>
 
-      <div className="container  mx-auto flex flex-col-reverse lg:flex-row justify-center items-center lg:h-[80vh] gap-20 lg:gap-60">
-        
+      <div className="container  mx-auto flex flex-col-reverse lg:flex-row justify-center items-center lg:h-[80vh] gap-20 lg:gap-60 px-5 lg:px-0">
+
         {/* Animation  */}
         <Lottie
           animationData={login_animation2}
@@ -83,20 +83,19 @@ const LoginPage = () => {
           className="md:w-[450px] px-8 lg:px-0 pb-10 lg:pb-0"
         />
 
+        {/* Form  */}
         <Box
           sx={{
-            padding: { xs: "30px", md: "30px", lg: "50px" },
+            padding: { xs: "30px", lg: "50px" },
             borderRadius: "10px",
             bgcolor: "#fff",
             marginTop: { xs: "50px", lg: "0px" },
+            maxWidth: "450px",
+            width: "100%",
           }}
         >
           <Stack
             spacing={2}
-            sx={{
-              width: { xs: "300px", md: "350px" },
-              margin: "0 auto",
-            }}
           >
             <Image
               src={logo2}

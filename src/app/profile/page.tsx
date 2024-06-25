@@ -137,8 +137,7 @@ const ProfilePage = () => {
         <div
           className={` mb-28  lg:my-10  container mx-auto ${
             userInfo?.role === "ADMIN" && "min-h-screen"
-          }`}
-        >
+          }`}>
 
 
           {/* buttons  */}
@@ -196,10 +195,10 @@ const ProfilePage = () => {
             className={`flex flex-col-reverse lg:flex-row  justify-center gap-8 lg:gap-24  lg:mt-20 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] lg:rounded-2xl px-6 lg:py-10`}>
 
             {/* My details */}
-            <div className=" lg:grid gap-5 items-center content-center space-y-3 lg:space-y-0">
+            <div className="lg:grid gap-5 items-center content-center space-y-3 lg:space-y-0">
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
               >
                 Name:{" "}
                 <Box component="span" color="accent.main">
@@ -208,7 +207,7 @@ const ProfilePage = () => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
               >
                 Age:{" "}
                 <Box component="span" color="accent.main">
@@ -217,7 +216,7 @@ const ProfilePage = () => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
               >
                 Gender:{" "}
                 <Box component="span" color="accent.main">
@@ -226,7 +225,7 @@ const ProfilePage = () => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
               >
                 Contact No:{" "}
                 <Box component="span" color="accent.main">
@@ -235,7 +234,7 @@ const ProfilePage = () => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8 col-span-2"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2"
               >
                 Email:{" "}
                 <Box component="span" color="accent.main">
@@ -244,7 +243,7 @@ const ProfilePage = () => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8 col-span-2"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2"
               >
                 Location:{" "}
                 <Box component="span" color="accent.main">

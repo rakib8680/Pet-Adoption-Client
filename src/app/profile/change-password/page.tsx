@@ -66,7 +66,7 @@ const ChangePasswordPage = () => {
         <div className="rounded-md  p-10 max-w-[500px] backdrop-filter backdrop-blur-lg bg-slate-600 bg-opacity-100 shadow-lg  ">
           <div className="flex justify-center items-center gap-2 pb-10 ">
             <KeyIcon fontSize="large" />
-            <h1 className="text-3xl font-semibold text-slate-300 ">
+            <h1 className=" text-2xl lg:text-3xl font-semibold text-slate-300 ">
               Change Password
             </h1>
           </div>

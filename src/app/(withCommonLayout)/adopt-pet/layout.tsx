@@ -2,14 +2,16 @@
 
 import { isLoggedIn } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 const AdoptPetLayout = ({ children }: { children: ReactNode }) => {
+  const [isClient, setIsClient] = useState(false);
   const toastShownRef = useRef(false);
   const router = useRouter();
 
   useEffect(() => {
+    setIsClient(true);
     const checkAuthentication = () => {
       const loggedIn = isLoggedIn();
       if (!loggedIn && !toastShownRef.current) {
@@ -24,7 +26,7 @@ const AdoptPetLayout = ({ children }: { children: ReactNode }) => {
     checkAuthentication();
   }, []);
 
-  return isLoggedIn() ? <>{children}</> : null;
+  return isClient ? isLoggedIn() ? <>{children}</> : null : null;
 };
 
 export default AdoptPetLayout;

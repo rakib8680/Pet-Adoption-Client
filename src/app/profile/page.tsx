@@ -100,7 +100,7 @@ const ProfilePage = () => {
       >
         <MenuItem
           onClick={handleCloseUserMenu}
-          className="flex flex-col gap-5 !items-center  !p-6 !rounded-xl bg-[#f4f4f4]"
+          className="flex flex-col gap-5 !items-center  !p-6 !px-2 !rounded-xl bg-[#f4f4f4]"
           sx={{}}
         >
           <Typography
@@ -115,7 +115,7 @@ const ProfilePage = () => {
             disableElevation
             color="error"
             onClick={handleLogout}
-            className="w-10 h-10 !rounded-full !mt-5"
+            className="w-2 h-10 !rounded-full !mt-5"
           >
             <LogoutIcon />
           </Button>
@@ -195,7 +195,7 @@ const ProfilePage = () => {
             className={`flex flex-col-reverse lg:flex-row  justify-center gap-8 lg:gap-24  lg:mt-20 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] lg:rounded-2xl px-6 lg:py-10`}>
 
             {/* My details */}
-            <div className="lg:grid gap-5 items-center content-center space-y-3 lg:space-y-0">
+            <div className="lg:grid gap-5 items-center content-center space-y-2  lg:space-y-0">
               <Typography
                 variant="h6"
                 className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"

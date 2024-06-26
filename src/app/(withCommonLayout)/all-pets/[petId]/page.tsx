@@ -21,23 +21,25 @@ type TParams = {
   };
 };
 
+
+
+
 const SinglePetPage = ({ params }: TParams) => {
+
   const userInfo = getUserInfo();
-
   const petId = params.petId;
-
   const { data, isLoading } = useGetSinglePetQuery(petId);
-
-  //   console.log(data);
-
   const pet: TPet = data?.data;
+
 
   return (
     <Container className="py-10 pb-40">
       <div className="space-y-10">
         <div>
-          <Typography variant="h2">Pet Profile</Typography>
-          <Typography variant="h5">
+          <Typography className=" !text-4xl lg:!text-6xl">
+            Pet Profile
+          </Typography>
+          <Typography className=" !text-lg lg:!text-2xl">
             Detailed information about this pet
           </Typography>
         </div>
@@ -48,12 +50,13 @@ const SinglePetPage = ({ params }: TParams) => {
             <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
           </div>
         ) : (
-          <div className="md:flex  justify-center gap-24 ">
+          <div className="flex flex-col-reverse lg:flex-row  justify-center gap-10 lg:gap-24 ">
+
             {/* pet details */}
-            <div className="grid grid-cols-3 gap-5">
+            <div className="lg:grid grid-cols-3 gap-5 space-y-2 lg:space-y-0">
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
               >
                 Name:{" "}
                 <Box component="span" color="accent.main">
@@ -62,7 +65,7 @@ const SinglePetPage = ({ params }: TParams) => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
               >
                 Age:{" "}
                 <Box component="span" color="accent.main">
@@ -71,7 +74,7 @@ const SinglePetPage = ({ params }: TParams) => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
               >
                 Breed:{" "}
                 <Box component="span" color="accent.main" fontSize={14}>
@@ -80,7 +83,7 @@ const SinglePetPage = ({ params }: TParams) => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8 col-span-2"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2"
               >
                 Temperament:{" "}
                 <Box component="span" color="accent.main">
@@ -89,7 +92,7 @@ const SinglePetPage = ({ params }: TParams) => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
               >
                 Gender:{" "}
                 <Box component="span" color="accent.main">
@@ -98,7 +101,7 @@ const SinglePetPage = ({ params }: TParams) => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
               >
                 Species:{" "}
                 <Box component="span" color="accent.main">
@@ -107,7 +110,7 @@ const SinglePetPage = ({ params }: TParams) => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
               >
                 Status:{" "}
                 <Box component="span" color="accent.main">
@@ -116,7 +119,7 @@ const SinglePetPage = ({ params }: TParams) => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
               >
                 Size:{" "}
                 <Box component="span" color="accent.main">
@@ -125,7 +128,7 @@ const SinglePetPage = ({ params }: TParams) => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8 col-span-3"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-3"
               >
                 Medical History:{" "}
                 <Box component="span" color="accent.main">
@@ -134,7 +137,7 @@ const SinglePetPage = ({ params }: TParams) => {
               </Typography>
               <Typography
                 variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 px-8 col-span-2"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2"
               >
                 Location:{" "}
                 <Box component="span" color="accent.main">
@@ -191,6 +194,7 @@ const SinglePetPage = ({ params }: TParams) => {
                 </Button>
               )}
             </Box>
+            
           </div>
         )}
       </div>

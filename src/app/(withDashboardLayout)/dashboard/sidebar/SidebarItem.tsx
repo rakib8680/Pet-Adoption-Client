@@ -1,4 +1,3 @@
-
 import {
   ListItem,
   ListItemButton,
@@ -15,12 +14,7 @@ type TSidebarPros = {
 };
 
 const SidebarItem = ({ item }: TSidebarPros) => {
-  let linkPath = `/dashboard/${item.path}`;
-  
-
-  if (linkPath === '/dashboard/profile/change-password') {
-    linkPath = '/profile/change-password';
-  }
+  let linkPath = `/${item.path}`;
 
   const pathName = usePathname();
 

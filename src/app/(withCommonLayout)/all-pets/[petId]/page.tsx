@@ -13,16 +13,16 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import PetsIcon from "@mui/icons-material/Pets";
+import EditOffIcon from "@mui/icons-material/EditOff";
 import Link from "next/link";
+
+
 
 type TParams = {
   params: {
     petId: string;
   };
 };
-
-
-
 
 const SinglePetPage = ({ params }: TParams) => {
 
@@ -31,7 +31,7 @@ const SinglePetPage = ({ params }: TParams) => {
   const { data, isLoading } = useGetSinglePetQuery(petId);
   const pet: TPet = data?.data;
 
-
+  
   return (
     <Container className="py-10 pb-40">
       <div className="space-y-10">
@@ -50,6 +50,7 @@ const SinglePetPage = ({ params }: TParams) => {
             <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
           </div>
         ) : (
+
           <div className="flex flex-col-reverse lg:flex-row  justify-center gap-10 lg:gap-24 ">
 
             {/* pet details */}
@@ -193,8 +194,21 @@ const SinglePetPage = ({ params }: TParams) => {
                   Adopt This Pet
                 </Button>
               )}
+              {userInfo?.role === "ADMIN" && (
+                <Button
+                  fullWidth
+                  disableElevation
+                  endIcon={<EditOffIcon />}
+                  color="secondary"
+                  sx={{ color: "white" }}
+                  component={Link}
+                  href={`/dashboard/admin/manage-pets/edit/${pet?.id}`}
+                >
+                  Edit Pet Info
+                </Button>
+              )}
             </Box>
-            
+
           </div>
         )}
       </div>

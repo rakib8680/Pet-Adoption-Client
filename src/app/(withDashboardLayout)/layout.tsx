@@ -38,8 +38,8 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   return (
     <DashboardDrawer>
       <Typography
-        color="accent.main"
-        className="!ms-12 !my-5"
+        color=""
+        className=" lg:!ms-12 !my-5 !text-xs lg:!text-base"
       >
         {getGreeting()}...
       </Typography>

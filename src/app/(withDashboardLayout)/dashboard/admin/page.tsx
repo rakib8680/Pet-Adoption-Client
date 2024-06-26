@@ -1,5 +1,5 @@
 "use client";
-import { Box, CircularProgress, Tooltip, Typography } from "@mui/material";
+import { Box, CircularProgress, Tooltip, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Image from "next/image";
 import EditOffIcon from "@mui/icons-material/EditOff";
@@ -19,8 +19,12 @@ const AdminPage = () => {
 
 
 
-  //columns
-  const columns: GridColDef[] = [ 
+const theme = useTheme();
+const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+
+  // columns for large screen 
+  const largeScreenColumns: GridColDef[] = [ 
     {
       field: "profilePicture",
       headerName: "Adopter Image",
@@ -41,7 +45,7 @@ const AdminPage = () => {
         );
       },
     },
-    { field: "userName", headerName: "Adopter Name", flex: 1 },
+    { field: "userName", headerName: "Adopter Name", flex: 1},
     { field: "userEmail", headerName: "Email", flex: 1 },
     { field: "userContactNumber", headerName: "Contact", flex: 1 },
     { field: "petOwnershipExperience", headerName: "Experience", flex: 1 },
@@ -107,6 +111,59 @@ const AdminPage = () => {
   ];
 
 
+  // columns for small screen
+  const smallScreenColumns: GridColDef[] = [ 
+    { field: "userName", headerName: "Adopter Name", flex: 1,  cellClassName:'!text-xs flex  items-center', headerClassName:'!text-xs', disableColumnMenu: true },
+    {
+      field: "pet",
+      headerName: "Pet Name",
+      cellClassName:'!text-xs flex  items-center',
+      headerClassName:'!text-xs',
+      disableColumnMenu: true,
+      flex: 1,
+      renderCell: ({ row }) => {
+        return row?.pet.name;
+      },
+    },
+    { field: "status", headerName: "Adoption Status", flex: 1, cellClassName:'!text-xs flex  items-center', headerClassName:'!text-xs', disableColumnMenu: true },
+    {
+      field: "action",
+      headerName: "Action",
+      flex: 1,
+      headerAlign: "center",
+      headerClassName:'!text-xs',
+      align: "center",
+      disableColumnMenu: true,
+      renderCell: ({ row }) => {
+        return (
+          <Box
+            sx={{
+              height: "100%",
+              width: "100%",
+            }}
+          >
+            {/*Change Status*/}
+            <Tooltip
+              onClick={() => {
+                setAdoptionId(row.id);
+                setIsModalOpen(true);
+              }}
+              className="rounded-lg lg:!h-[35px] lg:!w-[35px] p-1 cursor-pointer"
+              sx={{ backgroundColor: "secondary.main", color: "white" }}
+              title="Update Status"
+            >
+              <EditOffIcon fontSize="medium" />
+            </Tooltip>
+          </Box>
+        );
+      },
+    },
+  ];
+
+
+
+  const columns = isSmallScreen ? smallScreenColumns : largeScreenColumns;
+
 
   return (
     <div className="container  mx-auto mb-10">
@@ -115,12 +172,12 @@ const AdminPage = () => {
         open={isModalOpen}
         setOpen={setIsModalOpen}
       />
-      <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg px-10">
-        <div className="flex justify-between items-center">
-          <Typography variant="h5" className="pt-5">
+      <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg p-8 px-3  lg:px-10">
+        <div className="flex justify-between items-center lg:pt-5">
+          <Typography  className="!text-sm lg:!text-2xl">
             All Pet Adoption Requests
           </Typography>
-          <Typography variant="body1" className="text-gray-500">
+          <Typography className="text-gray-500 !text-xs lg:!text-base">
             Total Requests : {adoptionRequests?.length}
           </Typography>
         </div>

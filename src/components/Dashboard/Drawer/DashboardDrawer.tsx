@@ -21,6 +21,8 @@ export default function DashboardDrawer({
 }: {
   children: React.ReactNode;
 }) {
+
+
   //  use this code to handle hydration error
   const AuthButton = dynamic(
     () => import("@/components/Ui/AuthButton/AuthButton"),
@@ -29,21 +31,20 @@ export default function DashboardDrawer({
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-
   const handleDrawerClose = () => {
     setIsClosing(true);
     setMobileOpen(false);
   };
-
   const handleDrawerTransitionEnd = () => {
     setIsClosing(false);
   };
-
   const handleDrawerToggle = () => {
     if (!isClosing) {
       setMobileOpen(!mobileOpen);
     }
   };
+
+
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -56,14 +57,14 @@ export default function DashboardDrawer({
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
           boxShadow: "none",
-          padding: "19px 0",
+          padding: {xs:'20px 30px', lg:"19px 0"},
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
         }}
       >
 
-        <div style={{ flex: 1 }}></div>
+        <div style={{ flex: 1 }} className="hidden lg:block"></div>
 
         {/* logo */}
         <Stack
@@ -89,12 +90,12 @@ export default function DashboardDrawer({
           </Typography>
         </Stack>
 
-        <div
+        <div className="hidden lg:flex"
           style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}
         ></div>
 
         {/* auth button */}
-        <div className="md:mr-14">
+        <div className="lg:mr-14 hidden lg:block">
         <AuthButton />
         </div>
 
@@ -149,8 +150,8 @@ export default function DashboardDrawer({
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
-          pt: 5,
+          p: {xs:2, lg:3},
+          pt: {xs:5,lg:5},
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >

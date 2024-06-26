@@ -70,10 +70,10 @@ const AdoptionRequestPage = ({ params }: TParams) => {
 
 
   return (
-    <div className="py-10 flex flex-col  items-center gap-5 ">
+    <div className=" pb-32 py-10 lg:py-16 flex flex-col  items-center gap-5  px-3 lg:px-0">
 
       <div className="text-center">
-        <Typography variant="h4" color="secondary">
+        <Typography className=" !text-3xl lg:!text-4xl !pb-2"  color="secondary">
           Pet Adoption Request
         </Typography>
         <Typography variant="subtitle2" color="gray">
@@ -94,7 +94,7 @@ const AdoptionRequestPage = ({ params }: TParams) => {
       ) : (
         <Box
           sx={{
-            padding: "30px 50px",
+            padding: { xs: "30px 30px", lg: "30px 50px"},
             borderRadius: "8px",
             bgcolor: "#EFEFEF",
             maxWidth: "500px",
@@ -109,7 +109,7 @@ const AdoptionRequestPage = ({ params }: TParams) => {
           >
             <Grid container spacing={2} my={1}>
               {/* userName */}
-              <Grid item md={12}>
+              <Grid item md={12} xs={12}>
                 <PAC_Input
                   color="secondary"
                   label="Your Name"
@@ -119,7 +119,7 @@ const AdoptionRequestPage = ({ params }: TParams) => {
                 />
               </Grid>
               {/* email  */}
-              <Grid item md={12}>
+              <Grid item md={12}xs={12}>
                 <PAC_Input
                   label="Email"
                   type="email"
@@ -130,7 +130,7 @@ const AdoptionRequestPage = ({ params }: TParams) => {
                 />
               </Grid>
               {/* Contact No.  */}
-              <Grid item md={12}>
+              <Grid item md={12} xs={12}>
                 <PAC_Input
                   label="Contact Number"
                   sx={{ bgcolor: "white" }}
@@ -140,7 +140,7 @@ const AdoptionRequestPage = ({ params }: TParams) => {
                 />
               </Grid>
               {/* Pet Ownership Experience  */}
-              <Grid item md={12}>
+              <Grid item md={12} xs={12}>
                 <PAC_Input
                   label="Pet Ownership Experience"
                   sx={{ bgcolor: "white" }}
@@ -163,6 +163,7 @@ const AdoptionRequestPage = ({ params }: TParams) => {
               Adopt Pet
             </Button>
           </PAC_Form>
+          
         </Box>
       )}
     </div>

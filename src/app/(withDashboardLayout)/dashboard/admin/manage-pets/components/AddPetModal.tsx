@@ -12,9 +12,6 @@ import { addPetValidationSchema } from "@/utils/formValidation";
 import AddIcon from '@mui/icons-material/Add';
 import { useAddPetMutation } from "@/redux/api/petApi";
 
-
-
-
 type TProps = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,13 +20,10 @@ type TProps = {
 
 
 const AddPetModal = ({open, setOpen}:TProps) => {
+  const [addPet] = useAddPetMutation();
 
-
-    const [addPet] = useAddPetMutation();
-
-
-    // add pet function
-    const handleAddPet = async (data:FieldValues)=>{
+  // add pet function
+  const handleAddPet = async (data:FieldValues)=>{
 
         data.age = Number(data.age);
         data.photos = [data.photos];
@@ -47,7 +41,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
         } catch (error) {
             toast.error("Something went wrong!");
         }
-    }
+  }
 
 
 // default values
@@ -69,13 +63,15 @@ const AddPetModal = ({open, setOpen}:TProps) => {
   };
 
 
+
   return (
      <div>
          <PAC_Modal title="Add a pet" open={open} setOpen={setOpen}>
          <Box
             sx={{
-              padding: "0px 50px",
+              padding: { xs: "0px 5px", lg: "0px 50px" },
               maxWidth: "700px",
+              width: "100%",
               bgcolor: "#fdfdfd",
               borderRadius: "10px",
             }}
@@ -86,9 +82,9 @@ const AddPetModal = ({open, setOpen}:TProps) => {
               defaultValues={defaultPetValues}
               resolver={zodResolver(addPetValidationSchema)}
             >
-              <Grid container spacing={3} my={1}>
+              <Grid container spacing={1} sx={{my:{xs:'', lg:1}}}>
                 {/* name */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Input
                     label="Pet Name"
                     variant="outlined"
@@ -98,7 +94,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* species */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Input
                     label="Species"
                     variant="outlined"
@@ -108,7 +104,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* gender  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Select
                     items={Gender}
                     name="gender"
@@ -118,7 +114,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* age  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Input
                     label="Age"
                     type="number"
@@ -129,7 +125,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* Health Status  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Select
                     items={HealthStatus}
                     name="healthStatus"
@@ -139,7 +135,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* Size  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Select
                     items={PetSize}
                     name="size"
@@ -149,7 +145,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* Photos */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Profile URL"
                     variant="outlined"
@@ -159,7 +155,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* location  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={12}>
                   <PAC_Input
                     label="Location"
                     variant="outlined"
@@ -169,7 +165,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* specialNeeds  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={12}>
                   <PAC_Input
                     label="Special Needs"
                     variant="outlined"
@@ -179,7 +175,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* Breed  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Input
                     label="Breed"
                     variant="outlined"
@@ -189,7 +185,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* temperament  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Input
                     label="Temperament"
                     variant="outlined"
@@ -199,7 +195,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* medicalHistory  */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Medical History"
                     variant="outlined"
@@ -209,7 +205,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* description  */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Description"
                     variant="outlined"
@@ -221,7 +217,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
                   />
                 </Grid>
                 {/* adoptionRequirements  */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Adoption Requirements"
                     variant="outlined"

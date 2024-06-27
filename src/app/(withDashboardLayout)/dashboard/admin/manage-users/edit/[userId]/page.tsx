@@ -73,13 +73,13 @@ const UpdateUserPage = ({ params }: TParams) => {
     <div className="container max-w-6xl mx-auto space-y-5 pb-10">
 
       <Typography
-        className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg  text-center"
-        sx={{ fontSize: "25px", p: "30px 0" }}
+        className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg  text-center !font-mono !font-semibold"
+        sx={{ fontSize: {xs:'19px', lg:"25px"}, p: {xs:'15px 0', lg:"30px 0"} }}
       >
         {userProfile ? `Update ${userProfile.name}'s Info` : "Edit Profile"}
       </Typography>
 
-      <div className="flex justify-center items-center bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg py-10  px-10">
+      <div className="flex justify-center items-center bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg p-3  lg:p-10">
 
         {isLoading ? (
           <div className="flex justify-center items-center h-[50vh]">
@@ -89,7 +89,7 @@ const UpdateUserPage = ({ params }: TParams) => {
 
           <Box
             sx={{
-              padding: "0px 50px",
+              padding: { xs: "0px 20px", lg:"0px 50px"},
               maxWidth: "700px",
               bgcolor: "#fdfdfd",
               borderRadius: "10px",
@@ -100,9 +100,9 @@ const UpdateUserPage = ({ params }: TParams) => {
               onSubmit={handleEditProfile}
               defaultValues={data && defaultProfileValues}
             >
-              <Grid container spacing={4} my={1}>
+              <Grid container spacing={4} sx={{my:{xs:'5px', lg:1}}}>
                 {/* name */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Your Name"
                     variant="outlined"
@@ -112,7 +112,7 @@ const UpdateUserPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* gender  */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={6}>
                   <PAC_Select
                     items={Gender}
                     name="gender"
@@ -122,7 +122,7 @@ const UpdateUserPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* age  */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={6}>
                   <PAC_Input
                     label="Age"
                     type="number"
@@ -133,7 +133,7 @@ const UpdateUserPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* profile photo  */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Profile URL"
                     variant="outlined"
@@ -143,7 +143,7 @@ const UpdateUserPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* location  */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Location"
                     variant="outlined"
@@ -153,7 +153,7 @@ const UpdateUserPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* contact  */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Contact Number"
                     variant="outlined"

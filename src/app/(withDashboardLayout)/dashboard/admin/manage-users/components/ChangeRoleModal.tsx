@@ -43,12 +43,12 @@ const ChangeRoleModal = ({ id, open, setOpen }: TProps) => {
           <Box
             sx={{
               padding: "20px",
-              width: "350px",
+              width: {xs: "300px", lg: "350px"},
               display: "flex",
               flexDirection: "column",
               gap: "30px",
             }}
-            className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg !px-10 space-y-8 !py-14"
+            className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg lg:!px-10 space-y-8 lg:!py-14"
           >
             <PAC_Select
               items={Role}

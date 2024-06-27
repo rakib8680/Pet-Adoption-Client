@@ -48,8 +48,7 @@ const ChangeAdoptionStatusModal = ({ id, open, setOpen }: TProps) => {
         <Box
           sx={{
             padding: "20px",
-            maxWidth: "350px",
-            width: "100%",
+            width: {xs: "300px", lg: "350px"},
             display: "flex",
             flexDirection: "column",
             gap: "30px",

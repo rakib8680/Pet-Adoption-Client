@@ -109,7 +109,7 @@ export default function DashboardDrawer({
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
-        {/* for pc  */}
+        {/* for mobile  */}
         <Drawer
           variant="temporary"
           open={mobileOpen}
@@ -129,7 +129,7 @@ export default function DashboardDrawer({
           <Sidebar />
         </Drawer>
 
-        {/* for mobile */}
+        {/* for pc */}
         <Drawer
           variant="permanent"
           sx={{

@@ -15,10 +15,9 @@ const AdminPage = () => {
   const meta = data?.meta;
   const adoptionRequests = data?.data;
 
-  // console.log(adoptionRequests);
 
 
-
+//this is used to check the screen size using material ui useMediaQuery hook, then we set the columns accordingly 
 const theme = useTheme();
 const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 

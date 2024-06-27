@@ -16,7 +16,7 @@ type TParams = {
   params: {
     petId: string;
   };
-};
+};  
 
 
 
@@ -78,13 +78,13 @@ const EditPetPage = ({ params }: TParams) => {
   return (
     <div className="container max-w-6xl mx-auto space-y-5 pb-10">
       <Typography
-        className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg  text-center"
-        sx={{ fontSize: "25px", p: "15px 0" }}
+        className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg  text-center !font-mono !font-semibold"
+        sx={{ fontSize: {xs:'19px', lg:"25px"}, p: {xs:'10px 0', lg:"30px 0"} }}
       >
         {singlePet ? `Update ${singlePet.name}'s Info` : "Edit Profile"}
       </Typography>
 
-      <div className="flex justify-center items-center bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg py-10  px-10">
+      <div className="flex justify-center items-center bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg p-3  lg:p-10">
         {isLoading? (
           <div className="flex justify-center items-center h-[50vh]">
             <CircularProgress color="secondary" />
@@ -92,7 +92,7 @@ const EditPetPage = ({ params }: TParams) => {
         ) : (
           <Box
             sx={{
-              padding: "0px 50px",
+              padding: { xs: "0px 20px", lg:"0px 50px"},
               maxWidth: "700px",
               bgcolor: "#fdfdfd",
               borderRadius: "10px",
@@ -103,9 +103,9 @@ const EditPetPage = ({ params }: TParams) => {
               onSubmit={handleEditPet}
               defaultValues={data && defaultPetValues}
             >
-              <Grid container spacing={4} my={1}>
+              <Grid container spacing={4} sx={{my:{xs:'5px', lg:1}}}>
                 {/* name */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Input
                     label="Pet Name"
                     variant="outlined"
@@ -115,7 +115,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* species */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Input
                     label="Species"
                     variant="outlined"
@@ -125,7 +125,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* gender  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Select
                     items={Gender}
                     name="gender"
@@ -135,7 +135,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* age  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Input
                     label="Age"
                     type="number"
@@ -146,7 +146,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* Health Status  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Select
                     items={HealthStatus}
                     name="healthStatus"
@@ -156,7 +156,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* Size  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Select
                     items={PetSize}
                     name="size"
@@ -166,7 +166,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* Photos */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Profile URL"
                     variant="outlined"
@@ -176,7 +176,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* location  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={12}>
                   <PAC_Input
                     label="Location"
                     variant="outlined"
@@ -186,7 +186,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* specialNeeds  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={12}>
                   <PAC_Input
                     label="Special Needs"
                     variant="outlined"
@@ -196,7 +196,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* Breed  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Input
                     label="Breed"
                     variant="outlined"
@@ -206,7 +206,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* temperament  */}
-                <Grid item md={6}>
+                <Grid item md={6} xs={6}>
                   <PAC_Input
                     label="Temperament"
                     variant="outlined"
@@ -216,7 +216,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* medicalHistory  */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Medical History"
                     variant="outlined"
@@ -226,7 +226,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* description  */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Description"
                     variant="outlined"
@@ -238,7 +238,7 @@ const EditPetPage = ({ params }: TParams) => {
                   />
                 </Grid>
                 {/* adoptionRequirements  */}
-                <Grid item md={12}>
+                <Grid item md={12} xs={12}>
                   <PAC_Input
                     label="Adoption Requirements"
                     variant="outlined"

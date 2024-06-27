@@ -74,7 +74,7 @@ const UpdateUserPage = ({ params }: TParams) => {
 
       <Typography
         className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg  text-center !font-mono !font-semibold"
-        sx={{ fontSize: {xs:'19px', lg:"25px"}, p: {xs:'15px 0', lg:"30px 0"} }}
+        sx={{ fontSize: {xs:'19px', lg:"25px"}, p: {xs:'10px 0', lg:"30px 0"} }}
       >
         {userProfile ? `Update ${userProfile.name}'s Info` : "Edit Profile"}
       </Typography>
@@ -100,7 +100,7 @@ const UpdateUserPage = ({ params }: TParams) => {
               onSubmit={handleEditProfile}
               defaultValues={data && defaultProfileValues}
             >
-              <Grid container spacing={4} sx={{my:{xs:'5px', lg:1}}}>
+              <Grid container spacing={3} sx={{my:{xs:'5px', lg:1}}}>
                 {/* name */}
                 <Grid item md={12} xs={12}>
                   <PAC_Input

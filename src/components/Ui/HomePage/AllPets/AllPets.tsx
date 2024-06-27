@@ -106,8 +106,8 @@ const AllPets = () => {
             <AllPetsCard key={pet.id} pet={pet} />
           ))}
         </div>
-        <div className="grid  gap-5 md:hidden px-3">
-          {allPets?.slice(0, 4).map((pet: TPet) => (
+        <div className="grid gap-5 md:hidden px-3">
+          {allPets?.slice(0, 3).map((pet: TPet) => (
             <AllPetsCard key={pet.id} pet={pet} />
           ))}
         </div>

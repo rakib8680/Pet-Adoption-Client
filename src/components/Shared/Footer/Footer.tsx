@@ -21,8 +21,7 @@ const Footer = () => {
             <Image
               src={logo2}
               alt="Pet Adoption Center Logo"
-              width={130}
-              className="rounded-full bg-slate-200 p-1  mb-2"
+              className="rounded-full bg-slate-200 p-1  mb-2 size-24 lg:size-32"
             />
             <Typography fontWeight={600} fontSize={23} color="primary">
               <Box component="span" color="accent.main" className="font-black ">
@@ -43,7 +42,7 @@ const Footer = () => {
             <Typography color='#EFEFEF' fontSize={20}>
               Quick Links
             </Typography>
-
+              {/* Links  */}
             <Stack spacing={10} direction="row" className="mt-2">
               <Stack spacing={2}>
                 <Typography
@@ -119,7 +118,7 @@ const Footer = () => {
             <Typography color='#EFEFEF' fontSize={24}>
               Subscribe to our Newsletter
             </Typography>
-            <Typography variant="body2" sx={{ mb: 5, mt: 1 }}>
+            <Typography variant="body2" sx={{ mb: {xs:1, lg:5}, mt: {xs:'', lg:1} }}>
               Get updates on new pets available for adoption.
             </Typography>
             <Box className="flex space-x-2">

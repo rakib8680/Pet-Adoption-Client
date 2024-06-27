@@ -22,7 +22,7 @@ import Link from "next/link";
 
 
 const ManageUser = () => {
-  
+
   const [isRoleModalOpen, setIsRoleModalOpen] = useState<boolean>(false);
   const [isStatusModalOpen, setIsStatusModalOpen] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
@@ -249,7 +249,7 @@ const ManageUser = () => {
           open={isStatusModalOpen}
           setOpen={setIsStatusModalOpen}
         />
-        <Typography variant="h4" className="lg:pt-5 !text-lg lg:!text-3xl">
+        <Typography variant="h4" className="lg:pt-5 !text-lg lg:!text-3xl !font-semibold">
           Manage Users
         </Typography>
 

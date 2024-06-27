@@ -1,5 +1,13 @@
 "use client";
-import { Box, Button, CircularProgress, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Tooltip,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Image from "next/image";
 import EditOffIcon from "@mui/icons-material/EditOff";
@@ -13,8 +21,8 @@ import Swal from "sweetalert2";
 
 
 
-
 const ManagePets = () => {
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deletePet] = useDeletePetMutation();
   const { data, isLoading } = useGetAllPetsQuery({});
@@ -62,8 +70,14 @@ const ManagePets = () => {
   };
 
 
-  //columns
-  const columns: GridColDef[] = [
+
+
+  //this is used to check the screen size using material ui useMediaQuery hook, then we set the columns accordingly
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  //columns for large screen
+  const largeScreenColumns: GridColDef[] = [
     {
       field: "photos",
       headerName: "Image",
@@ -134,25 +148,98 @@ const ManagePets = () => {
     },
   ];
 
+  // columns for small screen
+  const smallScreenColumns: GridColDef[] = [
+    {
+      field: "name",
+      headerName: "Name",
+      disableColumnMenu: true,
+      cellClassName: "!text-xs flex  items-center",
+      headerClassName: "!text-xs",
+    },
+    {
+      field: "species",
+      headerName: "Species",
+      flex: 1,
+      disableColumnMenu: true,
+      cellClassName: "!text-xs flex  items-center",
+      headerClassName: "!text-xs",
+    },
+    {
+      field: "age",
+      headerName: "Age",
+      flex: 1,
+      disableColumnMenu: true,
+      cellClassName: "!text-xs flex  items-center",
+      headerClassName: "!text-xs",
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      disableColumnMenu: true,
+      cellClassName: "!text-xs flex  items-center",
+      headerClassName: "!text-xs",
+      headerAlign: "center",
+      align: "center",
+      renderCell: ({ row }) => {
+        return (
+          <Box
+            sx={{
+              display: "flex",
+              height: "100%",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: { xs: "5px", lg: "10px" },
+            }}
+          >
+            {/*Edit Info*/}
+            <Link href={`/dashboard/admin/manage-pets/edit/${row?.id}`}>
+              <Tooltip
+                className="rounded-lg lg:!h-[35px] lg:!w-[35px] p-1 cursor-pointer"
+                sx={{ backgroundColor: "secondary.main", color: "white" }}
+                title="Edit Pet"
+              >
+                <EditOffIcon fontSize="medium" />
+              </Tooltip>
+            </Link>
+            {/*Delete Pet*/}
+            <Tooltip
+              className="rounded-lg lg:!h-[35px] lg:!w-[35px] p-1 cursor-pointer"
+              sx={{ backgroundColor: "#e5677a", color: "white" }}
+              title="Delete Pet"
+              onClick={() => handleDeletePet(row.id)}
+            >
+              <DeleteIcon fontSize="medium" />
+            </Tooltip>
+          </Box>
+        );
+      },
+    },
+  ];
 
 
+  const columns = isSmallScreen ? smallScreenColumns : largeScreenColumns;
+
+
+  
   return (
     <div className="container  mx-auto mb-10">
       <AddPetModal open={isModalOpen} setOpen={setIsModalOpen} />
-      <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 p-5 rounded-lg px-10">
+      <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg p-5 px-3  lg:px-10">
         <div className="flex justify-between items-center">
           <div>
-            <Typography variant="h4" className="pt-5">
+            <Typography className="pt-2 lg:pt-5 lg:!text-3xl !font-semibold">
               Manage All Pets
             </Typography>
-            <Typography variant="body1" className="text-gray-500">
+            <Typography className="text-gray-500 !text-xs  !font-mono lg:!text-sm">
               You can manage all pets here
             </Typography>
           </div>
           <Button
-            disableElevation
             onClick={() => setIsModalOpen(true)}
-            endIcon={<PetsIcon />}
+            endIcon={<PetsIcon className="!size-4 lg:!size-5" />}
+            className="!text-xs !px-2  lg:!text-sm lg:!px-5"
           >
             Add Pet
           </Button>

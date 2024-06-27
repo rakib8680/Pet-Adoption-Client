@@ -173,7 +173,7 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
       />
       <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg p-8 px-3  lg:px-10">
         <div className="flex justify-between items-center lg:pt-5">
-          <Typography  className="!text-sm lg:!text-2xl">
+          <Typography  className="!text-sm lg:!text-2xl !font-semibold">
             All Pet Adoption Requests
           </Typography>
           <Typography className="text-gray-500 !text-xs lg:!text-base">

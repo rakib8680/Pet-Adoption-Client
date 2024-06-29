@@ -15,15 +15,14 @@ const RecommendPets = () => {
   if (allPets) {
     randomPets = getRandomPets(allPets, 3);
   }
-  //   console.log(randomPets);
 
   return (
-    <div>
-      <div className="text-center space-y-3 lg:w-2/4 mx-auto">
-        <Typography variant="h3" color="accent.main">
+    <>
+      <div className="text-center space-y-3 lg:space-y-5 lg:w-2/4 mx-auto">
+        <Typography  className="!text-3xl lg:!text-5xl" color="accent.main">
           Recommended For You
         </Typography>
-        <Typography variant="subtitle1">
+        <Typography  className="!text-xs lg:!text-base">
           Here are some pets that we recommend for you. They are all very
           friendly and are looking for a new home. You can check them out and
           see if you are interested in adopting them.
@@ -40,7 +39,7 @@ const RecommendPets = () => {
           },
         }}
       >
-        <div className=" max-w-6xl  mx-auto py-24 lg:py-32 mb-40 ">
+        <div className=" max-w-6xl  mx-auto py-24 lg:py-32 mb-10 ">
           {isFetching && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-0 px-7 md:px-0  md:place-items-center">
               <CardSkeleton />
@@ -56,7 +55,7 @@ const RecommendPets = () => {
           </div>
         </div>
       </Box>
-    </div>
+    </>
   );
 };
 

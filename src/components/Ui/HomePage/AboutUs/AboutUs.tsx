@@ -58,12 +58,12 @@ const AboutUs = () => {
 
       {/* CEO Message */}
       <Box
-        className="bg-[#EFEFEF] "
+        className="bg-gradient-to-l from-[#EFEFEF]  to-white "
         sx={{
-          clipPath: "polygon(0 0, 100% 15%, 100% 100%, 0 85%)",
+          clipPath: {xs:'polygon(0 0, 100% 10%, 100% 100%, 0 90%)', lg:"polygon(0 0, 100% 15%, 100% 100%, 0 85%)",}
         }}
       >
-        <div className=" container mx-auto  py-24 my-20 lg:flex justify-center items-start gap-24  px-4 lg:px-0">
+        <div className=" container mx-auto  py-24 my-20 lg:mt-40 lg:mb-28 lg:flex justify-center items-start gap-24  px-4 lg:px-0">
           <div className="flex flex-col items-center justify-center space-y-2">
             <Image
               src={CeoImage}
@@ -78,7 +78,7 @@ const AboutUs = () => {
 
           <div className="lg:w-2/5 font-mono lg:text-2xl text-justify lg:leading-normal">
             <h3>
-              <span className="text-6xl text-[#F2994A]">"</span>
+              <span className="text-6xl text-[#F2994A]">&ldquo;</span>
               Helping vulnerable animals and keeping pets in safe and loving
               homes requires a commitment from all of us—advocates, pet owners,
               shelters, leaders, and entire communities. When we work together
@@ -87,7 +87,7 @@ const AboutUs = () => {
               animals receive the protection and care they deserve. Together, we
               can create a more humane world for all us.
               <span className="text-6xl flex justify-end text-[#F2994A]">
-                "
+                &rdquo;
               </span>
             </h3>
           </div>

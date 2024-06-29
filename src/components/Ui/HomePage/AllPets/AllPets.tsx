@@ -85,9 +85,6 @@ const AllPets = () => {
 
 
         {isFetching && (
-          // <div className="flex justify-center items-center h-[20vh]">
-          //   <CircularProgress color="primary" sx={{ color: "#F2994A" }} />
-          // </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-3 md:px-0 md:place-items-center">
             <CardSkeleton/>
@@ -98,7 +95,7 @@ const AllPets = () => {
             <CardSkeleton/>
             <CardSkeleton/>
             <CardSkeleton/>
-        </div>
+          </div>
         )}
 
         <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 hidden place-items-center">

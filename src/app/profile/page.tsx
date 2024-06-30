@@ -192,13 +192,12 @@ const ProfilePage = () => {
 
           {/* Profile Information  */}
           <div
-            className={`flex flex-col-reverse lg:flex-row  justify-center gap-8 lg:gap-24  lg:mt-20 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] lg:rounded-2xl px-6 lg:py-10`}>
+            className={`flex flex-col-reverse lg:flex-row  justify-center gap-8 lg:gap-24  lg:mt-20 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] lg:rounded-2xl pt-5 px-6 lg:py-10`}>
 
             {/* My details */}
-            <div className="lg:grid gap-5 items-center content-center space-y-2  lg:space-y-0">
+            <div className="lg:grid gap-5 items-center content-center space-y-1  lg:space-y-0 ">
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
               >
                 Name:{" "}
                 <Box component="span" color="accent.main">
@@ -206,8 +205,7 @@ const ProfilePage = () => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
               >
                 Age:{" "}
                 <Box component="span" color="accent.main">
@@ -215,8 +213,7 @@ const ProfilePage = () => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
               >
                 Gender:{" "}
                 <Box component="span" color="accent.main">
@@ -224,8 +221,7 @@ const ProfilePage = () => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
               >
                 Contact No:{" "}
                 <Box component="span" color="accent.main">
@@ -233,8 +229,7 @@ const ProfilePage = () => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2 !font-mono lg:!text-xl"
               >
                 Email:{" "}
                 <Box component="span" color="accent.main">
@@ -242,8 +237,7 @@ const ProfilePage = () => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2 !font-mono lg:!text-xl"
               >
                 Location:{" "}
                 <Box component="span" color="accent.main">

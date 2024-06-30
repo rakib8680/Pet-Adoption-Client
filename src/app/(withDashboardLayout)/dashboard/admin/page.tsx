@@ -17,10 +17,10 @@ const AdminPage = () => {
 
 
 
+
 //this is used to check the screen size using material ui useMediaQuery hook, then we set the columns accordingly 
 const theme = useTheme();
 const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
 
   // columns for large screen 
   const largeScreenColumns: GridColDef[] = [ 
@@ -109,7 +109,6 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     },
   ];
 
-
   // columns for small screen
   const smallScreenColumns: GridColDef[] = [ 
     { field: "userName", headerName: "Adopter Name", flex: 1,  cellClassName:'!text-xs flex  items-center', headerClassName:'!text-xs', disableColumnMenu: true },
@@ -159,8 +158,6 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     },
   ];
 
-
-
   const columns = isSmallScreen ? smallScreenColumns : largeScreenColumns;
 
 
@@ -172,8 +169,10 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
         setOpen={setIsModalOpen}
       />
       <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg p-8 px-3  lg:px-10">
+
+        {/* texts  */}
         <div className="flex justify-between items-center lg:pt-5">
-          <Typography  className="!text-sm lg:!text-2xl !font-semibold">
+          <Typography  className="!text-sm lg:!text-3xl !font-semibold">
             All Pet Adoption Requests
           </Typography>
           <Typography className="text-gray-500 !text-xs lg:!text-base">
@@ -181,6 +180,8 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
           </Typography>
         </div>
         <hr className="my-5" />
+
+
 
         {isLoading ? (
           <div className="flex justify-center items-center h-[50vh]">
@@ -202,6 +203,8 @@ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
             />
           </Box>
         )}
+
+        
       </div>
     </div>
   );

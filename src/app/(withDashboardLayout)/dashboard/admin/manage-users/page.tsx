@@ -289,12 +289,16 @@ const ManageUser = () => {
             open={isStatusModalOpen}
             setOpen={setIsStatusModalOpen}
           />
-          <Typography
-            variant="h4"
-            className="lg:pt-5 !text-lg lg:!text-3xl !font-semibold"
-          >
-            Manage Users
-          </Typography>
+          <div className="flex justify-between items-center ">
+            <Typography  className="!text-md lg:!text-3xl !font-semibold">
+              Manage Users
+            </Typography>
+            <Typography className="text-gray-500 !text-xs lg:!text-base">
+              Total Users : {allUsers?.length}
+            </Typography>
+          </div>
+
+          <hr className="mt-3 lg:my-5" />
 
           {isLoading ? (
             <div className="flex justify-center items-center h-[50vh]">

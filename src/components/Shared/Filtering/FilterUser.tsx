@@ -93,7 +93,7 @@ const FilterUser = ({ setSearchTerm, setStatus, setRole, setGender }: any) => {
           <FormControl
             color="secondary"
             size="small"
-            sx={{ width: "100%", bgcolor: "white" }}
+            sx={{ width: "100%", bgcolor: "white"}}
           >
             <InputLabel>Role</InputLabel>
             <Select defaultValue="" onChange={(e) => setRole(e.target.value)}>

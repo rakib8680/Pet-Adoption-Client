@@ -16,7 +16,7 @@ const AboutUs = () => {
           height: "30vh",
         }}
       >
-        <h1 className="backdrop:filter backdrop-blur-lg  text-white font-black font-mono text-lg  lg:text-5xl mt-5 lg:mt-0 px-5 py-2 lg:py-10 bg-[#F2994A] bg-opacity-60 rounded-r-md lg:rounded-r-full">
+        <h1 className="backdrop:filter backdrop-blur-lg  text-white font-semibold lg:font-black font-mono  text-3xl  lg:text-5xl mt-5 lg:mt-0 px-5 py-2 lg:py-10 bg-[#F2994A] bg-opacity-40 lg:bg-opacity-60 rounded-r-md lg:rounded-r-full">
           About Us
         </h1>
       </Box>
@@ -27,7 +27,7 @@ const AboutUs = () => {
           We Are Their Voice
         </h1>
         <div
-          className="border-[#F2994A] border-l-[8px] p-3 lg:p-10 font-mono text-xs lg:text-lg text-justify space-y-5
+          className="border-[#F2994A] border-l-[8px] p-3 py-7 lg:p-10 font-mono text-xs lg:text-lg text-justify space-y-5
         bg-gradient-to-r from-orange-200 via-orange-100 to-white bg-opacity-10 rounded-lg "
         >
           <p>
@@ -60,7 +60,10 @@ const AboutUs = () => {
       <Box
         className="bg-gradient-to-l from-[#EFEFEF]  to-white "
         sx={{
-          clipPath: {xs:'polygon(0 0, 100% 10%, 100% 100%, 0 90%)', lg:"polygon(0 0, 100% 15%, 100% 100%, 0 85%)",}
+          clipPath: {
+            xs: "polygon(0 0, 100% 10%, 100% 100%, 0 90%)",
+            lg: "polygon(0 0, 100% 15%, 100% 100%, 0 85%)",
+          },
         }}
       >
         <div className=" container mx-auto  py-24 my-20 lg:mt-40 lg:mb-28 lg:flex justify-center items-start gap-24  px-4 lg:px-0">

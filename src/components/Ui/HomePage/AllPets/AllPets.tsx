@@ -9,8 +9,9 @@ import { useDebounced } from "@/redux/hooks";
 import FilterPet from "@/components/Shared/Filtering/FilterPet";
 import CardSkeleton from "./CardSkeleton";
 
-const AllPets = () => {
 
+
+const AllPets = () => {
 
   // states
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -18,8 +19,6 @@ const AllPets = () => {
   const [age, setAge] = useState<string>("");
   const [size, setSize] = useState<string>("");
   const [gender, setGender] = useState<string>("");
-
-
 
 
   // queries
@@ -44,20 +43,17 @@ const AllPets = () => {
     query["gender"] = gender;
   }
 
-  
 
   // api calling
-  const { data, isLoading , isFetching} = useGetAllPetsQuery({ ...query });
-
+  const { data, isLoading, isFetching } = useGetAllPetsQuery({ ...query });
   const allPets = data?.data;
   const meta = data?.meta;
 
 
-  // console.log(isLoading, isFetching);
-
   return (
-    <>
       <Container className=" pt-10 pb-20  lg:py-20  lg:pb-36 ">
+
+        {/* texts  */}
         <div className="text-center py-10 space-y-3">
           <Typography variant="h3" color="accent.main">
             Our Lovely Pets
@@ -69,10 +65,9 @@ const AllPets = () => {
         </div>
 
 
-
         {/* searching/filtering section  */}
-        <Typography variant="subtitle2"  className="!ms-6 !-mb-4 lg:hidden">
-          Filter Pets : 
+        <Typography variant="subtitle2" className="!ms-6 !-mb-4 lg:hidden">
+          Filter Pets :
         </Typography>
         <FilterPet
           setSpecies={setSpecies}
@@ -85,31 +80,30 @@ const AllPets = () => {
 
 
         {isFetching && (
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-3 md:px-0 md:place-items-center lg:mt-10">
-            <CardSkeleton/>
-            <CardSkeleton/>
-            <CardSkeleton/>
-            <CardSkeleton/>
-            <CardSkeleton/>
-            <CardSkeleton/>
-            <CardSkeleton/>
-            <CardSkeleton/>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-5 md:px-0 md:place-items-center lg:mt-10">
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
           </div>
         )}
+
 
         <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 hidden place-items-center lg:mt-10">
           {allPets?.slice(0, 8).map((pet: TPet) => (
             <AllPetsCard key={pet.id} pet={pet} />
           ))}
         </div>
+
         <div className="grid gap-5 md:hidden px-5">
           {allPets?.slice(0, 3).map((pet: TPet) => (
             <AllPetsCard key={pet.id} pet={pet} />
           ))}
         </div>
-
-
 
         {!isLoading && allPets?.length > 8 && (
           <div className="flex justify-center mt-10">
@@ -139,10 +133,7 @@ const AllPets = () => {
           </div>
         )}
 
-
       </Container>
-
-    </>
   );
 };
 

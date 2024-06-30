@@ -18,14 +18,13 @@ const RecommendPets = () => {
 
   return (
     <>
-      <div className="text-center space-y-3 lg:space-y-5 lg:w-2/4 mx-auto">
+      <div className="text-center px-5 space-y-3 lg:space-y-5 lg:w-2/4 mx-auto">
         <Typography  className="!text-3xl lg:!text-5xl" color="accent.main">
-          Recommended For You
+          Recommend For You
         </Typography>
         <Typography  className="!text-xs lg:!text-base">
           Here are some pets that we recommend for you. They are all very
-          friendly and are looking for a new home. You can check them out and
-          see if you are interested in adopting them.
+          friendly and are looking for a new home.
         </Typography>
         <div className="border w-2/4 mx-auto"></div>
       </div>
@@ -41,14 +40,14 @@ const RecommendPets = () => {
       >
         <div className=" max-w-6xl  mx-auto py-24 lg:py-32 mb-10 ">
           {isFetching && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-0 px-7 md:px-0  md:place-items-center">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-0 px-7 md:px-0 md:place-items-center">
               <CardSkeleton />
               <CardSkeleton />
               <CardSkeleton />
             </div>
           )}
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-0 px-7 md:px-0 md:place-items-center ">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-0 px-7 md:px-0 md:place-items-center ">
             {randomPets?.map((pet: TPet) => (
               <AllPetsCard key={pet.id} pet={pet} />
             ))}

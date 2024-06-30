@@ -4,19 +4,16 @@ import HeroSection from "@/components/Ui/HomePage/HeroSection/HeroSection";
 import RecommendPets from "@/components/Ui/HomePage/RecommendPets/RecommendPets";
 import ContactUs from "./contact/page";
 
-
-
-
 const HomePage = () => {
   return (
-     <>
-         <HeroSection/>
-         <AllPets/>
-         <AboutUs/>
-         <RecommendPets/>
-         <ContactUs/>
-     </>
-  )
+    <>
+      <HeroSection />
+      <AllPets />
+      <AboutUs />
+      <RecommendPets />
+      <ContactUs />
+    </>
+  );
 };
 
-export default HomePage;  
+export default HomePage;

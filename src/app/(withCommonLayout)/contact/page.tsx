@@ -38,9 +38,10 @@ const ContactUs = () => {
             Contact Us
           </Typography>
           <Typography variant="body1">
-            We're here to help and answer any questions you might have. We look
-            forward to hearing from you! If you have any questions or concerns,
-            please don't hesitate to reach out to us using the form below.
+            We&apos;re here to help and answer any questions you might have. We
+            look forward to hearing from you! If you have any questions or
+            concerns, please don&apos;t hesitate to reach out to us using the
+            form below.
           </Typography>
         </Box>
         <Grid container spacing={8}>

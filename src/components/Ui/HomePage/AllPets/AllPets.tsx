@@ -57,7 +57,7 @@ const AllPets = () => {
 
   return (
     <>
-      <Container className="py-20 pb-36 ">
+      <Container className=" pt-10 pb-20  lg:py-20  lg:pb-36 ">
         <div className="text-center py-10 space-y-3">
           <Typography variant="h3" color="accent.main">
             Our Lovely Pets
@@ -86,7 +86,7 @@ const AllPets = () => {
 
         {isFetching && (
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-3 md:px-0 md:place-items-center">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-3 md:px-0 md:place-items-center lg:mt-10">
             <CardSkeleton/>
             <CardSkeleton/>
             <CardSkeleton/>
@@ -98,12 +98,12 @@ const AllPets = () => {
           </div>
         )}
 
-        <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 hidden place-items-center">
+        <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 hidden place-items-center lg:mt-10">
           {allPets?.slice(0, 8).map((pet: TPet) => (
             <AllPetsCard key={pet.id} pet={pet} />
           ))}
         </div>
-        <div className="grid gap-5 md:hidden px-3">
+        <div className="grid gap-5 md:hidden px-5">
           {allPets?.slice(0, 3).map((pet: TPet) => (
             <AllPetsCard key={pet.id} pet={pet} />
           ))}

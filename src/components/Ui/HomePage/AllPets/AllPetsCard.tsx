@@ -18,10 +18,9 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
       sx={{
         boxShadow: "none",
         background: "#efefef",
-        marginTop: "10px",
         borderRadius: "10px",
       }}
-      className="md:w-[340px] h-[490px] px-3 flex flex-col justify-around py-3"
+      className="lg:w-[330px] h-[460px] lg:h-[490px] px-3 flex flex-col justify-around py-3"
     >
       <CardMedia
         sx={{ height: "300px", borderRadius: "12px" }}
@@ -45,7 +44,11 @@ const AllPetsCard = ({ pet }: { pet: TPet }) => {
         <Typography variant="body2" color="text.secondary">
           Size: {pet.size}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          className="hidden lg:block"
+        >
           Location: {pet.location}
         </Typography>
       </CardContent>

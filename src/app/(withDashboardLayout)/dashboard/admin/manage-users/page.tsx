@@ -18,16 +18,49 @@ import { useState } from "react";
 import ChangeRoleModal from "./components/ChangeRoleModal";
 import ChangeStatusModal from "./components/ChangeStatusModal";
 import Link from "next/link";
+import FilterUser from "@/components/Shared/Filtering/FilterUser";
+import { useDebounced } from "@/redux/hooks";
 
 
 
 const ManageUser = () => {
 
-  const [isRoleModalOpen, setIsRoleModalOpen] = useState<boolean>(false);
-  const [isStatusModalOpen, setIsStatusModalOpen] = useState<boolean>(false);
-  const [userId, setUserId] = useState<string>("");
-  const { data, isLoading } = useGetAllUsersQuery({});
 
+   // states
+   const [isStatusModalOpen, setIsStatusModalOpen] = useState<boolean>(false);
+   const [userId, setUserId] = useState<string>("");
+   const [searchTerm, setSearchTerm] = useState<string>("");
+   const [gender, setGender] = useState<string>("");
+   const [status, setStatus] = useState<string>("");
+   const [role, setRole] = useState<string>("");
+   const [isRoleModalOpen, setIsRoleModalOpen] = useState<boolean>(false);
+
+
+ 
+
+   // queries
+   const query: Record<string, any> = {};
+   const debouncedTerm = useDebounced({
+     searchQuery: searchTerm,
+     delay: 600,
+   });
+   if (!!debouncedTerm) {
+     query["searchTerm"] = searchTerm;
+   }
+   if (!!gender) {
+     query["gender"] = gender;
+   }
+   if (!!status) {
+     query["status"] = status;
+   }
+   if (!!role) {
+     query["role"] = role;
+   }
+
+
+
+  //apis 
+  const { data, isLoading } = useGetAllUsersQuery({...query});
   const allUsers = data?.data;
   const meta = data?.meta;
 
@@ -37,7 +70,6 @@ const ManageUser = () => {
   //this is used to check the screen size using material ui useMediaQuery hook, then we set the columns accordingly
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
 
   //columns for large screen
   const largeScreenColumns: GridColDef[] = [
@@ -231,47 +263,57 @@ const ManageUser = () => {
     },
   ];
 
-
-
   const columns = isSmallScreen ? smallScreenColumns : largeScreenColumns;
 
 
+
+
   return (
-    <div className="container  mx-auto mt-10">
-      <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg p-8 px-3  lg:px-10">
-        <ChangeRoleModal
-          id={userId}
-          open={isRoleModalOpen}
-          setOpen={setIsRoleModalOpen}
-        />
-        <ChangeStatusModal
-          id={userId}
-          open={isStatusModalOpen}
-          setOpen={setIsStatusModalOpen}
-        />
-        <Typography variant="h4" className="lg:pt-5 !text-lg lg:!text-3xl !font-semibold">
-          Manage Users
-        </Typography>
+    <div className="container  mx-auto ">
+      <div className="flex flex-col ">
+      <FilterUser
+          setGender={setGender}
+          setSearchTerm={setSearchTerm}
+          setRole={setRole}
+          setStatus={setStatus}
+       />
 
+        <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg p-8 px-3  lg:px-10 flex-1">
+          <ChangeRoleModal
+            id={userId}
+            open={isRoleModalOpen}
+            setOpen={setIsRoleModalOpen}
+          />
+          <ChangeStatusModal
+            id={userId}
+            open={isStatusModalOpen}
+            setOpen={setIsStatusModalOpen}
+          />
+          <Typography
+            variant="h4"
+            className="lg:pt-5 !text-lg lg:!text-3xl !font-semibold"
+          >
+            Manage Users
+          </Typography>
 
-        {isLoading ? (
-          <div className="flex justify-center items-center h-[50vh]">
-            <CircularProgress color="secondary" />
-          </div>
-        ) : (
-          <Box my={3}>
-            <DataGrid
-              rows={allUsers ?? []}
-              columns={columns}
-              hideFooter
-              rowHeight={70}
-              getRowClassName={(params) =>
-                params.row.status === "BLOCKED" ? "bg-gray-200" : ""
-              }
-            />
-          </Box>
-        )}
-
+          {isLoading ? (
+            <div className="flex justify-center items-center h-[50vh]">
+              <CircularProgress color="secondary" />
+            </div>
+          ) : (
+            <Box my={3}>
+              <DataGrid
+                rows={allUsers ?? []}
+                columns={columns}
+                hideFooter
+                rowHeight={70}
+                getRowClassName={(params) =>
+                  params.row.status === "BLOCKED" ? "bg-gray-200" : ""
+                }
+              />
+            </Box>
+          )}
+        </div>
       </div>
     </div>
   );

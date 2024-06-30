@@ -26,9 +26,10 @@ export const userApi = baseApi.injectEndpoints({
       invalidatesTags: ["user"],
     }),
     getAllUsers: builder.query({
-      query: () => ({
+      query: (args: Record<string, any>) => ({
         url: "/users",
         method: "GET",
+        params: args,
       }),
       providesTags: ["user"],
     }),

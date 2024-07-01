@@ -80,10 +80,10 @@ const RegisterPage = () => {
     }
   };
 
+  
 
 
   return (
-
     <div className="  lg:h-screen bg-gradient-to-br from-[#fffded] to-[#fff4f4] ">
 
       {/* logo   */}

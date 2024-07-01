@@ -2,7 +2,6 @@
 
 import DashboardDrawer from "@/components/Dashboard/Drawer/DashboardDrawer";
 import { getUserInfo, isLoggedIn } from "@/services/auth.service";
-import getGreeting from "@/utils/greetingsGenerator";
 import { CircularProgress, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
@@ -41,7 +40,6 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         color=""
         className=" lg:!ms-12 !my-5 !text-xs lg:!text-base"
       >
-        {getGreeting()}...
       </Typography>
       {children}
     </DashboardDrawer>

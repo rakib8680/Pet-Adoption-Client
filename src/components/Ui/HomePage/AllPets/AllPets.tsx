@@ -80,7 +80,7 @@ const AllPets = () => {
 
 
         {isFetching && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-5 md:px-0 md:place-items-center lg:mt-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-5 md:px-0 lg:place-items-center lg:mt-10">
             <CardSkeleton />
             <CardSkeleton />
             <CardSkeleton />
@@ -93,7 +93,7 @@ const AllPets = () => {
         )}
 
 
-        <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 hidden place-items-center lg:mt-10">
+        <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 hidden lg:place-items-center lg:mt-10">
           {allPets?.slice(0, 8).map((pet: TPet) => (
             <AllPetsCard key={pet.id} pet={pet} />
           ))}

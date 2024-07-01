@@ -49,13 +49,13 @@ const MyAdoptions = () => {
 
 
       {isFetching ? (
-        <div className="mt-10 lg:flex flex-wrap justify-center gap-3 lg:gap-10 space-y-3 lg:space-y-0">
+        <div className="mt-10 md:grid md:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center gap-3 lg:gap-10 space-y-3 md:space-y-0">
           <CardSkeleton />
           <CardSkeleton />
           <CardSkeleton />
         </div>
       ) : (
-        <div className=" mt-10  flex flex-wrap justify-center gap-3 lg:gap-10 ">
+        <div className=" mt-10 flex flex-wrap justify-center gap-3 lg:gap-10 ">
           {myAdoptions?.map((adoption: any) => (
             <MyAdoptionCard key={adoption.id} adoption={adoption} />
           ))}

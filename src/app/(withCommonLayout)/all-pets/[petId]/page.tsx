@@ -54,10 +54,9 @@ const SinglePetPage = ({ params }: TParams) => {
           <div className="flex flex-col-reverse lg:flex-row  justify-center gap-10 lg:gap-24 ">
 
             {/* pet details */}
-            <div className="lg:grid grid-cols-3 gap-5 space-y-2 lg:space-y-0">
+            <div className="lg:grid grid-cols-3 gap-5 space-y-1 lg:space-y-0">
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
               >
                 Name:{" "}
                 <Box component="span" color="accent.main">
@@ -65,8 +64,7 @@ const SinglePetPage = ({ params }: TParams) => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
               >
                 Age:{" "}
                 <Box component="span" color="accent.main">
@@ -74,17 +72,15 @@ const SinglePetPage = ({ params }: TParams) => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
               >
                 Breed:{" "}
-                <Box component="span" color="accent.main" fontSize={14}>
+                <Box component="span" color="accent.main" sx={{fontSize:{lg:'18px'}}}>
                   {pet?.breed}
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl col-span-2"
               >
                 Temperament:{" "}
                 <Box component="span" color="accent.main">
@@ -92,8 +88,7 @@ const SinglePetPage = ({ params }: TParams) => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
               >
                 Gender:{" "}
                 <Box component="span" color="accent.main">
@@ -101,8 +96,7 @@ const SinglePetPage = ({ params }: TParams) => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
               >
                 Species:{" "}
                 <Box component="span" color="accent.main">
@@ -110,8 +104,7 @@ const SinglePetPage = ({ params }: TParams) => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
               >
                 Status:{" "}
                 <Box component="span" color="accent.main">
@@ -119,8 +112,7 @@ const SinglePetPage = ({ params }: TParams) => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
               >
                 Size:{" "}
                 <Box component="span" color="accent.main">
@@ -128,8 +120,7 @@ const SinglePetPage = ({ params }: TParams) => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-3"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl col-span-3"
               >
                 Medical History:{" "}
                 <Box component="span" color="accent.main">
@@ -137,23 +128,21 @@ const SinglePetPage = ({ params }: TParams) => {
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2"
+                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl col-span-2"
               >
                 Location:{" "}
                 <Box component="span" color="accent.main">
                   {pet?.location}
                 </Box>
               </Typography>
-              <Typography fontSize={17} className="bg-[#efefef] rounded-lg p-5">
-                Special Needs:{" "}
+              <Typography fontSize={17} className="bg-[#efefef] rounded-lg p-5 !font-mono lg:!text-xl">
+                SpecialNeeds:{" "}
                 <Box component="span" color="accent.main">
                   {pet?.specialNeeds}
                 </Box>
               </Typography>
               <Typography
-                variant="h6"
-                className="bg-[#efefef] rounded-lg p-5 col-span-3"
+                className="bg-[#efefef] rounded-lg p-5 col-span-3 !font-mono lg:!text-xl"
               >
                 Adoption Requirements:{" "}
                 <Box component="span" fontSize={16} color="gray">
@@ -168,9 +157,9 @@ const SinglePetPage = ({ params }: TParams) => {
                 background: "#efefef",
                 border: "1px solid #efefef",
                 borderRadius: "10px",
-                padding: "30px",
+                padding: { xs: "15px", lg: "25px"},
               }}
-              className="md:w-[1000px] space-y-5"
+              className="max-w-[600px] space-y-5"
             >
               <Image
                 src={pet?.photos[0]}

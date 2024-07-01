@@ -47,7 +47,7 @@ const AllPetsPage = () => {
 
   return (
 
-    <Container className="pb-36 pt-10">
+    <Container className="pb-36 pt-10 ">
 
       <div className="text-center space-y-3">
         <Typography variant="h3" color="accent.main">
@@ -59,15 +59,16 @@ const AllPetsPage = () => {
         <div className="border w-2/4 mx-auto"></div>
       </div>
 
-
         {/* searching/filtering section  */}
+       <div className="mt-10 lg:mb-5">
         <FilterPet
-          setSpecies={setSpecies}
-          setSearchTerm={setSearchTerm}
-          setAge={setAge}
-          setSize={setSize}
-          setGender={setGender}
-        />
+            setSpecies={setSpecies}
+            setSearchTerm={setSearchTerm}
+            setAge={setAge}
+            setSize={setSize}
+            setGender={setGender}
+          />
+       </div>
 
 
       {isFetching && (

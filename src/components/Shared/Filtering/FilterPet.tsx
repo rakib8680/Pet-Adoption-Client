@@ -17,7 +17,7 @@ const FilterPet = ({
   return (
     <>
       {/* for large screens */}
-      <div className="hidden lg:flex flex-nowrap gap-5 m-6  bg-[#EFEFEF] p-3 rounded-lg  mx-14  ">
+      <div className="hidden lg:flex flex-nowrap gap-5 m-6 lg:m-2 bg-[#F5F5F6] p-2 rounded-lg    ">
         {/* filter by species */}
         <FormControl
           color="secondary"
@@ -96,7 +96,7 @@ const FilterPet = ({
             color="secondary"
             size="small"
             onChange={(e) => setSearchTerm(e.target.value)}
-            sx={{ width: "200px", bgcolor: "white" }}
+            sx={{ width: "300px", bgcolor: "white" }}
           />
           <Button
             disableElevation
@@ -116,8 +116,8 @@ const FilterPet = ({
       </div>
 
       {/* for small screens */}
-      <div className="flex flex-wrap  gap-1   my-7 mx-5 lg:hidden">
-        <div className="flex w-full gap-2 bg-[#EFEFEF] rounded-lg  p-2">
+      <div className="flex flex-wrap  gap-1   my-5 mx-5 lg:hidden">
+        <div className="flex w-full gap-2 bg-[#F5F5F6] rounded-lg  p-2">
           {/* filter by species */}
           <FormControl
             color="secondary"
@@ -177,7 +177,7 @@ const FilterPet = ({
         </div>
 
         {/* searching */}
-        <div className="flex gap-2 w-full  bg-[#EFEFEF] rounded-lg  p-2">
+        <div className="flex gap-2 w-full  bg-[#F5F5F6] rounded-lg  p-2">
           <TextField
             label="Search"
             color="secondary"

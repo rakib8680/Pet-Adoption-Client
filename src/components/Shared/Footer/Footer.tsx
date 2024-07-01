@@ -17,6 +17,7 @@ const Footer = () => {
     <Box className="bg-gray-800 text-gray-200 py-10 pt-20">
       <Container maxWidth="lg">
         <Grid container spacing={5}>
+          
           <Grid item xs={12} md={4}>
             <Image
               src={logo2}
@@ -38,11 +39,13 @@ const Footer = () => {
               <Instagram className="cursor-pointer" />
             </Box>
           </Grid>
+          
           <Grid item xs={12} md={4}>
-            <Typography color='#EFEFEF' fontSize={20}>
+            <Typography color="#EFEFEF" fontSize={20}>
               Quick Links
             </Typography>
-              {/* Links  */}
+
+            {/* Links  */}
             <Stack spacing={10} direction="row" className="mt-2">
               <Stack spacing={2}>
                 <Typography
@@ -62,8 +65,6 @@ const Footer = () => {
                   About
                 </Typography>
                 <Typography
-                  component={Link}
-                  href="/blog"
                   variant="body2"
                   className="text-gray-400 hover:text-gray-100"
                 >
@@ -80,24 +81,18 @@ const Footer = () => {
               </Stack>
               <Stack spacing={2}>
                 <Typography
-                  component={Link}
-                  href="/gallery"
                   variant="body2"
                   className="text-gray-400 hover:text-gray-100"
                 >
                   Gallery
                 </Typography>
                 <Typography
-                  component={Link}
-                  href="/faq"
                   variant="body2"
                   className="text-gray-400 hover:text-gray-100"
                 >
                   FAQ
                 </Typography>
                 <Typography
-                  component={Link}
-                  href="/testimonials"
                   variant="body2"
                   className="text-gray-400 hover:text-gray-100"
                 >
@@ -114,11 +109,15 @@ const Footer = () => {
               </Stack>
             </Stack>
           </Grid>
+
           <Grid item xs={12} md={4}>
-            <Typography color='#EFEFEF' fontSize={24}>
+            <Typography color="#EFEFEF" fontSize={24}>
               Subscribe to our Newsletter
             </Typography>
-            <Typography variant="body2" sx={{ mb: {xs:1, lg:5}, mt: {xs:'', lg:1} }}>
+            <Typography
+              variant="body2"
+              sx={{ mb: { xs: 1, lg: 5 }, mt: { xs: "", lg: 1 } }}
+            >
               Get updates on new pets available for adoption.
             </Typography>
             <Box className="flex space-x-2">
@@ -134,6 +133,7 @@ const Footer = () => {
               </Button>
             </Box>
           </Grid>
+
         </Grid>
         <Box className="mt-10 text-center">
           <Typography variant="body2" className="text-gray-500">

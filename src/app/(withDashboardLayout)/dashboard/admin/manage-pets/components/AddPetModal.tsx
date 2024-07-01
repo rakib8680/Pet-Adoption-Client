@@ -69,7 +69,7 @@ const AddPetModal = ({open, setOpen}:TProps) => {
          <PAC_Modal title="Add a pet" open={open} setOpen={setOpen}>
          <Box
             sx={{
-              padding: { xs: "0px 5px", lg: "0px 50px" },
+              padding: { xs: "0px", lg: "0px 50px" },
               maxWidth: "700px",
               width: "100%",
               bgcolor: "#fdfdfd",

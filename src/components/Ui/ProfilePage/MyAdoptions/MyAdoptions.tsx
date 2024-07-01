@@ -40,7 +40,7 @@ const MyAdoptions = () => {
           <Tab label="Pending" onClick={() => setStatus("PENDING")} />
           <Tab
             label="Approved"
-            sx={{ mx: { xs: 4, lg: 7 } }}
+            sx={{ mx: { xs: 3, lg: 7 } }}
             onClick={() => setStatus("APPROVED")}
           />
           <Tab label="Rejected" onClick={() => setStatus("REJECTED")} />
@@ -49,7 +49,7 @@ const MyAdoptions = () => {
 
 
       {isFetching ? (
-        <div className="mt-10 lg:flex flex-wrap justify-center gap-3 lg:gap-10">
+        <div className="mt-10 lg:flex flex-wrap justify-center gap-3 lg:gap-10 space-y-3 lg:space-y-0">
           <CardSkeleton />
           <CardSkeleton />
           <CardSkeleton />

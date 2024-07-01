@@ -270,15 +270,14 @@ const ManageUser = () => {
 
   return (
     <div className="container  mx-auto ">
-      <div className="flex flex-col ">
-      <FilterUser
-          setGender={setGender}
-          setSearchTerm={setSearchTerm}
-          setRole={setRole}
-          setStatus={setStatus}
-       />
+        <FilterUser
+            setGender={setGender}
+            setSearchTerm={setSearchTerm}
+            setRole={setRole}
+            setStatus={setStatus}
+        />
 
-        <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg p-8 px-3  lg:px-10 flex-1">
+        <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg p-8 px-3  lg:px-10">
           <ChangeRoleModal
             id={userId}
             open={isRoleModalOpen}
@@ -317,7 +316,6 @@ const ManageUser = () => {
               />
             </Box>
           )}
-        </div>
       </div>
     </div>
   );

@@ -18,14 +18,50 @@ import { useState } from "react";
 import AddPetModal from "./components/AddPetModal";
 import PetsIcon from "@mui/icons-material/Pets";
 import Swal from "sweetalert2";
+import FilterPet from "@/components/Shared/Filtering/FilterPet";
+import { useDebounced } from "@/redux/hooks";
+
 
 
 
 const ManagePets = () => {
 
+
+  // states
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [species, setSpecies] = useState<string>("");
+  const [age, setAge] = useState<string>("");
+  const [size, setSize] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
+
+
+  // queries
+  const query: Record<string, any> = {};
+  const debouncedTerm = useDebounced({
+    searchQuery: searchTerm,
+    delay: 600,
+  });
+  if (!!debouncedTerm) {
+    query["searchTerm"] = searchTerm;
+  }
+  if (!!species) {
+    query["species"] = species;
+  }
+  if (!!age) {
+    query["age"] = age;
+  }
+  if (!!size) {
+    query["size"] = size;
+  }
+  if (!!gender) {
+    query["gender"] = gender;
+  }
+
+
+  // call api 
   const [deletePet] = useDeletePetMutation();
-  const { data, isLoading } = useGetAllPetsQuery({});
+  const { data, isLoading } = useGetAllPetsQuery({ ...query });
   const allPets = data?.data;
   const meta = data?.meta;
 
@@ -218,14 +254,22 @@ const ManagePets = () => {
     },
   ];
 
-
   const columns = isSmallScreen ? smallScreenColumns : largeScreenColumns;
 
 
-  
+
+
   return (
     <div className="container  mx-auto mb-10">
+      
       <AddPetModal open={isModalOpen} setOpen={setIsModalOpen} />
+      <FilterPet
+        setSpecies={setSpecies}
+        setSearchTerm={setSearchTerm}
+        setAge={setAge}
+        setSize={setSize}
+        setGender={setGender}
+      />
       <div className="bg-gradient-to-b from-[#F5F5F5] to-gray-50 rounded-lg p-5 px-3  lg:px-10">
         <div className="flex justify-between items-center">
           <div>

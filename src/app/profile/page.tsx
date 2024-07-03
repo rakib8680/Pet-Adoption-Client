@@ -6,7 +6,6 @@ import {
   Box,
   Button,
   CircularProgress,
-  Divider,
   IconButton,
   Menu,
   MenuItem,
@@ -28,11 +27,13 @@ import { logOutUser } from "@/services/actions/logoutUser";
 import { useRouter } from "next/navigation";
 import LogoutIcon from "@mui/icons-material/Logout";
 import logo2 from "@/assets/logo2.png";
+import UpdateProfileModal from "./components/UpdateProfileModal";
 
 
 
 
 const ProfilePage = () => {
+
 
 
   //  use this code to handle hydration error
@@ -48,14 +49,14 @@ const ProfilePage = () => {
     () => import("@/app/profile/components/MyAdoptionRequests")
   );
 
-
-
-
+  
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const { data, isLoading } = useGetMyProfileQuery(undefined);
   const myProfile = data?.data;
   const userInfo = getUserInfo();
+
 
   //   logout function
   const handleLogout = () => {
@@ -72,7 +73,6 @@ const ProfilePage = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
 
   // responsive user menu
   const userMenu = (
@@ -126,9 +126,10 @@ const ProfilePage = () => {
 
 
 
+
+
   return (
     <>
-
       {isLoading ? (
         <div className="flex justify-center items-center lg:h-[70vh] h-screen">
           <CircularProgress color="secondary" />
@@ -137,9 +138,8 @@ const ProfilePage = () => {
         <div
           className={` mb-28  lg:my-10  container mx-auto ${
             userInfo?.role === "ADMIN" && "min-h-screen"
-          }`}>
-
-
+          }`}
+        >
           {/* buttons  */}
           <div className=" hidden lg:flex flex-col lg:flex-row justify-end items-center gap-10 ">
             <Tooltip title="Home">
@@ -155,7 +155,6 @@ const ProfilePage = () => {
             <DashboardButton />
             <AuthButton />
           </div>
-
 
           {/* responsive user menu  */}
           <div className="lg:hidden flex justify-between items-center px-5 py-10">
@@ -192,53 +191,41 @@ const ProfilePage = () => {
 
           {/* Profile Information  */}
           <div
-            className={`flex flex-col-reverse lg:flex-row  justify-center gap-8 lg:gap-24  lg:mt-20 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] lg:rounded-2xl pt-5 px-6 lg:py-10`}>
-
+            className={`flex flex-col-reverse lg:flex-row  justify-center gap-8 lg:gap-24  lg:mt-20 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] lg:rounded-2xl pt-5 px-6 lg:py-10`}
+          >
             {/* My details */}
             <div className="lg:grid gap-5 items-center content-center space-y-1  lg:space-y-0 ">
-              <Typography
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
-              >
+              <Typography className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl">
                 Name:{" "}
                 <Box component="span" color="accent.main">
                   {myProfile?.name}
                 </Box>
               </Typography>
-              <Typography
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
-              >
+              <Typography className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl">
                 Age:{" "}
                 <Box component="span" color="accent.main">
                   {myProfile?.age}
                 </Box>
               </Typography>
-              <Typography
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
-              >
+              <Typography className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl">
                 Gender:{" "}
                 <Box component="span" color="accent.main">
                   {myProfile?.gender}
                 </Box>
               </Typography>
-              <Typography
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl"
-              >
+              <Typography className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl">
                 Contact No:{" "}
                 <Box component="span" color="accent.main">
                   {myProfile?.contactNumber}
                 </Box>
               </Typography>
-              <Typography
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2 !font-mono lg:!text-xl"
-              >
+              <Typography className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2 !font-mono lg:!text-xl">
                 Email:{" "}
                 <Box component="span" color="accent.main">
                   {myProfile?.email}
                 </Box>
               </Typography>
-              <Typography
-                className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2 !font-mono lg:!text-xl"
-              >
+              <Typography className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 col-span-2 !font-mono lg:!text-xl">
                 Location:{" "}
                 <Box component="span" color="accent.main">
                   {myProfile?.location}
@@ -271,33 +258,44 @@ const ProfilePage = () => {
             <EditProfileModal open={open} setOpen={setOpen} />
 
             {/* image and description */}
-            <Box
-              sx={{
-                background: "#efefef",
-                border: "1px solid #efefef",
-                borderRadius: "10px",
-                padding: "30px",
-                maxWidth: "500px",
-                width: "100%",
-              }}
-              className=""
-            >
-              <Image
-                src={myProfile?.profilePicture || dummyImage}
-                alt="myProfile image"
-                width={500}
-                height={500}
-                className=" mx-auto my-auto bg-black p-4"
-              />
-            </Box>
+            <div>
+              <Box
+                sx={{
+                  background: "#efefef",
+                  border: "1px solid #efefef",
+                  borderRadius: "10px",
+                  padding: "30px",
+                  maxWidth: "500px",
+                  width: "100%",
+                }}
+                className=""
+              >
+                <Image
+                  src={myProfile?.profilePicture || dummyImage}
+                  alt="myProfile image"
+                  width={500}
+                  height={500}
+                  className=" mx-auto my-auto bg-black p-4"
+                />
+              </Box>
 
+              <Button
+                endIcon={<EditOffIcon />}
+                disableElevation
+                color="secondary"
+                fullWidth
+                onClick={() => setIsModalOpen(!isModalOpen)}
+                >
+                Update Profile Picture
+              </Button>
+
+                {/* Update Profile modal  */}
+              <UpdateProfileModal open={isModalOpen} setOpen={setIsModalOpen} />
+            </div>
           </div>
-
 
           {/* My Adoption Requests */}
           <MyAdoptionRequests userInfo={userInfo} />
-
-
         </div>
       )}
     </>

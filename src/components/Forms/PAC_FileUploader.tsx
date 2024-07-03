@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { CloudUpload as CloudUploadIcon } from "@mui/icons-material";
 import { Box, Button, Input, SvgIconProps, SxProps } from "@mui/material";
 import { ReactElement } from "react";
@@ -13,7 +14,8 @@ interface IFileUploadButton {
   onFileUpload: (file: File) => void;
 }
 
-const AutoFileUploader = ({
+
+const PAC_FileUploader = ({
   name,
   label,
   accept,
@@ -22,17 +24,22 @@ const AutoFileUploader = ({
   variant = "contained",
   onFileUpload,
 }: IFileUploadButton) => {
+  const [fileName, setFileName] = useState<string | null>(null);
+
   return (
     <Box>
       <Button
         component="label"
         role={undefined}
+        fullWidth
+        disableElevation
+        color="secondary"
         variant={variant}
         tabIndex={-1}
         startIcon={icon ? icon : <CloudUploadIcon />}
         sx={{ ...sx }}
       >
-        {label || "Upload file"}
+        {fileName || label || "Upload file"}
         <Input
           type="file"
           inputProps={{ accept: accept }}
@@ -41,6 +48,7 @@ const AutoFileUploader = ({
             const fileInput = e.target as HTMLInputElement;
             const file = fileInput.files?.[0];
             if (file) {
+              setFileName(file.name);
               onFileUpload(file);
             }
           }}
@@ -50,4 +58,4 @@ const AutoFileUploader = ({
   );
 };
 
-export default AutoFileUploader;
+export default PAC_FileUploader;

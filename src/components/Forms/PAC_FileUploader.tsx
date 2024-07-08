@@ -1,61 +1,62 @@
-"use client";
-import { useState } from "react";
-import { CloudUpload as CloudUploadIcon } from "@mui/icons-material";
-import { Box, Button, Input, SvgIconProps, SxProps } from "@mui/material";
-import { ReactElement } from "react";
+import { SxProps } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { Controller, useFormContext } from "react-hook-form";
+import { Input } from "@mui/material";
 
-interface IFileUploadButton {
+type TProps = {
+  disabled?: boolean;
   name: string;
   label?: string;
-  accept?: string;
   sx?: SxProps;
-  icon?: ReactElement<SvgIconProps>;
-  variant?: "contained" | "text";
-  onFileUpload: (file: File) => void;
-}
-
-
-const PAC_FileUploader = ({
-  name,
-  label,
-  accept,
-  sx,
-  icon,
-  variant = "contained",
-  onFileUpload,
-}: IFileUploadButton) => {
-  const [fileName, setFileName] = useState<string | null>(null);
-
-  return (
-    <Box>
-      <Button
-        component="label"
-        role={undefined}
-        fullWidth
-        disableElevation
-        color="secondary"
-        variant={variant}
-        tabIndex={-1}
-        startIcon={icon ? icon : <CloudUploadIcon />}
-        sx={{ ...sx }}
-      >
-        {fileName || label || "Upload file"}
-        <Input
-          type="file"
-          inputProps={{ accept: accept }}
-          style={{ display: "none" }}
-          onChange={(e) => {
-            const fileInput = e.target as HTMLInputElement;
-            const file = fileInput.files?.[0];
-            if (file) {
-              setFileName(file.name);
-              onFileUpload(file);
-            }
-          }}
-        />
-      </Button>
-    </Box>
-  );
+  color?: "primary" | "secondary";
+  variant?: "text" | "outlined" | "contained";
+  fullWidth?: boolean;
 };
 
-export default PAC_FileUploader;
+export default function RXFileUpload({
+  name,
+  label,
+  sx,
+  disabled,
+  color,
+  variant,
+  fullWidth,
+}: TProps) {
+
+
+  const { control } = useFormContext();
+
+  return (
+    <Controller
+      name={name}
+      control={control}
+      render={({ field: { onChange, value, ...field } }) => {
+        return (
+          <Button
+            fullWidth={fullWidth}
+            disabled={disabled}
+            color={color}
+            role={undefined}
+            variant={variant}
+            component='label'
+            tabIndex={-1}
+            startIcon={<CloudUploadIcon />}
+            sx={{ ...sx }}
+          >
+            {value?.name?.slice(0, 14) || label || "Upload file"}
+            <Input
+              {...field}
+              type="file"
+              onChange={(e) => {
+                const file = (e?.target as HTMLInputElement).files?.[0];
+                onChange(file);
+              }}
+              style={{ display: "none" }}
+            />
+          </Button>
+        );
+      }}
+    />
+  );
+}

@@ -37,14 +37,14 @@ export default function RXFileUpload({
             fullWidth={fullWidth}
             disabled={disabled}
             color={color}
-            role={undefined}
             variant={variant}
             component='label'
             tabIndex={-1}
             startIcon={<CloudUploadIcon />}
             sx={{ ...sx }}
+            disableElevation
           >
-            {value?.name?.slice(0, 14) || label || "Upload file"}
+            {value?.name?.slice(0, 20) || label || "Upload file"}
             <Input
               {...field}
               type="file"

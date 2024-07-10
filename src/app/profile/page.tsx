@@ -31,11 +31,8 @@ import UpdateProfileModal from "./components/UpdateProfileModal";
 
 
 
-
 const ProfilePage = () => {
-
-
-
+  
   //  use this code to handle hydration error
   const AuthButton = dynamic(
     () => import("@/components/Ui/AuthButton/AuthButton"),
@@ -49,14 +46,14 @@ const ProfilePage = () => {
     () => import("@/app/profile/components/MyAdoptionRequests")
   );
 
-  
+
+
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const { data, isLoading } = useGetMyProfileQuery(undefined);
   const myProfile = data?.data;
   const userInfo = getUserInfo();
-
 
   //   logout function
   const handleLogout = () => {
@@ -127,8 +124,8 @@ const ProfilePage = () => {
 
 
 
-
   return (
+
     <>
       {isLoading ? (
         <div className="flex justify-center items-center lg:h-[70vh] h-screen">
@@ -140,6 +137,7 @@ const ProfilePage = () => {
             userInfo?.role === "ADMIN" && "min-h-screen"
           }`}
         >
+
           {/* buttons  */}
           <div className=" hidden lg:flex flex-col lg:flex-row justify-end items-center gap-10 ">
             <Tooltip title="Home">
@@ -191,10 +189,12 @@ const ProfilePage = () => {
 
           {/* Profile Information  */}
           <div
-            className={`flex flex-col-reverse lg:flex-row  justify-center gap-8 lg:gap-24  lg:mt-20 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] lg:rounded-2xl pt-5 px-6 lg:py-10`}
+            className={`flex flex-col-reverse lg:flex-row  justify-center gap-14 lg:gap-24  lg:mt-20 bg-gradient-to-t from-[#fffefc] to-[#f4f4f4] lg:rounded-2xl pt-5 px-6 lg:py-10`}
           >
+
+
             {/* My details */}
-            <div className="lg:grid gap-5 items-center content-center space-y-1  lg:space-y-0 ">
+            <div className="lg:grid gap-5 items-center content-center space-y-1  lg:space-y-0">
               <Typography className="bg-[#efefef] rounded-lg p-3 lg:p-5 px-8 !font-mono lg:!text-xl">
                 Name:{" "}
                 <Box component="span" color="accent.main">
@@ -237,7 +237,7 @@ const ProfilePage = () => {
                 color="secondary"
                 onClick={() => setOpen(!open)}
                 fullWidth
-                className="!mt-10 !mb-2 lg:!mb-0 lg:!mt-0"
+                className="!mt-3 !mb-2 lg:!mb-0 lg:!mt-0 !text-xs lg:!text-base"
               >
                 Edit Details
                 <EditOffIcon className="ml-2" />
@@ -248,14 +248,19 @@ const ProfilePage = () => {
                 href="/profile/change-password"
                 color="inherit"
                 fullWidth
+                className="!text-xs lg:!text-base"
               >
                 Change Password
                 <KeyIcon className="ml-2" />
               </Button>
             </div>
 
+
             {/* edit details modal  */}
             <EditProfileModal open={open} setOpen={setOpen} />
+            {/* Update Profile modal  */}
+            <UpdateProfileModal open={isModalOpen} setOpen={setIsModalOpen} />
+
 
             {/* image and description */}
             <div>
@@ -279,23 +284,24 @@ const ProfilePage = () => {
                 />
               </Box>
 
+              {/* update Profile button  */}
               <Button
                 endIcon={<EditOffIcon />}
                 disableElevation
                 color="secondary"
                 fullWidth
                 onClick={() => setIsModalOpen(!isModalOpen)}
-                >
+                className=" !mt-2 lg:!mt-5  !text-xs lg:!text-base"
+              >
                 Update Profile Picture
               </Button>
-
-                {/* Update Profile modal  */}
-              <UpdateProfileModal open={isModalOpen} setOpen={setIsModalOpen} />
             </div>
           </div>
 
+
           {/* My Adoption Requests */}
           <MyAdoptionRequests userInfo={userInfo} />
+
         </div>
       )}
     </>

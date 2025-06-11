@@ -6,8 +6,6 @@ import {
   SubmitHandler,
 } from "react-hook-form";
 
-
-
 type TFormConfig = {
   resolver?: any;
   defaultValues?: Record<string, any>;
@@ -18,15 +16,12 @@ type TFormProps = {
   onSubmit: SubmitHandler<FieldValues>;
 } & TFormConfig;
 
-
 const PAC_Form = ({
   children,
   onSubmit,
   resolver,
   defaultValues,
 }: TFormProps) => {
-
-
   const formConfig: TFormConfig = {};
   if (resolver) {
     formConfig["resolver"] = resolver;

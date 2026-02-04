@@ -6,15 +6,12 @@
 
 Welcome to the **Pet Adoption Platform**! Our mission is to connect adorable pets with loving homes. This platform is designed to make the process of finding your perfect pet match as easy and enjoyable as possible. Whether you're looking to adopt a pet or add one for adoption, we've got you covered!
 
-
-
 ## 🔑 Admin Credentials
 
 Use the following credentials to log in as an admin:
 
 - **Email**: tanjidul@gmail.com
 - **Password**: 1111
-
 
 ## 🚀 Features
 
@@ -89,17 +86,17 @@ Each of these variables plays a crucial role in the configuration of your applic
 
 This project is built with a powerful set of technologies to ensure high performance, security, and scalability. Here's a quick overview:
 
+- 💻 **Client**:
+  - [Next.js](https://nextjs.org/), [React](https://react.dev/), [Redux](https://redux-toolkit.js.org/), [Tailwind CSS](https://tailwindcss.com/),[Material UI](https://mui.com/), [Axios](https://axios-http.com/), [React Hook Form](https://react-hook-form.com/)
+  
 - 🚀 **Server**:
-
   - [Node.js](https://nodejs.org/), [Express](https://expressjs.com/), [TypeScript](https://www.typescriptlang.org/), [Nodemon](https://nodemon.io/),[Dotenv](https://www.npmjs.com/package/dotenv), [Cors](https://www.npmjs.com/package/cors),[Vercel](https://vercel.com/)
 
 - 🧪 **Validation**:
-
   - [Zod](https://www.npmjs.com/package/zod), [EsLint](https://eslint.org/), [Prettier](https://prettier.io/),
     [Bcrypt](https://www.npmjs.com/package/bcrypt), [JWT](https://jwt.io/)
 
 - 🗄️ **Database**:
-
   - [PostgreSQL](https://www.postgresql.org/): An open-source relational database management system.
   - [Prisma](https://www.prisma.io/): A modern database toolkit that simplifies database access.
 
@@ -120,16 +117,12 @@ Click on any of the technologies to learn more about them!
 - 📝 **Update Pet Page**: A page that allows users to update the details of a pet.
 - 📝 **Login Page**: A page that allows users to log in to their account.
 - 📝 **Register Page**: A page that allows users to create a new account.
-- 📝 **Change Password  Page**: A page that allows users to change their password.
+- 📝 **Change Password Page**: A page that allows users to change their password.
 - 📝 **Adoption Request Page**: A page that allows users to request adoption for a pet.
 - 📝 **Adoption Request List Page**: A page that displays all adoption requests.
 - 📝 **Update Adoption Request Page**: A page that allows users to update the status of an adoption request.
 - 📝 **Filter Page**: A page that allows users to filter pets based on their type, breed, age, and more.
 - 📝 **404 Page**: A custom 404 page that displays when a user navigates to a non-existent page.
-
-
-
-
 
 ## 🌟 Project Features
 
@@ -153,7 +146,7 @@ Click on any of the technologies to learn more about them!
 - 📝 **Search Pets**
 - 📝 **Update Adoption Request Status**
 - 📝 **View My Adoption Requests**
-- 
+-
 
 ## 🔍 Advanced Filtering Options
 
@@ -171,14 +164,12 @@ Click on any of the technologies to learn more about them!
 Our platform offers a comprehensive set of APIs that allow you to interact with the platform seamlessly. Here's a quick overview of the available endpoints:
 
 - 🐾 **Pets API**
-
   - `GET /api/pets`: Get a list of all pets available for adoption.
   - `GET /api/pets/:id`: Get details of a specific pet.
   - `POST /api/pet`: Add a new pet for adoption.
   - `PUT /api/pets/:id`: Update details of a pet.
 
 - 👤 **Users API**
-
   - `POST /api/register`: Create a new user account.
   - `POST /api/login`: Login to an existing user account.
   - `GET /api/profile`: Get user profile details.
